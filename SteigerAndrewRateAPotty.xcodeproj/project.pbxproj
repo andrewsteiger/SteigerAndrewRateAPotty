@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D329A7E50C00EEDFF8 /* AppDelegate.swift */; };
 		0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D529A7E50C00EEDFF8 /* SceneDelegate.swift */; };
-		0932A4D829A7E50C00EEDFF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D729A7E50C00EEDFF8 /* ViewController.swift */; };
+		0932A4D829A7E50C00EEDFF8 /* VCListViewResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D729A7E50C00EEDFF8 /* VCListViewResults.swift */; };
 		0932A4DB29A7E50C00EEDFF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0932A4D929A7E50C00EEDFF8 /* Main.storyboard */; };
 		0932A4DD29A7E50E00EEDFF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0932A4DC29A7E50E00EEDFF8 /* Assets.xcassets */; };
 		0932A4E029A7E50E00EEDFF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0932A4DE29A7E50E00EEDFF8 /* LaunchScreen.storyboard */; };
 		0932A4EB29A7E50F00EEDFF8 /* SteigerAndrewRateAPottyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4EA29A7E50F00EEDFF8 /* SteigerAndrewRateAPottyTests.swift */; };
 		0932A4F529A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4F429A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITests.swift */; };
 		0932A4F729A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4F629A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITestsLaunchTests.swift */; };
+		0932A50429A7E60A00EEDFF8 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A50329A7E60A00EEDFF8 /* AppConfig.swift */; };
+		0932A50629A81A9100EEDFF8 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A50529A81A9100EEDFF8 /* AppData.swift */; };
+		0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A50729A826CD00EEDFF8 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,7 @@
 		0932A4D029A7E50C00EEDFF8 /* SteigerAndrewRateAPotty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteigerAndrewRateAPotty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0932A4D329A7E50C00EEDFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0932A4D529A7E50C00EEDFF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0932A4D729A7E50C00EEDFF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0932A4D729A7E50C00EEDFF8 /* VCListViewResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCListViewResults.swift; sourceTree = "<group>"; };
 		0932A4DA29A7E50C00EEDFF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0932A4DC29A7E50E00EEDFF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0932A4DF29A7E50E00EEDFF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		0932A4F029A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SteigerAndrewRateAPottyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0932A4F429A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteigerAndrewRateAPottyUITests.swift; sourceTree = "<group>"; };
 		0932A4F629A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteigerAndrewRateAPottyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0932A50329A7E60A00EEDFF8 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		0932A50529A81A9100EEDFF8 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		0932A50729A826CD00EEDFF8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +107,14 @@
 			children = (
 				0932A4D329A7E50C00EEDFF8 /* AppDelegate.swift */,
 				0932A4D529A7E50C00EEDFF8 /* SceneDelegate.swift */,
-				0932A4D729A7E50C00EEDFF8 /* ViewController.swift */,
+				0932A4D729A7E50C00EEDFF8 /* VCListViewResults.swift */,
 				0932A4D929A7E50C00EEDFF8 /* Main.storyboard */,
 				0932A4DC29A7E50E00EEDFF8 /* Assets.xcassets */,
 				0932A4DE29A7E50E00EEDFF8 /* LaunchScreen.storyboard */,
 				0932A4E129A7E50E00EEDFF8 /* Info.plist */,
+				0932A50329A7E60A00EEDFF8 /* AppConfig.swift */,
+				0932A50529A81A9100EEDFF8 /* AppData.swift */,
+				0932A50729A826CD00EEDFF8 /* Extensions.swift */,
 			);
 			path = SteigerAndrewRateAPotty;
 			sourceTree = "<group>";
@@ -258,9 +267,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0932A4D829A7E50C00EEDFF8 /* ViewController.swift in Sources */,
+				0932A4D829A7E50C00EEDFF8 /* VCListViewResults.swift in Sources */,
+				0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */,
+				0932A50429A7E60A00EEDFF8 /* AppConfig.swift in Sources */,
 				0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */,
 				0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */,
+				0932A50629A81A9100EEDFF8 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
