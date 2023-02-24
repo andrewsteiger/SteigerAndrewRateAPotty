@@ -8,13 +8,32 @@
 import Foundation
 
 class AppData {
-    let AppPotties: [Potty] = getAllPottys()
-}
-
-
-func getAllPottys() -> [Potty] {
-    return [
-        Potty(latitude: 1.1,
+    private var _AppPotties: [Potty]
+    var AppPotties: [Potty] {
+        return _AppPotties
+    }
+    
+    init() {
+        self._AppPotties = PottyDataSet
+    }
+    
+    func getAllPottys() -> [Potty] {
+        return PottyDataSet
+    }
+    
+    func getPottyByID(_ id: Int) -> Potty {
+        for i in 0...AppPotties.count - 1 {
+            if AppPotties[i].id == id {
+                return AppPotties[i]
+            }
+        }
+        return AppConfig.InitialStates.pottyInitialState
+    }
+    
+    // mock data sets
+    let PottyDataSet: [Potty] = [
+        Potty(id: 0,
+              latitude: 1.1,
               longitude: 1.2,
               ratings: [
                 PottyReview(id: "0",
@@ -36,7 +55,8 @@ func getAllPottys() -> [Potty] {
                             upVotes: 3,
                             downVotes: 1),
               ]),
-        Potty(latitude: 2.1,
+        Potty(id: 1,
+              latitude: 2.1,
               longitude: 3.2,
               ratings: [
                 PottyReview(id: "0",
@@ -50,5 +70,4 @@ func getAllPottys() -> [Potty] {
                             downVotes: 1)
               ]),
     ]
-    
 }

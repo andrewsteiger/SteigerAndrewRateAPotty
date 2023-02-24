@@ -8,18 +8,19 @@
 import Foundation
 
 class AppConfig {
-    
-    
     struct RatingTypes {
         static let accessibility: String = "Accessibility"
         static let cleanliness: String = "Cleanliness"
         static let atmosphere: String = "Atmosphere"
     }
     
-    
+    struct InitialStates {
+        static let pottyInitialState: Potty = Potty(id: -1, latitude: 0.0, longitude: 0.0, ratings: [])
+    }
 }
 
 struct Potty {
+    var id: Int
     var latitude: Double
     var longitude: Double
     var ratings: [PottyReview]
