@@ -8,14 +8,17 @@
 import UIKit
 
 class TableVCReviews: UITableViewController {
-    let appData = AppData()
+    var appData: AppData = AppData()
     let maxResults: Int = 10
-    var currentPotty: Potty = Potty(id: -1, latitude: 0.0, longitude: 0.0, ratings: []);
+    var currentPotty: Potty = AppConfig.InitialStates.pottyInitialState;
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ReviewCell")
         
-        currentPotty = appData.getPottyByID(0)
+        // initialize locals
+        appData = AppData()
+        currentPotty = appData.getPottyByID(0);
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -27,7 +30,7 @@ class TableVCReviews: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return max(currentPotty.ratings.count, maxResults)
+        return min(currentPotty.ratings.count, maxResults)
     }
 }
 
