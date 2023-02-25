@@ -72,6 +72,7 @@
                                     <outlet property="contentViewMain" destination="boI-LK-yZe" id="PLx-56-0C0"/>
                                     <outlet property="lblReviewComment" destination="dNf-Ra-gJ6" id="psn-sZ-LGF"/>
                                     <outlet property="lblReviewTitle" destination="RtR-XO-U0i" id="C4N-IM-vA1"/>
+                                    <outlet property="viewRatingStars" destination="57e-h4-uKk" id="ygQ-oB-ebh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

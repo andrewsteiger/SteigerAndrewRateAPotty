@@ -24,6 +24,7 @@ class TableVCReviews: UITableViewController {
         let cell: ReviewCell = self.tableView.dequeueReusableCell(withIdentifier: ReviewCell.reuseIdentifier, for: indexPath) as! ReviewCell
         cell.lblReviewTitle.text = "\(currentPotty.ratings[indexPath.row].author)"
         cell.lblReviewComment.text = "\t\"" + (currentPotty.ratings[indexPath.row].comment) + "\""
+        cell.setRating(rating: (currentPotty.ratings[indexPath.row].ratingAtmosphere + currentPotty.ratings[indexPath.row].ratingCleanliness + currentPotty.ratings[indexPath.row].ratingAccessibility) / 3)
 
         return cell
     }

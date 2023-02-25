@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Used to configure app specific constants, states
 class AppConfig {
     struct RatingTypes {
         static let accessibility: String = "Accessibility"
@@ -28,6 +29,11 @@ struct Potty {
     var ratings: [PottyReview]
     var owner: String?
     
+    /// Gets the average rating, using the local `ratings` object of type `[PottyReview]`
+    ///
+    /// - Parameters:
+    ///   - ratingType: A string to represent the `RatingTypes`, default value will return average of all `RatingTypes`
+    /// - Returns: A `Double` of the average `RatingTypes` specified
     func getAverageRating(_ ratingType: String) -> Double {
         var totalValue: Double = 0.0
         var totalCount: Int = 0
@@ -84,23 +90,18 @@ struct PottyReview {
     var downVotes: Int
 }
 
-struct AppColors {
-    // dont forget to divide standard rgb by 255 smh
-    static let blueFocus = UIColor(red: 0.0, green: 0.506, blue: 0.541, alpha: 1.0)
-    static let blueDark = UIColor(red: 0.059, green: 0.298, blue: 0.459, alpha: 1.0);
-    static let blueLight = UIColor(red: 0.859, green: 0.929, blue: 0.953, alpha: 1.0);
-    static let bluePurple = UIColor(red: 0.157, green: 0.192, blue: 0.286, alpha: 1.0);
-    static let starYellow = UIColor(red: 0.961, green: 0.725, blue: 0.259, alpha: 1.0)
-    static let starGray = UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1.0)
-    
-    static let cgGray = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-}
-
 struct AppIcons {
     static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
     static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.yellow)
 }
 
+/// Create a rounded border for a given view.
+/// Example usage: view.addSubview(DrawBorderLayer(view, 12))
+///
+/// - Parameters:
+///   - originView: The parent view to receive the border.
+///   - inset: The amount to inset for each side, from the parent view frame
+/// - Returns: A `CAShapeLayer` which represents a gray border and can be added as a SubView
 func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     let grayRoundBorderLayer: CAShapeLayer = CAShapeLayer()
     
@@ -109,7 +110,7 @@ func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     
     grayRoundBorderLayer.path = bezierPath.cgPath
     grayRoundBorderLayer.frame = originView.bounds
-    grayRoundBorderLayer.strokeColor = AppColors.cgGray
+    grayRoundBorderLayer.strokeColor = UIColor.cgGray
     grayRoundBorderLayer.fillColor = UIColor.clear.cgColor
     grayRoundBorderLayer.lineWidth = 1
     return grayRoundBorderLayer
