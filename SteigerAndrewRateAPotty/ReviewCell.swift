@@ -13,6 +13,8 @@ class ReviewCell: UITableViewCell {
     @IBOutlet weak var lblReviewTitle: UILabel!
     @IBOutlet weak var lblReviewComment: UILabel!
     @IBOutlet weak var viewRatingStars: RatingStars!
+    @IBOutlet weak var viewRatingReviewSupport: RatingReviewSupport!
+    @IBOutlet weak var lblReadFullReview: UILabel!
     
     class var reuseIdentifier: String {
         get {
@@ -27,6 +29,10 @@ class ReviewCell: UITableViewCell {
         lblReviewTitle.textColor = UIColor.blueDark
         contentViewMain.layer.addSublayer(DrawBorderLayer(contentViewMain, inset: 14))
         viewRatingStars.disable(true)
+        var readFullReviewString = NSMutableAttributedString(string: "Read Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
+        lblReadFullReview.font = UIFont.italicSystemFont(ofSize: 16)
+        lblReadFullReview.textColor = UIColor.blueFocus
+        lblReadFullReview.attributedText = readFullReviewString
     }
 
 //    override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,8 +41,16 @@ class ReviewCell: UITableViewCell {
 //        // Configure the view for the selected state
 //    }
     
-    func setRating(rating: Int) {
+    func setRating(_ rating: Int) {
         viewRatingStars.setRating(rating)
+    }
+    
+    func setUpVotes(_ upVotes: Int) {
+        viewRatingReviewSupport.setUpVotes(upVotes)
+    }
+    
+    func setDownVotes(_ downVotes: Int) {
+        viewRatingReviewSupport.setDownVotes(downVotes)
     }
 
 }

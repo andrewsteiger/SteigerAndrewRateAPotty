@@ -4,20 +4,18 @@
 //
 //  Created by asteiger on 2/24/23.
 //
+//  Custom UIView which represents a "star rating" for a given review
+//  Buttons will populate from the right
+//  Width of view should be at least 100
 
 import UIKit
 
 class RatingStars: UIView {
     let star1 = UIButton()
-    var star1On: Bool = false
     let star2 = UIButton()
-    var star2On: Bool = false
     let star3 = UIButton()
-    var star3On: Bool = false
     let star4 = UIButton()
-    var star4On: Bool = false
     let star5 = UIButton()
-    var star5On: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,34 +28,31 @@ class RatingStars: UIView {
     }
     
     /// Setup the `RatingStars` view
-    ///
-    /// - Parameters:
-    ///   - originView: The parent view to receive the border.
-    ///   - inset: The amount to inset for each side, from the parent view frame
-    /// - Returns: A `CAShapeLayer` which represents a gray border and can be added as a SubView
     private func setupView() {
+        let viewWidth = self.frame.width
+        
         // create the ratings stars
-        star1.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        star1.frame = CGRect(x: viewWidth - 80, y: 0, width: 25, height: 25)
         star1.setImage(AppIcons.StarEmpty, for: .normal)
         star1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star1.tintColor = UIColor.starGray
         self.addSubview(star1)
-        star2.frame = CGRect(x: 20, y: 0, width: 25, height: 25)
+        star2.frame = CGRect(x: viewWidth - 60, y: 0, width: 25, height: 25)
         star2.setImage(AppIcons.StarEmpty, for: .normal)
         star2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star2.tintColor = UIColor.starGray
         self.addSubview(star2)
-        star3.frame = CGRect(x: 40, y: 0, width: 25, height: 25)
+        star3.frame = CGRect(x: viewWidth - 40, y: 0, width: 25, height: 25)
         star3.setImage(AppIcons.StarEmpty, for: .normal)
         star3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star3.tintColor = UIColor.starGray
         self.addSubview(star3)
-        star4.frame = CGRect(x: 60, y: 0, width: 25, height: 25)
+        star4.frame = CGRect(x: viewWidth - 20, y: 0, width: 25, height: 25)
         star4.setImage(AppIcons.StarEmpty, for: .normal)
         star4.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star4.tintColor = UIColor.starGray
         self.addSubview(star4)
-        star5.frame = CGRect(x: 80, y: 0, width: 25, height: 25)
+        star5.frame = CGRect(x: viewWidth, y: 0, width: 25, height: 25)
         star5.setImage(AppIcons.StarEmpty, for: .normal)
         star5.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star5.tintColor = UIColor.starGray

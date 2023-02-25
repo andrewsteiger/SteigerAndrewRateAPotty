@@ -93,6 +93,8 @@ struct PottyReview {
 struct AppIcons {
     static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
     static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.yellow)
+    static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.blueFocus)
+    static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.blueFocus)
 }
 
 /// Create a rounded border for a given view.

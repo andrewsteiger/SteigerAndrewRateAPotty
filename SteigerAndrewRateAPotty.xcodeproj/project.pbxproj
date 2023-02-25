@@ -21,6 +21,7 @@
 		0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A50729A826CD00EEDFF8 /* Extensions.swift */; };
 		096E6B1829A918C1003DB933 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1729A918C1003DB933 /* ReviewCell.swift */; };
 		096E6B1A29A9AAEC003DB933 /* RatingStars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1929A9AAEC003DB933 /* RatingStars.swift */; };
+		096E6B1C29AA8E80003DB933 /* RatingReviewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		0932A50729A826CD00EEDFF8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		096E6B1729A918C1003DB933 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		096E6B1929A9AAEC003DB933 /* RatingStars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStars.swift; sourceTree = "<group>"; };
+		096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				0932A50729A826CD00EEDFF8 /* Extensions.swift */,
 				096E6B1729A918C1003DB933 /* ReviewCell.swift */,
 				096E6B1929A9AAEC003DB933 /* RatingStars.swift */,
+				096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */,
 			);
 			path = SteigerAndrewRateAPotty;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */,
 				0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */,
 				0932A50629A81A9100EEDFF8 /* AppData.swift in Sources */,
+				096E6B1C29AA8E80003DB933 /* RatingReviewSupport.swift in Sources */,
 				096E6B1A29A9AAEC003DB933 /* RatingStars.swift in Sources */,
 				096E6B1829A918C1003DB933 /* ReviewCell.swift in Sources */,
 			);
