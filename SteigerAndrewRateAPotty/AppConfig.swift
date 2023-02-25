@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AppConfig {
     struct RatingTypes {
@@ -17,6 +18,7 @@ class AppConfig {
     struct InitialStates {
         static let pottyInitialState: Potty = Potty(id: -1, latitude: 0.0, longitude: 0.0, ratings: [])
     }
+    
 }
 
 struct Potty {
@@ -80,4 +82,35 @@ struct PottyReview {
     var comment: String
     var upVotes: Int
     var downVotes: Int
+}
+
+struct AppColors {
+    // dont forget to divide standard rgb by 255 smh
+    static let blueFocus = UIColor(red: 0.0, green: 0.506, blue: 0.541, alpha: 1.0)
+    static let blueDark = UIColor(red: 0.059, green: 0.298, blue: 0.459, alpha: 1.0);
+    static let blueLight = UIColor(red: 0.859, green: 0.929, blue: 0.953, alpha: 1.0);
+    static let bluePurple = UIColor(red: 0.157, green: 0.192, blue: 0.286, alpha: 1.0);
+    static let starYellow = UIColor(red: 0.961, green: 0.725, blue: 0.259, alpha: 1.0)
+    static let starGray = UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1.0)
+    
+    static let cgGray = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+}
+
+struct AppIcons {
+    static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+    static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.yellow)
+}
+
+func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
+    let grayRoundBorderLayer: CAShapeLayer = CAShapeLayer()
+    
+    let bezierPath = UIBezierPath(roundedRect: CGRect(x: originView.frame.origin.x + inset, y: originView.frame.origin.y + inset, width: originView.frame.size.width - inset*2, height: originView.frame.size.height - inset*2), cornerRadius: 8)
+    originView.backgroundColor = UIColor.clear
+    
+    grayRoundBorderLayer.path = bezierPath.cgPath
+    grayRoundBorderLayer.frame = originView.bounds
+    grayRoundBorderLayer.strokeColor = AppColors.cgGray
+    grayRoundBorderLayer.fillColor = UIColor.clear.cgColor
+    grayRoundBorderLayer.lineWidth = 1
+    return grayRoundBorderLayer
 }

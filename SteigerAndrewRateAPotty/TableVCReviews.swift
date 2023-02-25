@@ -11,10 +11,9 @@ class TableVCReviews: UITableViewController {
     var appData: AppData = AppData()
     let maxResults: Int = 10
     var currentPotty: Potty = AppConfig.InitialStates.pottyInitialState;
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ReviewCell")
         
         // initialize locals
         appData = AppData()
@@ -22,9 +21,9 @@ class TableVCReviews: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath)
-
-        cell.textLabel?.text = "\(currentPotty.ratings[indexPath.row].author) Row \(indexPath.row)"
+        let cell: ReviewCell = self.tableView.dequeueReusableCell(withIdentifier: ReviewCell.reuseIdentifier, for: indexPath) as! ReviewCell
+        cell.lblReviewTitle.text = "\(currentPotty.ratings[indexPath.row].author)"
+        cell.lblReviewComment.text = "\t\"" + (currentPotty.ratings[indexPath.row].comment) + "\""
 
         return cell
     }
@@ -32,8 +31,4 @@ class TableVCReviews: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return min(currentPotty.ratings.count, maxResults)
     }
-}
-
-class TableViewCellReview: UITableViewCell {
-    
 }
