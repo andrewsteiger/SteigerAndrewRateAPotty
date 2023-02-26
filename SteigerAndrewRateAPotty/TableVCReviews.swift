@@ -8,6 +8,8 @@
 import UIKit
 
 class TableVCReviews: UITableViewController {
+    @IBOutlet weak var lblHeader: UILabel!
+    
     var appData: AppData = AppData()
     let maxResults: Int = 10
     var currentPotty: Potty = AppConfig.InitialStates.pottyInitialState;
@@ -18,6 +20,8 @@ class TableVCReviews: UITableViewController {
         // initialize locals
         appData = AppData()
         currentPotty = appData.getPottyByID(0);
+        lblHeader.text = "All " + String(currentPotty.ratings.count) + " Reviews"
+        lblHeader.font = UIFont.boldSystemFont(ofSize: 18)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,6 +33,14 @@ class TableVCReviews: UITableViewController {
         cell.setDownVotes(currentPotty.ratings[indexPath.row].downVotes)
 
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let reviewDetailViewContainer = segue.destination as? ReviewDetailViewController {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                reviewDetailViewContainer.currentReview = currentPotty.ratings[indexPath.row]
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

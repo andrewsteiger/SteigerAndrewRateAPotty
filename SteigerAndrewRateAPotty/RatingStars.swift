@@ -19,16 +19,14 @@ class RatingStars: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupView()
     }
     
     /// Setup the `RatingStars` view
-    private func setupView() {
+    func drawView(drawFromRight: Bool) {
         let viewWidth = self.frame.width
         
         // create the ratings stars
@@ -63,7 +61,9 @@ class RatingStars: UIView {
     }
     
     /// Define the actions when stars inside of `RatingStars` are clicked.
+    ///
     /// Checking one star will automatically check the others below it to retain a sequential selection.
+    ///
     /// Unchecking one star will automatically uncheck the others above it to retain a sequential selection.
     ///
     /// - Parameters:

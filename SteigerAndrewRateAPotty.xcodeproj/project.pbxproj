@@ -22,6 +22,7 @@
 		096E6B1829A918C1003DB933 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1729A918C1003DB933 /* ReviewCell.swift */; };
 		096E6B1A29A9AAEC003DB933 /* RatingStars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1929A9AAEC003DB933 /* RatingStars.swift */; };
 		096E6B1C29AA8E80003DB933 /* RatingReviewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */; };
+		096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		096E6B1729A918C1003DB933 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		096E6B1929A9AAEC003DB933 /* RatingStars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStars.swift; sourceTree = "<group>"; };
 		096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewSupport.swift; sourceTree = "<group>"; };
+		096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				096E6B1729A918C1003DB933 /* ReviewCell.swift */,
 				096E6B1929A9AAEC003DB933 /* RatingStars.swift */,
 				096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */,
+				096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */,
 			);
 			path = SteigerAndrewRateAPotty;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */,
 				0932A4D829A7E50C00EEDFF8 /* TableVCReviews.swift in Sources */,
 				0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */,
 				0932A50429A7E60A00EEDFF8 /* AppConfig.swift in Sources */,

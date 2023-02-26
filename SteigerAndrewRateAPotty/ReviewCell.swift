@@ -27,9 +27,11 @@ class ReviewCell: UITableViewCell {
         
         // Initialization code
         lblReviewTitle.textColor = UIColor.blueDark
+        contentViewMain.layoutIfNeeded()
         contentViewMain.layer.addSublayer(DrawBorderLayer(contentViewMain, inset: 14))
         viewRatingStars.disable(true)
-        var readFullReviewString = NSMutableAttributedString(string: "Read Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
+        viewRatingStars.drawView(drawFromRight: true)
+        let readFullReviewString = NSMutableAttributedString(string: "Read Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
         lblReadFullReview.font = UIFont.italicSystemFont(ofSize: 16)
         lblReadFullReview.textColor = UIColor.blueFocus
         lblReadFullReview.attributedText = readFullReviewString

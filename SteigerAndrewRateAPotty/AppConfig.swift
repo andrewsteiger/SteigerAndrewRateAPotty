@@ -29,7 +29,7 @@ struct Potty {
     var ratings: [PottyReview]
     var owner: String?
     
-    /// Gets the average rating, using the local `ratings` object of type `[PottyReview]`
+    /// Gets the average rating on a potty, using the local `ratings` object of type `[PottyReview]`
     ///
     /// - Parameters:
     ///   - ratingType: A string to represent the `RatingTypes`, default value will return average of all `RatingTypes`
@@ -88,6 +88,13 @@ struct PottyReview {
     var comment: String
     var upVotes: Int
     var downVotes: Int
+    
+    /// Gets the average rating on a review, using the local `ratings` object of type `[PottyReview]`
+    ///
+    /// - Returns: An `Int` of all the `RatingTypes`
+    func getAverageRating() -> Int {
+        return Int(Double(ratingAccessibility + ratingCleanliness + ratingAtmosphere) / 3.0)
+    }
 }
 
 struct AppIcons {
@@ -98,7 +105,12 @@ struct AppIcons {
 }
 
 /// Create a rounded border for a given view.
-/// Example usage: view.addSubview(DrawBorderLayer(view, 12))
+///
+/// Example usage:
+///
+/// view.layoutIfNeeded() // use before call if view frame is dynamic
+///
+/// view.addSubview(DrawBorderLayer(view, 12))
 ///
 /// - Parameters:
 ///   - originView: The parent view to receive the border.
@@ -107,13 +119,14 @@ struct AppIcons {
 func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     let grayRoundBorderLayer: CAShapeLayer = CAShapeLayer()
     
-    let bezierPath = UIBezierPath(roundedRect: CGRect(x: originView.frame.origin.x + inset, y: originView.frame.origin.y + inset, width: originView.frame.size.width - inset*2, height: originView.frame.size.height - inset*2), cornerRadius: 8)
+    let bezierPath = UIBezierPath(roundedRect: CGRect(x: originView.bounds.origin.x + inset, y: originView.bounds.origin.y + inset, width: originView.frame.size.width - inset*2, height: originView.frame.size.height - inset*2), cornerRadius: 8)
     originView.backgroundColor = UIColor.clear
     
     grayRoundBorderLayer.path = bezierPath.cgPath
-    grayRoundBorderLayer.frame = originView.bounds
+    //grayRoundBorderLayer.frame = originView.bounds
     grayRoundBorderLayer.strokeColor = UIColor.cgGray
     grayRoundBorderLayer.fillColor = UIColor.clear.cgColor
     grayRoundBorderLayer.lineWidth = 1
+    grayRoundBorderLayer.needsDisplayOnBoundsChange = true
     return grayRoundBorderLayer
 }
