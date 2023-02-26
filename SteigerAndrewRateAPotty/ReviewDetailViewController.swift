@@ -9,9 +9,12 @@ import UIKit
 
 class ReviewDetailViewController: UIViewController {
     @IBOutlet weak var lblHeader: UILabel!
+    @IBOutlet weak var viewRatings: UIView!
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var lblDateCreated: UILabel!
-    @IBOutlet weak var viewRatingStars: RatingStars!
+    @IBOutlet weak var viewRatingAccessibility: RatingStars!
+    @IBOutlet weak var viewRatingCleanliness: RatingStars!
+    @IBOutlet weak var viewRatingAtmosphere: RatingStars!
     @IBOutlet weak var viewRatingReviewSupport: RatingReviewSupport!
     @IBOutlet weak var lblReviewComment: UILabel!
     
@@ -29,10 +32,20 @@ class ReviewDetailViewController: UIViewController {
         if let review = currentReview {
             lblHeader.text = "Full Review - " + String(review.author)
             lblHeader.font = UIFont.boldSystemFont(ofSize: 17)
+            
+            viewRatingAccessibility.drawView(drawFromRight: false)
+            viewRatingAccessibility.setRating(review.ratingAccessibility)
+            viewRatingAccessibility.disable(true)
+            viewRatingCleanliness.drawView(drawFromRight: false)
+            viewRatingCleanliness.setRating(review.ratingCleanliness)
+            viewRatingCleanliness.disable(true)
+            viewRatingAtmosphere.drawView(drawFromRight: false)
+            viewRatingAtmosphere.setRating(review.ratingAtmosphere)
+            viewRatingAtmosphere.disable(true)
+            viewRatings.layoutIfNeeded()
+            viewRatings.layer.addSublayer(DrawBorderLayer(viewRatings, inset: 14))
+            
             lblReviewComment.text = "\t\"" + (review.comment) + "\""
-            viewRatingStars.drawView(drawFromRight: false)
-            viewRatingStars.setRating(review.getAverageRating())
-            viewRatingStars.disable(true)
             viewRatingReviewSupport.setUpVotes(review.upVotes)
             viewRatingReviewSupport.setDownVotes(review.downVotes)
             dateFormatter.dateFormat = "dd/MM/YYYY HH:mm"
