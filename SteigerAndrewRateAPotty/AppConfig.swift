@@ -123,7 +123,6 @@ func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     originView.backgroundColor = UIColor.clear
     
     grayRoundBorderLayer.path = bezierPath.cgPath
-    //grayRoundBorderLayer.frame = originView.bounds
     grayRoundBorderLayer.strokeColor = UIColor.cgGray
     grayRoundBorderLayer.fillColor = UIColor.clear.cgColor
     grayRoundBorderLayer.lineWidth = 1

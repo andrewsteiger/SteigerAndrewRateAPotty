@@ -26,7 +26,12 @@ class TableVCReviews: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ReviewCell = self.tableView.dequeueReusableCell(withIdentifier: ReviewCell.reuseIdentifier, for: indexPath) as! ReviewCell
-        cell.lblReviewTitle.text = "\(currentPotty.ratings[indexPath.row].author)"
+        if (indexPath.row == 0) {
+            cell.lblReviewTitle.text = "Top Rated Review: " + "\(currentPotty.ratings[indexPath.row].author)"
+        }
+        else {
+            cell.lblReviewTitle.text = "\(currentPotty.ratings[indexPath.row].author)"
+        }
         cell.lblReviewComment.text = "\t\"" + (currentPotty.ratings[indexPath.row].comment) + "\""
         cell.setRating((currentPotty.ratings[indexPath.row].ratingAtmosphere + currentPotty.ratings[indexPath.row].ratingCleanliness + currentPotty.ratings[indexPath.row].ratingAccessibility) / 3)
         cell.setUpVotes(currentPotty.ratings[indexPath.row].upVotes)
@@ -44,6 +49,6 @@ class TableVCReviews: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(currentPotty.ratings.count, maxResults)
+        return currentPotty.ratings.count
     }
 }

@@ -23,35 +23,49 @@ class RatingStars: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setupView()
     }
     
     /// Setup the `RatingStars` view
-    func drawView(drawFromRight: Bool) {
-        let viewWidth = self.frame.width
+    func setupView() {
+        let buttonDimensions: CGFloat = self.frame.height
+        let buttonWidthBaseline: CGFloat = self.frame.width - buttonDimensions
+        let buttonWidthActual: CGFloat = 0.875 * buttonDimensions
+        let buttonHeightBaseline: CGFloat = 0
         
         // create the ratings stars
-        star1.frame = CGRect(x: viewWidth - 80, y: 0, width: 25, height: 25)
+        star1.frame = CGRect(x: buttonWidthBaseline - 4 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         star1.setImage(AppIcons.StarEmpty, for: .normal)
+        star1.contentVerticalAlignment = .fill
+        star1.contentHorizontalAlignment = .fill
         star1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star1.tintColor = UIColor.starGray
         self.addSubview(star1)
-        star2.frame = CGRect(x: viewWidth - 60, y: 0, width: 25, height: 25)
+        star2.frame = CGRect(x: buttonWidthBaseline - 3 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         star2.setImage(AppIcons.StarEmpty, for: .normal)
+        star2.contentVerticalAlignment = .fill
+        star2.contentHorizontalAlignment = .fill
         star2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star2.tintColor = UIColor.starGray
         self.addSubview(star2)
-        star3.frame = CGRect(x: viewWidth - 40, y: 0, width: 25, height: 25)
+        star3.frame = CGRect(x: buttonWidthBaseline - 2 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         star3.setImage(AppIcons.StarEmpty, for: .normal)
+        star3.contentVerticalAlignment = .fill
+        star3.contentHorizontalAlignment = .fill
         star3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star3.tintColor = UIColor.starGray
         self.addSubview(star3)
-        star4.frame = CGRect(x: viewWidth - 20, y: 0, width: 25, height: 25)
+        star4.frame = CGRect(x: buttonWidthBaseline - buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         star4.setImage(AppIcons.StarEmpty, for: .normal)
+        star4.contentVerticalAlignment = .fill
+        star4.contentHorizontalAlignment = .fill
         star4.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star4.tintColor = UIColor.starGray
         self.addSubview(star4)
-        star5.frame = CGRect(x: viewWidth, y: 0, width: 25, height: 25)
+        star5.frame = CGRect(x: buttonWidthBaseline, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         star5.setImage(AppIcons.StarEmpty, for: .normal)
+        star5.contentVerticalAlignment = .fill
+        star5.contentHorizontalAlignment = .fill
         star5.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         star5.tintColor = UIColor.starGray
         self.addSubview(star5)

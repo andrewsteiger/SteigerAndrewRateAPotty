@@ -30,26 +30,32 @@ class RatingReviewSupport: UIView {
     
     /// Setup the `RatingReviewSupport` view
     private func setupView() {
-        let viewWidth = self.frame.width
+        let buttonDimensions: CGFloat = self.frame.height
+        let buttonWidthBaseline: CGFloat = self.frame.width - buttonDimensions
+        let buttonHeightBaseline: CGFloat = 0
         
         // create the support thumbs
-        upVote.frame = CGRect(x: viewWidth - 90, y: 0, width: 25, height: 25)
+        upVote.frame = CGRect(x: buttonWidthBaseline - 3 * buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         upVote.setImage(AppIcons.ThumbUp, for: .normal)
+        upVote.contentVerticalAlignment = .fill
+        upVote.contentHorizontalAlignment = .fill
         upVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         upVote.tintColor = UIColor.blueDark
         self.addSubview(upVote)
-        lblUpVotes.frame = CGRect(x: viewWidth - 65, y: 0, width: 40, height: 25)
+        lblUpVotes.frame = CGRect(x: buttonWidthBaseline - 2 * buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         lblUpVotes.text = "(" + String(upVoteCount) + ")"
         lblUpVotes.textColor = UIColor.blueDark
         lblUpVotes.font = UIFont.systemFont(ofSize: 12)
         lblUpVotes.textAlignment = .left
         self.addSubview(lblUpVotes)
-        downVote.frame = CGRect(x: viewWidth - 30, y: 0, width: 25, height: 25)
+        downVote.frame = CGRect(x: buttonWidthBaseline - buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         downVote.setImage(AppIcons.ThumbDown, for: .normal)
+        downVote.contentVerticalAlignment = .fill
+        downVote.contentHorizontalAlignment = .fill
         downVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         downVote.tintColor = UIColor.blueDark
         self.addSubview(downVote)
-        lblDownVotes.frame = CGRect(x: viewWidth - 5, y: 0, width: 40, height: 25)
+        lblDownVotes.frame = CGRect(x: buttonWidthBaseline, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         lblDownVotes.text = "(" + String(downVoteCount) + ")"
         lblDownVotes.textColor = UIColor.blueDark
         lblDownVotes.font = UIFont.systemFont(ofSize: 12)

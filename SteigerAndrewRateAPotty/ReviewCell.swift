@@ -27,21 +27,16 @@ class ReviewCell: UITableViewCell {
         
         // Initialization code
         lblReviewTitle.textColor = UIColor.blueDark
+        lblReviewTitle.font = UIFont.systemFont(ofSize: 14)
+        lblReviewComment.font = UIFont.systemFont(ofSize: 12)
         contentViewMain.layoutIfNeeded()
         contentViewMain.layer.addSublayer(DrawBorderLayer(contentViewMain, inset: 14))
         viewRatingStars.disable(true)
-        viewRatingStars.drawView(drawFromRight: true)
-        let readFullReviewString = NSMutableAttributedString(string: "Read Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
-        lblReadFullReview.font = UIFont.italicSystemFont(ofSize: 16)
+        let readFullReviewString = NSMutableAttributedString(string: "Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
+        lblReadFullReview.font = UIFont.italicSystemFont(ofSize: 12)
         lblReadFullReview.textColor = UIColor.blueFocus
         lblReadFullReview.attributedText = readFullReviewString
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     
     func setRating(_ rating: Int) {
         viewRatingStars.setRating(rating)

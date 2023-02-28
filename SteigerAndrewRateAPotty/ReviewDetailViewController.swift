@@ -27,19 +27,16 @@ class ReviewDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     override func viewWillAppear(_ animated: Bool) {
         if let review = currentReview {
             lblHeader.text = "Full Review - " + String(review.author)
-            lblHeader.font = UIFont.boldSystemFont(ofSize: 17)
+            lblHeader.font = UIFont.boldSystemFont(ofSize: 14)
+            lblReviewComment.font = UIFont.systemFont(ofSize: 12)
             
-            viewRatingAccessibility.drawView(drawFromRight: false)
             viewRatingAccessibility.setRating(review.ratingAccessibility)
             viewRatingAccessibility.disable(true)
-            viewRatingCleanliness.drawView(drawFromRight: false)
             viewRatingCleanliness.setRating(review.ratingCleanliness)
             viewRatingCleanliness.disable(true)
-            viewRatingAtmosphere.drawView(drawFromRight: false)
             viewRatingAtmosphere.setRating(review.ratingAtmosphere)
             viewRatingAtmosphere.disable(true)
             viewRatings.layoutIfNeeded()
@@ -49,14 +46,12 @@ class ReviewDetailViewController: UIViewController {
             viewRatingReviewSupport.setUpVotes(review.upVotes)
             viewRatingReviewSupport.setDownVotes(review.downVotes)
             dateFormatter.dateFormat = "dd/MM/YYYY HH:mm"
-            lblDateCreated.font = UIFont.italicSystemFont(ofSize: 14)
+            lblDateCreated.font = UIFont.italicSystemFont(ofSize: 12)
             if let dateCreated = review.dateTimeCreated {
-                print(dateCreated)
-                lblDateCreated.text = dateFormatter.string(from: dateCreated)
+                lblDateCreated.text = "Review Created: " + dateFormatter.string(from: dateCreated)
             }
             viewContent.layoutIfNeeded()
             viewContent.layer.addSublayer(DrawBorderLayer(viewContent, inset: 14))
         }
     }
-
 }

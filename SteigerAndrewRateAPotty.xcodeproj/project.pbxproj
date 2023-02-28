@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0903DAC029ACF9A600058A1A /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903DABF29ACF9A600058A1A /* MapsViewController.swift */; };
+		0903DAC229ADA18D00058A1A /* Podfile in Sources */ = {isa = PBXBuildFile; fileRef = 0903DAC129ADA18D00058A1A /* Podfile */; };
+		0903DAC429ADA76800058A1A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0903DAC329ADA76800058A1A /* README.md */; };
 		0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D329A7E50C00EEDFF8 /* AppDelegate.swift */; };
 		0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D529A7E50C00EEDFF8 /* SceneDelegate.swift */; };
 		0932A4D829A7E50C00EEDFF8 /* TableVCReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D729A7E50C00EEDFF8 /* TableVCReviews.swift */; };
@@ -23,6 +26,7 @@
 		096E6B1A29A9AAEC003DB933 /* RatingStars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1929A9AAEC003DB933 /* RatingStars.swift */; };
 		096E6B1C29AA8E80003DB933 /* RatingReviewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */; };
 		096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */; };
+		B6CDB7F5BAA308D3ABD9C1BC /* libPods-SteigerAndrewRateAPotty.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CED7FE914B4AE983605022F5 /* libPods-SteigerAndrewRateAPotty.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0903DABF29ACF9A600058A1A /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		0903DAC129ADA18D00058A1A /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0903DAC329ADA76800058A1A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0932A4D029A7E50C00EEDFF8 /* SteigerAndrewRateAPotty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteigerAndrewRateAPotty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0932A4D329A7E50C00EEDFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0932A4D529A7E50C00EEDFF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +70,9 @@
 		096E6B1929A9AAEC003DB933 /* RatingStars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStars.swift; sourceTree = "<group>"; };
 		096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewSupport.swift; sourceTree = "<group>"; };
 		096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
+		881B94C02B14DDCA685EA8FF /* Pods-SteigerAndrewRateAPotty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteigerAndrewRateAPotty.release.xcconfig"; path = "Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty.release.xcconfig"; sourceTree = "<group>"; };
+		CED7FE914B4AE983605022F5 /* libPods-SteigerAndrewRateAPotty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SteigerAndrewRateAPotty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F66CB170B0ABC56B115BF9AC /* Pods-SteigerAndrewRateAPotty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteigerAndrewRateAPotty.debug.xcconfig"; path = "Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6CDB7F5BAA308D3ABD9C1BC /* libPods-SteigerAndrewRateAPotty.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,10 +104,14 @@
 		0932A4C729A7E50C00EEDFF8 = {
 			isa = PBXGroup;
 			children = (
+				0903DAC329ADA76800058A1A /* README.md */,
+				0903DAC129ADA18D00058A1A /* Podfile */,
 				0932A4D229A7E50C00EEDFF8 /* SteigerAndrewRateAPotty */,
 				0932A4E929A7E50F00EEDFF8 /* SteigerAndrewRateAPottyTests */,
 				0932A4F329A7E50F00EEDFF8 /* SteigerAndrewRateAPottyUITests */,
 				0932A4D129A7E50C00EEDFF8 /* Products */,
+				533394EC8E3D88CD62613F12 /* Pods */,
+				B1E0ACC8F76CBD914A21DCE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +142,7 @@
 				096E6B1929A9AAEC003DB933 /* RatingStars.swift */,
 				096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */,
 				096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */,
+				0903DABF29ACF9A600058A1A /* MapsViewController.swift */,
 			);
 			path = SteigerAndrewRateAPotty;
 			sourceTree = "<group>";
@@ -148,6 +164,23 @@
 			path = SteigerAndrewRateAPottyUITests;
 			sourceTree = "<group>";
 		};
+		533394EC8E3D88CD62613F12 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F66CB170B0ABC56B115BF9AC /* Pods-SteigerAndrewRateAPotty.debug.xcconfig */,
+				881B94C02B14DDCA685EA8FF /* Pods-SteigerAndrewRateAPotty.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B1E0ACC8F76CBD914A21DCE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CED7FE914B4AE983605022F5 /* libPods-SteigerAndrewRateAPotty.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0932A4FA29A7E50F00EEDFF8 /* Build configuration list for PBXNativeTarget "SteigerAndrewRateAPotty" */;
 			buildPhases = (
+				53CDB4726F3783C66D917032 /* [CP] Check Pods Manifest.lock */,
 				0932A4CC29A7E50C00EEDFF8 /* Sources */,
 				0932A4CD29A7E50C00EEDFF8 /* Frameworks */,
 				0932A4CE29A7E50C00EEDFF8 /* Resources */,
+				FA9123507FD80575412C0E21 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -274,14 +309,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		53CDB4726F3783C66D917032 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SteigerAndrewRateAPotty-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA9123507FD80575412C0E21 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0932A4CC29A7E50C00EEDFF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0903DAC429ADA76800058A1A /* README.md in Sources */,
 				096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */,
 				0932A4D829A7E50C00EEDFF8 /* TableVCReviews.swift in Sources */,
 				0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */,
+				0903DAC229ADA18D00058A1A /* Podfile in Sources */,
 				0932A50429A7E60A00EEDFF8 /* AppConfig.swift in Sources */,
 				0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */,
 				0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */,
@@ -289,6 +368,7 @@
 				096E6B1C29AA8E80003DB933 /* RatingReviewSupport.swift in Sources */,
 				096E6B1A29A9AAEC003DB933 /* RatingStars.swift in Sources */,
 				096E6B1829A918C1003DB933 /* ReviewCell.swift in Sources */,
+				0903DAC029ACF9A600058A1A /* MapsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +540,7 @@
 		};
 		0932A4FB29A7E50F00EEDFF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F66CB170B0ABC56B115BF9AC /* Pods-SteigerAndrewRateAPotty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -488,6 +569,7 @@
 		};
 		0932A4FC29A7E50F00EEDFF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 881B94C02B14DDCA685EA8FF /* Pods-SteigerAndrewRateAPotty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
