@@ -17,7 +17,7 @@ class AppConfig {
     }
     
     struct InitialStates {
-        static let pottyInitialState: Potty = Potty(id: -1, latitude: 0.0, longitude: 0.0, ratings: [])
+        static let pottyInitialState: Potty = Potty(id: -1, latitude: 0.0, longitude: 0.0, title: "", snippit: "", ratings: [])
     }
     
 }
@@ -26,6 +26,8 @@ struct Potty {
     var id: Int
     var latitude: Double
     var longitude: Double
+    var title: String
+    var snippit: String
     var ratings: [PottyReview]
     var owner: String?
     
