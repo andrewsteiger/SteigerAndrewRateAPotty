@@ -32,6 +32,7 @@ class MapsViewController: UIViewController {
             marker.title = currentPotty.title
             marker.snippet = currentPotty.snippit
             marker.map = mapView
+            marker.iconView = currentPotty.iconView
             self.view.addSubview(mapView)
         }
         

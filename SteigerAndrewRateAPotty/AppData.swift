@@ -33,10 +33,6 @@ class AppData {
     // mock data sets
     let PottyDataSet: [Potty] = [
         Potty(id: 0,
-              latitude: -30.86,
-              longitude: 150.20,
-              title: "Desert Paradise",
-              snippit: "Australia",
               ratings: [
                 PottyReview(id: "0",
                             author: "justanotherjanitor99",
@@ -146,12 +142,13 @@ class AppData {
                             comment: "i was here",
                             upVotes: 0,
                             downVotes: 0),
-              ]),
-        Potty(id: 1,
-              latitude: -30.16,
-              longitude: 151.20,
-              title: "Desert Tundra",
+              ],
+              latitude: -30.86,
+              longitude: 150.20,
+              title: "Desert Paradise",
               snippit: "Australia",
+              iconView: AppAssets.ImageViews.RestAreaView35),
+        Potty(id: 1,
               ratings: [
                 PottyReview(id: "0",
                             author: "justanotherjanitor",
@@ -162,6 +159,11 @@ class AppData {
                             comment: "some comment",
                             upVotes: 3,
                             downVotes: 1)
-              ]),
+              ],
+              latitude: -30.16,
+              longitude: 151.20,
+              title: "Desert Tundra",
+              snippit: "Australia",
+              iconView: AppAssets.ImageViews.PortaPottyView35),
     ]
 }

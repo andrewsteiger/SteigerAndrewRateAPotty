@@ -36,7 +36,7 @@ class RatingReviewSupport: UIView {
         
         // create the support thumbs
         upVote.frame = CGRect(x: buttonWidthBaseline - 3 * buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
-        upVote.setImage(AppIcons.ThumbUp, for: .normal)
+        upVote.setImage(AppAssets.Icons.ThumbUp, for: .normal)
         upVote.contentVerticalAlignment = .fill
         upVote.contentHorizontalAlignment = .fill
         upVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
@@ -49,7 +49,7 @@ class RatingReviewSupport: UIView {
         lblUpVotes.textAlignment = .left
         self.addSubview(lblUpVotes)
         downVote.frame = CGRect(x: buttonWidthBaseline - buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
-        downVote.setImage(AppIcons.ThumbDown, for: .normal)
+        downVote.setImage(AppAssets.Icons.ThumbDown, for: .normal)
         downVote.contentVerticalAlignment = .fill
         downVote.contentHorizontalAlignment = .fill
         downVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)

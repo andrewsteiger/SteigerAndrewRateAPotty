@@ -17,19 +17,22 @@ class AppConfig {
     }
     
     struct InitialStates {
-        static let pottyInitialState: Potty = Potty(id: -1, latitude: 0.0, longitude: 0.0, title: "", snippit: "", ratings: [])
+        static let pottyInitialState: Potty = Potty(id: -1, ratings: [], owner: nil, latitude: 0.0, longitude: 0.0, title: "", snippit: "", iconView: AppAssets.ImageViews.RestAreaView35)
     }
     
 }
 
 struct Potty {
     var id: Int
+    var ratings: [PottyReview]
+    var owner: String?
+    
+    //GoogleMaps Marker properties
     var latitude: Double
     var longitude: Double
     var title: String
     var snippit: String
-    var ratings: [PottyReview]
-    var owner: String?
+    var iconView: UIImageView
     
     /// Gets the average rating on a potty, using the local `ratings` object of type `[PottyReview]`
     ///
@@ -99,11 +102,36 @@ struct PottyReview {
     }
 }
 
-struct AppIcons {
-    static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-    static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.yellow)
-    static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.blueFocus)
-    static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate).withTintColor(UIColor.blueFocus)
+struct AppAssets {
+    //UIImages
+    struct Icons {
+        static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.yellow)
+        static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let RestArea = UIImage(named:"RestArea")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        static let PortaPotty = UIImage(named:"PortaPotty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+    }
+    
+    //UIImageViews
+    struct ImageViews {
+        static var RestAreaView35: UIImageView {
+            get {
+                let ivFrame = CGRect(x: 0, y: 0, width: 35, height: 35)
+                let ivReturn = UIImageView(image: Icons.RestArea)
+                ivReturn.frame = ivFrame
+                return ivReturn
+            }
+        }
+        static var PortaPottyView35: UIImageView {
+            get {
+                let ivFrame = CGRect(x: 0, y: 0, width: 35, height: 35)
+                let ivReturn = UIImageView(image: Icons.PortaPotty)
+                ivReturn.frame = ivFrame
+                return ivReturn
+            }
+        }
+    }
 }
 
 /// Create a rounded border for a given view.
