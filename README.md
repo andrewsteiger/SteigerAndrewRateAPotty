@@ -1,4 +1,12 @@
-Chruby - Side-loaded Ruby
+#Known Issues
+
+##Compile/Simulator issues
+###Updating selectors failed with: Error Domain=NSCocoaErrorDomain Code=4099 "The connection to service named com.apple.commcenter.coretelephony.xpc was invalidated: failed at lookup with error 3 - No such process."
+ - this is a known/current issue in the GoogleMaps framework as of 2023-03-02 for specific iOS versions.  The Metal API is used in the AppDelegate before GMS is initiated but does not solve every case.
+
+#Frameworks
+
+##Chruby - Side-loaded Ruby
 
 -cocoapods were installed with a different/separate version of Ruby other than what was included with the Mac
 -check for any other ruby managers, make sure all return "command not found"
@@ -28,7 +36,7 @@ Chruby - Side-loaded Ruby
     ruby -v
 
     
-CocoaPods
+##CocoaPods
 
 -use chruby+ruby to install gems DO NOT USE SUDO TO INSTALL GEMS
     gem install cocoapods

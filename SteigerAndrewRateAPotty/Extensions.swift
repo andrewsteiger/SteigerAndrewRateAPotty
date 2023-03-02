@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import GoogleMaps
 
 /// An extension the native `Date` object
 extension Date {
@@ -41,4 +42,40 @@ extension UIColor {
     static let opaqueBackground = UIColor(white: 1, alpha: 0.0)
     
     static let cgGray = starGray.cgColor;
+}
+
+extension MapsViewController {
+    func locationManager(
+        _ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus
+    ) {
+        guard status == .authorizedWhenInUse else {
+            return
+        }
+        locationManager.requestLocation()
+        
+        mapViewMain.isMyLocationEnabled = true
+        mapViewMain.settings.myLocationButton = true
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.first else {
+                return
+            }
+            
+            mapViewMain.camera = GMSCameraPosition(
+                target: location.coordinate,
+                zoom: 15,
+                bearing: 0,
+                viewingAngle: 0)
+        }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
+        print(error)
+    }
 }

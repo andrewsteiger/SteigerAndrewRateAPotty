@@ -299,14 +299,29 @@
                     <view key="view" contentMode="scaleToFill" id="xvd-39-H2R">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1f-Xs-F7I" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mCh-rI-Soc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="t1f-Xs-F7I" secondAttribute="bottom" id="WD4-UF-DmK"/>
+                            <constraint firstItem="t1f-Xs-F7I" firstAttribute="top" secondItem="xvd-39-H2R" secondAttribute="top" id="ulk-y5-MiS"/>
+                            <constraint firstItem="t1f-Xs-F7I" firstAttribute="trailing" secondItem="mCh-rI-Soc" secondAttribute="trailing" id="vSr-bO-fKr"/>
+                            <constraint firstItem="t1f-Xs-F7I" firstAttribute="leading" secondItem="mCh-rI-Soc" secondAttribute="leading" id="zek-fJ-PM6"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ip0-CN-y4j"/>
+                    <connections>
+                        <outlet property="mapViewMain" destination="t1f-Xs-F7I" id="LF7-kM-e61"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xoy-jf-ZyK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1479" y="-1344"/>
+            <point key="canvasLocation" x="-1479.0697674418604" y="-1344.2060085836911"/>
         </scene>
     </scenes>
     <resources>

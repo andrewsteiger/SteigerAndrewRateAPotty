@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0903DAC029ACF9A600058A1A /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903DABF29ACF9A600058A1A /* MapsViewController.swift */; };
-		0903DAC229ADA18D00058A1A /* Podfile in Sources */ = {isa = PBXBuildFile; fileRef = 0903DAC129ADA18D00058A1A /* Podfile */; };
-		0903DAC429ADA76800058A1A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0903DAC329ADA76800058A1A /* README.md */; };
 		0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D329A7E50C00EEDFF8 /* AppDelegate.swift */; };
 		0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D529A7E50C00EEDFF8 /* SceneDelegate.swift */; };
 		0932A4D829A7E50C00EEDFF8 /* TableVCReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0932A4D729A7E50C00EEDFF8 /* TableVCReviews.swift */; };
@@ -70,6 +68,7 @@
 		096E6B1929A9AAEC003DB933 /* RatingStars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStars.swift; sourceTree = "<group>"; };
 		096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewSupport.swift; sourceTree = "<group>"; };
 		096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
+		09F21C6C29B117190001DE78 /* SteigerAndrewRateAPotty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SteigerAndrewRateAPotty.entitlements; sourceTree = "<group>"; };
 		881B94C02B14DDCA685EA8FF /* Pods-SteigerAndrewRateAPotty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteigerAndrewRateAPotty.release.xcconfig"; path = "Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty.release.xcconfig"; sourceTree = "<group>"; };
 		CED7FE914B4AE983605022F5 /* libPods-SteigerAndrewRateAPotty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SteigerAndrewRateAPotty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F66CB170B0ABC56B115BF9AC /* Pods-SteigerAndrewRateAPotty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteigerAndrewRateAPotty.debug.xcconfig"; path = "Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		0932A4D229A7E50C00EEDFF8 /* SteigerAndrewRateAPotty */ = {
 			isa = PBXGroup;
 			children = (
+				09F21C6C29B117190001DE78 /* SteigerAndrewRateAPotty.entitlements */,
 				0932A4D329A7E50C00EEDFF8 /* AppDelegate.swift */,
 				0932A4D529A7E50C00EEDFF8 /* SceneDelegate.swift */,
 				0932A4D729A7E50C00EEDFF8 /* TableVCReviews.swift */,
@@ -356,11 +356,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0903DAC429ADA76800058A1A /* README.md in Sources */,
 				096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */,
 				0932A4D829A7E50C00EEDFF8 /* TableVCReviews.swift in Sources */,
 				0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */,
-				0903DAC229ADA18D00058A1A /* Podfile in Sources */,
 				0932A50429A7E60A00EEDFF8 /* AppConfig.swift in Sources */,
 				0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */,
 				0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */,
@@ -544,6 +542,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SteigerAndrewRateAPotty/SteigerAndrewRateAPotty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3R8R665ACK;
@@ -573,6 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SteigerAndrewRateAPotty/SteigerAndrewRateAPotty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3R8R665ACK;
