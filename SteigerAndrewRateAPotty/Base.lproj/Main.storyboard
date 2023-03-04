@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V6W-Ey-cPK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gZ3-rt-jAj">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -11,7 +11,7 @@
         <!--Navigation Controller-->
         <scene sceneID="aF9-lo-yCz">
             <objects>
-                <navigationController id="gZ3-rt-jAj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gZ3-rt-jAj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xwi-OV-zLV">
                         <rect key="frame" x="0.0" y="59" width="430" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -22,12 +22,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99u-Kw-EUj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1553" y="-673"/>
+            <point key="canvasLocation" x="-2740" y="-668"/>
         </scene>
         <!--TableVC Reviews-->
         <scene sceneID="5Mh-7N-H3G">
             <objects>
-                <tableViewController id="bhg-xp-i16" customClass="TableVCReviews" customModule="SteigerAndrewRateAPotty" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TableVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bhg-xp-i16" customClass="TableVCReviews" customModule="SteigerAndrewRateAPotty" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="RBC-fl-3pC">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,7 +139,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvG-JU-f0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-625.19083969465646" y="-673.23943661971839"/>
+            <point key="canvasLocation" x="-484" y="-668"/>
         </scene>
         <!--Review Detail View Controller-->
         <scene sceneID="9xd-32-u3y">
@@ -290,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey3-D5-lYw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="87.786259541984734" y="-673.23943661971839"/>
+            <point key="canvasLocation" x="265" y="-668"/>
         </scene>
         <!--Maps View Controller-->
         <scene sceneID="rHE-Dt-beZ">
@@ -321,7 +321,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xoy-jf-ZyK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1479.0697674418604" y="-1344.2060085836911"/>
+            <point key="canvasLocation" x="-1993" y="-673"/>
+        </scene>
+        <!--Location View Controller-->
+        <scene sceneID="XbL-nG-q8O">
+            <objects>
+                <viewController storyboardIdentifier="LocationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IPD-gp-8kf" customClass="LocationViewController" customModule="SteigerAndrewRateAPotty" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="92O-C5-1MR">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOD-uV-dqr">
+                                <rect key="frame" x="30" y="74" width="97" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="LocationTitle">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIO-jZ-Ymk" customClass="RatingStars" customModule="SteigerAndrewRateAPotty" customModuleProvider="target">
+                                <rect key="frame" x="115.66666666666669" y="105" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Bzs-0S-af4"/>
+                                    <constraint firstAttribute="width" constant="200" id="Xye-di-yvv"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHd-8x-CqX">
+                                <rect key="frame" x="335.66666666666669" y="112.66666666666669" width="64.333333333333314" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="(100)"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="R8r-HI-RF2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="R8r-HI-RF2" firstAttribute="trailing" secondItem="jHd-8x-CqX" secondAttribute="trailing" constant="30" id="34V-KR-Pse"/>
+                            <constraint firstItem="jHd-8x-CqX" firstAttribute="leading" secondItem="KIO-jZ-Ymk" secondAttribute="trailing" constant="20" id="FLr-21-VDR"/>
+                            <constraint firstItem="jHd-8x-CqX" firstAttribute="centerY" secondItem="KIO-jZ-Ymk" secondAttribute="centerY" id="NpB-sQ-vPP"/>
+                            <constraint firstItem="R8r-HI-RF2" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BOD-uV-dqr" secondAttribute="trailing" constant="30" id="QvZ-Zn-V1o"/>
+                            <constraint firstItem="KIO-jZ-Ymk" firstAttribute="top" secondItem="BOD-uV-dqr" secondAttribute="bottom" constant="10" id="dlJ-AX-ANN"/>
+                            <constraint firstItem="BOD-uV-dqr" firstAttribute="top" secondItem="R8r-HI-RF2" secondAttribute="top" constant="15" id="hf4-6o-vkM"/>
+                            <constraint firstItem="BOD-uV-dqr" firstAttribute="leading" secondItem="R8r-HI-RF2" secondAttribute="leading" constant="30" id="iwN-Xi-UYn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnAllReviews" destination="jHd-8x-CqX" id="fdT-ZT-VB7"/>
+                        <outlet property="contentViewMain" destination="92O-C5-1MR" id="JPM-Ud-fNY"/>
+                        <outlet property="lblHeader" destination="BOD-uV-dqr" id="YI3-ZZ-dBN"/>
+                        <outlet property="viewRatings" destination="KIO-jZ-Ymk" id="aIO-fS-uji"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="urT-Tg-yXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1243.2558139534883" y="-668.24034334763951"/>
         </scene>
     </scenes>
     <resources>

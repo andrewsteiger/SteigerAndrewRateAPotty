@@ -111,6 +111,8 @@ struct AppAssets {
         static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
         static let RestArea = UIImage(named:"RestArea")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let PortaPotty = UIImage(named:"PortaPotty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        static let ZoomIn = UIImage(named:"ZoomIn")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let ZoomOut = UIImage(named:"ZoomOut")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
     }
     
     //UIImageViews
@@ -131,6 +133,23 @@ struct AppAssets {
                 return ivReturn
             }
         }
+        static var ZoomIn40: UIImageView {
+            get {
+                let ivFrame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                let ivReturn = UIImageView(image: Icons.ZoomIn)
+                ivReturn.frame = ivFrame
+                ivReturn.contentMode = .scaleAspectFit
+                return ivReturn
+            }
+        }
+        static var ZoomOut40: UIImageView {
+            get {
+                let ivFrame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                let ivReturn = UIImageView(image: Icons.ZoomOut)
+                ivReturn.frame = ivFrame
+                return ivReturn
+            }
+        }
     }
 }
 
@@ -138,9 +157,9 @@ struct AppAssets {
 ///
 /// Example usage:
 ///
-/// view.layoutIfNeeded() // use before call if view frame is dynamic
+/// uiview.layoutIfNeeded() // use before call if view frame is dynamic
 ///
-/// view.addSubview(DrawBorderLayer(view, 12))
+/// uiview.layer.addSublayer(DrawBorderLayer(view, 12))
 ///
 /// - Parameters:
 ///   - originView: The parent view to receive the border.
@@ -154,7 +173,7 @@ func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     
     grayRoundBorderLayer.path = bezierPath.cgPath
     grayRoundBorderLayer.strokeColor = UIColor.cgGray
-    grayRoundBorderLayer.fillColor = UIColor.clear.cgColor
+    grayRoundBorderLayer.fillColor = UIColor.white.cgColor
     grayRoundBorderLayer.lineWidth = 1
     grayRoundBorderLayer.needsDisplayOnBoundsChange = true
     return grayRoundBorderLayer

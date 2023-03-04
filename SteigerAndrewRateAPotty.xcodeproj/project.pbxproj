@@ -24,6 +24,7 @@
 		096E6B1A29A9AAEC003DB933 /* RatingStars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1929A9AAEC003DB933 /* RatingStars.swift */; };
 		096E6B1C29AA8E80003DB933 /* RatingReviewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */; };
 		096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */; };
+		09F21C6E29B3C92C0001DE78 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F21C6D29B3C92C0001DE78 /* LocationViewController.swift */; };
 		B6CDB7F5BAA308D3ABD9C1BC /* libPods-SteigerAndrewRateAPotty.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CED7FE914B4AE983605022F5 /* libPods-SteigerAndrewRateAPotty.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewSupport.swift; sourceTree = "<group>"; };
 		096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
 		09F21C6C29B117190001DE78 /* SteigerAndrewRateAPotty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SteigerAndrewRateAPotty.entitlements; sourceTree = "<group>"; };
+		09F21C6D29B3C92C0001DE78 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		881B94C02B14DDCA685EA8FF /* Pods-SteigerAndrewRateAPotty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteigerAndrewRateAPotty.release.xcconfig"; path = "Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty.release.xcconfig"; sourceTree = "<group>"; };
 		CED7FE914B4AE983605022F5 /* libPods-SteigerAndrewRateAPotty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SteigerAndrewRateAPotty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F66CB170B0ABC56B115BF9AC /* Pods-SteigerAndrewRateAPotty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteigerAndrewRateAPotty.debug.xcconfig"; path = "Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				096E6B1B29AA8E80003DB933 /* RatingReviewSupport.swift */,
 				096E6B1F29AAAA8B003DB933 /* ReviewDetailViewController.swift */,
 				0903DABF29ACF9A600058A1A /* MapsViewController.swift */,
+				09F21C6D29B3C92C0001DE78 /* LocationViewController.swift */,
 			);
 			path = SteigerAndrewRateAPotty;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */,
 				0932A4D829A7E50C00EEDFF8 /* TableVCReviews.swift in Sources */,
 				0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */,
+				09F21C6E29B3C92C0001DE78 /* LocationViewController.swift in Sources */,
 				0932A50429A7E60A00EEDFF8 /* AppConfig.swift in Sources */,
 				0932A4D429A7E50C00EEDFF8 /* AppDelegate.swift in Sources */,
 				0932A4D629A7E50C00EEDFF8 /* SceneDelegate.swift in Sources */,
@@ -543,6 +547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SteigerAndrewRateAPotty/SteigerAndrewRateAPotty.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3R8R665ACK;
@@ -560,6 +565,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewsteiger14.SteigerAndrewRateAPotty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -573,6 +579,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SteigerAndrewRateAPotty/SteigerAndrewRateAPotty.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3R8R665ACK;
@@ -590,6 +597,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewsteiger14.SteigerAndrewRateAPotty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

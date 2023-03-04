@@ -8,24 +8,41 @@
 import UIKit
 import GoogleMaps
 
-class MapsViewController: UIViewController, CLLocationManagerDelegate {
+class MapsViewController: UIViewController {
     
     @IBOutlet weak var mapViewMain: GMSMapView!
     
     var appData: AppData = AppData()
     let locationManager = CLLocationManager()
+    var camera = GMSCameraPosition()
+    var cameraZoom: Float = 6
+    var userLastLocation: CLLocation?
     var markers: [GMSMarker] = []
+    var btnZoomIn = UIButton()
+    var btnZoomOut = UIButton()
+    var currentPotty: Potty?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //attach delegates
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
         mapViewMain.delegate = self
         
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        //configure camera and map settings
+        camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: cameraZoom)
         mapViewMain.camera = camera
+        mapViewMain.settings.myLocationButton = true
+        mapViewMain.settings.compassButton = true
+        mapViewMain.settings.scrollGestures = true
+        mapViewMain.settings.zoomGestures   = true
+        mapViewMain.settings.tiltGestures   = false
+        mapViewMain.settings.rotateGestures = false
         
+        //setup work
         setupMarkers()
+        setupControls()
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -39,6 +56,19 @@ class MapsViewController: UIViewController, CLLocationManagerDelegate {
             print("Denied")
         @unknown default:
             break
+        }
+    }
+    
+    @objc func btnZoomAction(sender: UIButton!) {
+        switch sender {
+        case btnZoomIn:
+            cameraZoom = cameraZoom + 1
+            mapViewMain.animate(toZoom: cameraZoom)
+        case btnZoomOut:
+            cameraZoom = cameraZoom - 1
+            mapViewMain.animate(toZoom: cameraZoom)
+        default:
+            return
         }
     }
     
@@ -61,50 +91,32 @@ class MapsViewController: UIViewController, CLLocationManagerDelegate {
         self.view.addSubview(mapViewMain)
     }
     
+    private func setupControls() {
+        let buttonDimensions: CGFloat = 40
+        let buttonWidthBaseline: CGFloat = 20
+        let buttonHeightBaseline: CGFloat = 150
+        
+        // create the zoom buttons
+        btnZoomIn.frame = CGRect(x: buttonWidthBaseline, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
+        let btnZoomInView = UIView(frame: btnZoomIn.frame)
+        let btnZoomInBorder = DrawBorderLayer(btnZoomInView, inset: 0)
+        btnZoomIn.layer.addSublayer(btnZoomInBorder)
+        btnZoomIn.addSubview(AppAssets.ImageViews.ZoomIn40)
+        btnZoomIn.contentVerticalAlignment = .fill
+        btnZoomIn.contentHorizontalAlignment = .fill
+        btnZoomIn.addTarget(self, action: #selector(btnZoomAction), for: .touchUpInside)
+        btnZoomIn.tintColor = UIColor.blueFocus
+        self.mapViewMain.addSubview(btnZoomIn)
+        
+        btnZoomOut.frame = CGRect(x: buttonWidthBaseline, y:buttonHeightBaseline + 1.5 * buttonDimensions, width: buttonDimensions, height: buttonDimensions)
+        let btnZoomOutView = UIView(frame: btnZoomOut.frame)
+        let btnZoomOutBorder = DrawBorderLayer(btnZoomOutView, inset: 0)
+        btnZoomOut.layer.addSublayer(btnZoomOutBorder)
+        btnZoomOut.addSubview(AppAssets.ImageViews.ZoomOut40)
+        btnZoomOut.contentVerticalAlignment = .fill
+        btnZoomOut.contentHorizontalAlignment = .fill
+        btnZoomOut.addTarget(self, action: #selector(btnZoomAction), for: .touchUpInside)
+        btnZoomOut.tintColor = UIColor.blueFocus
+        self.mapViewMain.addSubview(btnZoomOut)
+    }
 }
-
-extension MapsViewController: GMSMapViewDelegate{
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if let index = markers.firstIndex(of: marker) {
-            let tappedState = appData.AppPotties[index]
-            return true
-        }
-        return false
-    }
-    
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        UIView.animate(withDuration: 5.0, animations: { () -> Void in
-            mapView.tintColor = .blue
-        }, completion: {(finished) in
-            // Stop tracking view changes to allow CPU to idle.
-            for i in self.markers {
-                i.tracksViewChanges = false
-            }
-        })
-    }    /* handles Info Window tap */
-    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        print("didTapInfoWindowOf")
-    }
-    
-    /* handles Info Window long press */
-    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-        print("didLongPressInfoWindowOf")
-    }
-    
-    /* set a custom Info Window */
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        let view = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
-        view.backgroundColor = UIColor.white
-        view.layer.cornerRadius = 6
-        
-        let lbl1 = UILabel(frame: CGRect.init(x: 8, y: 8, width: view.frame.size.width - 16, height: 15))
-        lbl1.text = "Hi there!"
-        view.addSubview(lbl1)
-        
-        let lbl2 = UILabel(frame: CGRect.init(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y + lbl1.frame.size.height + 3, width: view.frame.size.width - 16, height: 15))
-        lbl2.text = "I am a custom info window."
-        lbl2.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        view.addSubview(lbl2)
-        
-        return view
-    }}
