@@ -114,10 +114,8 @@ extension MapsViewController: GMSMapViewDelegate {
             let currentPotty = appData.AppPotties[index]
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LocationViewController") as! LocationViewController
             vc.currentPotty = currentPotty
-            vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-            vc.modalPresentationStyle = UIModalPresentationStyle.automatic
             if let navigationController = self.navigationController {
-                navigationController.present(vc, animated: true)
+                navigationController.pushViewController(vc, animated: true)
             }
         }
     }

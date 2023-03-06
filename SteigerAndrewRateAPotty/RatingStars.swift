@@ -17,6 +17,8 @@ class RatingStars: UIView {
     let star4 = UIButton()
     let star5 = UIButton()
     
+    private var isDisabled: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -83,6 +85,8 @@ class RatingStars: UIView {
     /// - Parameters:
     ///   - sender: The star button that was selected
     @objc func buttonAction(sender: UIButton!) {
+        if isDisabled { return }
+        
         if sender.tintColor == UIColor.starGray {
             switch sender {
             case star1:
@@ -161,8 +165,8 @@ class RatingStars: UIView {
     ///
     /// - Parameters:
     ///   - rating: An `Int` between 0 and 5 to denote the number of stars that should be presented as selected
-    func setRating(_ rating: Int) {
-        switch rating {
+    func setRating(_ rating: Double) {
+        switch round(rating) {
         case 0:
             checkStar(sender: star1, isChecked: false)
             checkStar(sender: star2, isChecked: false)
@@ -210,11 +214,12 @@ class RatingStars: UIView {
     }
     
     func disable(_ shouldDisable: Bool) {
-        star1.isEnabled = !shouldDisable
-        star2.isEnabled = !shouldDisable
-        star3.isEnabled = !shouldDisable
-        star4.isEnabled = !shouldDisable
-        star5.isEnabled = !shouldDisable
+        isDisabled = shouldDisable
+//        star1.isEnabled = !shouldDisable
+//        star2.isEnabled = !shouldDisable
+//        star3.isEnabled = !shouldDisable
+//        star4.isEnabled = !shouldDisable
+//        star5.isEnabled = !shouldDisable
     }
     
     /// Checks stars, reflected by a yellow star or an empty star in the UI

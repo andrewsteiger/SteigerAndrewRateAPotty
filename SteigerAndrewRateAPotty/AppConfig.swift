@@ -17,7 +17,7 @@ class AppConfig {
     }
     
     struct InitialStates {
-        static let pottyInitialState: Potty = Potty(id: -1, ratings: [], owner: nil, latitude: 0.0, longitude: 0.0, title: "", snippit: "", iconView: AppAssets.ImageViews.RestAreaView35)
+        static let pottyInitialState: Potty = Potty(id: -1, ratings: [], latitude: 0.0, longitude: 0.0, title: "", snippit: "", iconView: AppAssets.ImageViews.RestAreaView35)
     }
     
 }
@@ -87,9 +87,9 @@ struct PottyReview {
     var id: String
     var author: String
     var dateTimeCreated: Date?
-    var ratingAccessibility: Int
-    var ratingCleanliness: Int
-    var ratingAtmosphere: Int
+    var ratingAccessibility: Double
+    var ratingCleanliness: Double
+    var ratingAtmosphere: Double
     var comment: String
     var upVotes: Int
     var downVotes: Int
@@ -97,8 +97,8 @@ struct PottyReview {
     /// Gets the average rating on a review, using the local `ratings` object of type `[PottyReview]`
     ///
     /// - Returns: An `Int` of all the `RatingTypes`
-    func getAverageRating() -> Int {
-        return Int(Double(ratingAccessibility + ratingCleanliness + ratingAtmosphere) / 3.0)
+    func getAverageRating() -> Double {
+        return Double((ratingAccessibility + ratingCleanliness + ratingAtmosphere) / 3.0)
     }
 }
 
@@ -106,7 +106,7 @@ struct AppAssets {
     //UIImages
     struct Icons {
         static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.yellow)
+        static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.starYellow)
         static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
         static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
         static let RestArea = UIImage(named:"RestArea")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
@@ -169,11 +169,10 @@ func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     let grayRoundBorderLayer: CAShapeLayer = CAShapeLayer()
     
     let bezierPath = UIBezierPath(roundedRect: CGRect(x: originView.bounds.origin.x + inset, y: originView.bounds.origin.y + inset, width: originView.frame.size.width - inset*2, height: originView.frame.size.height - inset*2), cornerRadius: 8)
-    originView.backgroundColor = UIColor.clear
     
     grayRoundBorderLayer.path = bezierPath.cgPath
     grayRoundBorderLayer.strokeColor = UIColor.cgGray
-    grayRoundBorderLayer.fillColor = UIColor.white.cgColor
+    grayRoundBorderLayer.fillColor = UIColor.clear.cgColor
     grayRoundBorderLayer.lineWidth = 1
     grayRoundBorderLayer.needsDisplayOnBoundsChange = true
     return grayRoundBorderLayer

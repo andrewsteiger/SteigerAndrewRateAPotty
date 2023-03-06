@@ -38,7 +38,7 @@ class ReviewCell: UITableViewCell {
         lblReadFullReview.attributedText = readFullReviewString
     }
     
-    func setRating(_ rating: Int) {
+    func setRating(_ rating: Double) {
         viewRatingStars.setRating(rating)
     }
     
