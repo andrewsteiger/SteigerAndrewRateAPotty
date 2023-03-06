@@ -7,10 +7,10 @@
 
 import UIKit
 
-class LocationViewController: UIViewController {
+class LocationViewController: UIViewController, UITextViewDelegate {
 
     //header view
-    @IBOutlet var contentViewMain: UIScrollView!
+    @IBOutlet var contentViewMain: UIView!
     @IBOutlet var lblHeader: UILabel!
     @IBOutlet weak var viewRatings: UIView!
     @IBOutlet weak var btnAllReviews: UIButton!
@@ -29,21 +29,34 @@ class LocationViewController: UIViewController {
     @IBOutlet weak var lblReadFullReview: UILabel!
     
     //create review view
+    @IBOutlet weak var lblLeaveAReview: UILabel!
     @IBOutlet weak var contentViewNewReview: UIView!
     @IBOutlet weak var viewNewRatingAccessibility: RatingStars!
     @IBOutlet weak var viewNewRatingCleanliness: RatingStars!
     @IBOutlet weak var viewNewRatingAtmosphere: RatingStars!
-    @IBOutlet weak var textViewNewReviewComments: UITextView!
+    @IBOutlet weak var tvNewReviewComments: UITextView!
+    @IBOutlet weak var contentViewComment: UIView!
     @IBOutlet weak var btnSubmitReview: UIButton!
     
     var currentPotty: Potty?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set up view to observe keyboard show/hide
+        self.keyboardWillHideOnTap()
+        self.viewWillLayoutWithKeyboard()
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        tvNewReviewComments.delegate = self
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
 
         setupHeader()
         setupTopReview()
         setupNewReview()
+        
+        //view.addGestureRecognizer(tap)
     }
     
     private func setupHeader() {
@@ -93,6 +106,13 @@ class LocationViewController: UIViewController {
     }
     
     private func setupNewReview() {
-        
+        lblLeaveAReview.font = UIFont.boldSystemFont(ofSize: 18)
+        contentViewNewReview.layoutIfNeeded()
+        contentViewNewReview.layer.addSublayer(DrawBorderLayer(contentViewNewReview, inset: 14))
+        tvNewReviewComments.layer.borderColor = UIColor.cgGray
+        tvNewReviewComments.layer.borderWidth = 1
+        contentViewComment.layoutIfNeeded()
+        contentViewComment.layer.addSublayer(DrawBorderLayer(contentViewComment, inset: 14))
+        //tvNewReviewComments.text = ""
     }
 }
