@@ -107,8 +107,8 @@ struct AppAssets {
     struct Icons {
         static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.starYellow)
-        static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
-        static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
+        static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
         static let RestArea = UIImage(named:"RestArea")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let PortaPotty = UIImage(named:"PortaPotty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let ZoomIn = UIImage(named:"ZoomIn")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
@@ -169,7 +169,7 @@ func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     let grayRoundBorderLayer: CAShapeLayer = CAShapeLayer()
     
     let bezierPath = UIBezierPath(roundedRect: CGRect(x: originView.bounds.origin.x + inset, y: originView.bounds.origin.y + inset, width: originView.frame.size.width - inset*2, height: originView.frame.size.height - inset*2), cornerRadius: 8)
-    
+    print(originView.frame.size.width - 2*inset)
     grayRoundBorderLayer.path = bezierPath.cgPath
     grayRoundBorderLayer.strokeColor = UIColor.cgGray
     grayRoundBorderLayer.fillColor = UIColor.clear.cgColor

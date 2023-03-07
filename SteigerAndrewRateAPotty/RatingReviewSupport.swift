@@ -40,12 +40,11 @@ class RatingReviewSupport: UIView {
         upVote.contentVerticalAlignment = .fill
         upVote.contentHorizontalAlignment = .fill
         upVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        upVote.tintColor = UIColor.blueDark
         self.addSubview(upVote)
         lblUpVotes.frame = CGRect(x: buttonWidthBaseline - 2 * buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         lblUpVotes.text = "(" + String(upVoteCount) + ")"
-        lblUpVotes.textColor = UIColor.blueDark
-        lblUpVotes.font = UIFont.systemFont(ofSize: 12)
+        lblUpVotes.textColor = upVote.tintColor
+        lblUpVotes.font = UIFont.systemFont(ofSize: 10)
         lblUpVotes.textAlignment = .left
         self.addSubview(lblUpVotes)
         downVote.frame = CGRect(x: buttonWidthBaseline - buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
@@ -53,12 +52,11 @@ class RatingReviewSupport: UIView {
         downVote.contentVerticalAlignment = .fill
         downVote.contentHorizontalAlignment = .fill
         downVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        downVote.tintColor = UIColor.blueDark
         self.addSubview(downVote)
         lblDownVotes.frame = CGRect(x: buttonWidthBaseline, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         lblDownVotes.text = "(" + String(downVoteCount) + ")"
-        lblDownVotes.textColor = UIColor.blueDark
-        lblDownVotes.font = UIFont.systemFont(ofSize: 12)
+        lblDownVotes.textColor = downVote.tintColor
+        lblDownVotes.font = UIFont.systemFont(ofSize: 10)
         lblDownVotes.textAlignment = .left
         self.addSubview(lblDownVotes)
         

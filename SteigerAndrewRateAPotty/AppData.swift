@@ -143,7 +143,7 @@ class AppData {
                             upVotes: 0,
                             downVotes: 0),
               ],
-              owner: "justanotherjanitor99",
+              owner: "johnthejanitor",
               latitude: -30.86,
               longitude: 150.20,
               title: "Desert Paradise",

@@ -29,13 +29,13 @@ class ReviewCell: UITableViewCell {
         lblReviewTitle.textColor = UIColor.blueDark
         lblReviewTitle.font = UIFont.systemFont(ofSize: 14)
         lblReviewComment.font = UIFont.systemFont(ofSize: 12)
-        contentViewMain.layoutIfNeeded()
-        contentViewMain.layer.addSublayer(DrawBorderLayer(contentViewMain, inset: 14))
         viewRatingStars.disable(true)
         let readFullReviewString = NSMutableAttributedString(string: "Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
         lblReadFullReview.font = UIFont.italicSystemFont(ofSize: 12)
         lblReadFullReview.textColor = UIColor.blueFocus
         lblReadFullReview.attributedText = readFullReviewString
+        contentViewMain.layoutIfNeeded()
+        contentViewMain.layer.addSublayer(DrawBorderLayer(contentViewMain, inset: 14))
     }
     
     func setRating(_ rating: Double) {

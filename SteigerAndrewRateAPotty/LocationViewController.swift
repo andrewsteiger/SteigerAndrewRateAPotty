@@ -26,7 +26,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var lblReviewComment: UILabel!
     @IBOutlet weak var viewRatingStars: RatingStars!
     @IBOutlet weak var viewRatingReviewSupport: RatingReviewSupport!
-    @IBOutlet weak var lblReadFullReview: UILabel!
+    @IBOutlet weak var btnReadFullReview: UIButton!
     
     //create review view
     @IBOutlet weak var lblLeaveAReview: UILabel!
@@ -35,7 +35,6 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var viewNewRatingCleanliness: RatingStars!
     @IBOutlet weak var viewNewRatingAtmosphere: RatingStars!
     @IBOutlet weak var tvNewReviewComments: UITextView!
-    @IBOutlet weak var contentViewComment: UIView!
     @IBOutlet weak var btnSubmitReview: UIButton!
     
     var currentPotty: Potty?
@@ -46,17 +45,38 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         //set up view to observe keyboard show/hide
         self.keyboardWillHideOnTap()
         self.viewWillLayoutWithKeyboard()
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         tvNewReviewComments.delegate = self
-        //let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-
-
         setupHeader()
         setupTopReview()
         setupNewReview()
-        
-        //view.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupHeader()
+        setupTopReview()
+        setupNewReview()
+    }
+    
+    //handles when user selects btnAllReviews
+    @IBAction func showAllReviews(_ sender: Any) {
+        if let activePotty = currentPotty {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "TableVCReviews") as! TableVCReviews
+            vc.currentPotty = activePotty
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
+    @IBAction func showTopFullReview(_ sender: Any) {
+        if let topRatedReview = currentPotty?.getTopRated() {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReviewDetailViewController") as! ReviewDetailViewController
+            vc.currentReview = topRatedReview
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     private func setupHeader() {
@@ -65,7 +85,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
             lblHeader.font = UIFont.boldSystemFont(ofSize: 18)
             viewRatingAverage.setRating(activePotty.getAverageRating(""))
             viewRatingAverage.disable(true)
-            btnAllReviews.titleLabel!.text = "(" + String(activePotty.ratings.count) + ")"
+            btnAllReviews.setTitle("(" + String(activePotty.ratings.count) + ")", for: .normal)
             viewRatingAccessibiliy.setRating(activePotty.getAverageRating(AppConfig.RatingTypes.accessibility))
             viewRatingAccessibiliy.disable(true)
             viewRatingCleanliness.setRating(activePotty.getAverageRating(AppConfig.RatingTypes.cleanliness))
@@ -76,27 +96,20 @@ class LocationViewController: UIViewController, UITextViewDelegate {
             viewRatings.layer.addSublayer(DrawBorderLayer(viewRatings, inset: 14))
             
             
-            var contactOwnerString = NSMutableAttributedString(string: "Are you the owner?")
+            var contactOwnerString: String = "Are you the owner?"
             if activePotty.owner != nil {
-                contactOwnerString = NSMutableAttributedString(string: "Contact " + activePotty.owner!)
+                contactOwnerString = "Contact the Owner"
             }
-            contactOwnerString.addAttributes([NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: 12), NSAttributedString.Key.underlineStyle : NSUnderlineStyle.thick.rawValue, NSAttributedString.Key.foregroundColor: UIColor.blueFocus], range: NSRange.init(location: 0, length: contactOwnerString.length))
-            btnContactOwner.setAttributedTitle(contactOwnerString, for: .normal)
+            btnContactOwner.setTitle(contactOwnerString, for: .normal)
         }
     }
 
     private func setupTopReview() {
         if let topRatedReview = currentPotty?.getTopRated() {
             lblReviewTitle.text = "Top Rated Review: " + "\(topRatedReview.author)"
-            lblReviewTitle.textColor = UIColor.blueDark
-            lblReviewTitle.font = UIFont.systemFont(ofSize: 14)
-            lblReviewComment.text = "\t\"" + (topRatedReview.comment) + "\""
-            lblReviewComment.font = UIFont.systemFont(ofSize: 12)
+            lblReviewComment.text = "\"" + (topRatedReview.comment) + "\""
             viewRatingStars.disable(true)
-            let readFullReviewString = NSMutableAttributedString(string: "Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
-            lblReadFullReview.font = UIFont.italicSystemFont(ofSize: 12)
-            lblReadFullReview.textColor = UIColor.blueFocus
-            lblReadFullReview.attributedText = readFullReviewString
+            btnReadFullReview.setTitle("Read Full Review", for: .normal)
             viewRatingStars.setRating(topRatedReview.getAverageRating())
             viewRatingReviewSupport.setUpVotes(topRatedReview.upVotes)
             viewRatingReviewSupport.setDownVotes(topRatedReview.downVotes)
@@ -111,8 +124,6 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         contentViewNewReview.layer.addSublayer(DrawBorderLayer(contentViewNewReview, inset: 14))
         tvNewReviewComments.layer.borderColor = UIColor.cgGray
         tvNewReviewComments.layer.borderWidth = 1
-        contentViewComment.layoutIfNeeded()
-        contentViewComment.layer.addSublayer(DrawBorderLayer(contentViewComment, inset: 14))
-        //tvNewReviewComments.text = ""
+        tvNewReviewComments.text = ""
     }
 }
