@@ -82,7 +82,6 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     private func setupHeader() {
         if let activePotty = currentPotty {
             lblHeader.text = activePotty.title
-            lblHeader.font = UIFont.boldSystemFont(ofSize: 18)
             viewRatingAverage.setRating(activePotty.getAverageRating(""))
             viewRatingAverage.disable(true)
             btnAllReviews.setTitle("(" + String(activePotty.ratings.count) + ")", for: .normal)
@@ -119,7 +118,6 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     }
     
     private func setupNewReview() {
-        lblLeaveAReview.font = UIFont.boldSystemFont(ofSize: 18)
         contentViewNewReview.layoutIfNeeded()
         contentViewNewReview.layer.addSublayer(DrawBorderLayer(contentViewNewReview, inset: 14))
         tvNewReviewComments.layer.borderColor = UIColor.cgGray

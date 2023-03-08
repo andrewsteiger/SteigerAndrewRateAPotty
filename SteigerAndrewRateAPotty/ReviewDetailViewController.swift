@@ -28,8 +28,6 @@ class ReviewDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let review = currentReview {
             lblHeader.text = "Full Review - " + String(review.author)
-            lblHeader.font = UIFont.boldSystemFont(ofSize: 14)
-            lblReviewComment.font = UIFont.systemFont(ofSize: 12)
             
             viewRatingAccessibility.setRating(review.ratingAccessibility)
             viewRatingAccessibility.disable(true)

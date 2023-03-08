@@ -10,32 +10,25 @@ import UIKit
 class ReviewCell: UITableViewCell {
 
     @IBOutlet weak var contentViewMain: UIView!
+    @IBOutlet weak var layoutView: UIView!
     @IBOutlet weak var lblReviewTitle: UILabel!
     @IBOutlet weak var lblReviewComment: UILabel!
     @IBOutlet weak var viewRatingStars: RatingStars!
+    @IBOutlet weak var btnReadFullReview: UIButton!
     @IBOutlet weak var viewRatingReviewSupport: RatingReviewSupport!
-    @IBOutlet weak var lblReadFullReview: UILabel!
+    
+    //reference for inputting an action on button tap from the parent
+    var buttonAction: ((Any) -> Void)?
     
     class var reuseIdentifier: String {
         get {
             return "ReviewCell"
         }
-    }
+    }    
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    func setupCell() {
         // Initialization code
-        lblReviewTitle.textColor = UIColor.blueDark
-        lblReviewTitle.font = UIFont.systemFont(ofSize: 14)
-        lblReviewComment.font = UIFont.systemFont(ofSize: 12)
         viewRatingStars.disable(true)
-        let readFullReviewString = NSMutableAttributedString(string: "Full Review", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
-        lblReadFullReview.font = UIFont.italicSystemFont(ofSize: 12)
-        lblReadFullReview.textColor = UIColor.blueFocus
-        lblReadFullReview.attributedText = readFullReviewString
-        contentViewMain.layoutIfNeeded()
-        contentViewMain.layer.addSublayer(DrawBorderLayer(contentViewMain, inset: 14))
     }
     
     func setRating(_ rating: Double) {

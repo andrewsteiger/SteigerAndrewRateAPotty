@@ -168,8 +168,7 @@ struct AppAssets {
 func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     let grayRoundBorderLayer: CAShapeLayer = CAShapeLayer()
     
-    let bezierPath = UIBezierPath(roundedRect: CGRect(x: originView.bounds.origin.x + inset, y: originView.bounds.origin.y + inset, width: originView.frame.size.width - inset*2, height: originView.frame.size.height - inset*2), cornerRadius: 8)
-    print(originView.frame.size.width - 2*inset)
+    let bezierPath = UIBezierPath(roundedRect: CGRect(x: originView.bounds.origin.x + inset, y: originView.bounds.origin.y + inset, width: originView.bounds.size.width - inset*2, height: originView.bounds.size.height - inset*2), cornerRadius: 8)
     grayRoundBorderLayer.path = bezierPath.cgPath
     grayRoundBorderLayer.strokeColor = UIColor.cgGray
     grayRoundBorderLayer.fillColor = UIColor.clear.cgColor
