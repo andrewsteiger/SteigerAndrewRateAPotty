@@ -110,8 +110,10 @@ class LocationViewController: UIViewController, UITextViewDelegate {
             viewRatingStars.disable(true)
             btnReadFullReview.setTitle("Read Full Review", for: .normal)
             viewRatingStars.setRating(topRatedReview.getAverageRating())
+            viewRatingReviewSupport.currentReview = topRatedReview
             viewRatingReviewSupport.setUpVotes(topRatedReview.upVotes)
             viewRatingReviewSupport.setDownVotes(topRatedReview.downVotes)
+            viewRatingReviewSupport.setUserVote()
             contentViewReviewMain.layoutIfNeeded()
             contentViewReviewMain.layer.addSublayer(DrawBorderLayer(contentViewReviewMain, inset: 14))
         }

@@ -39,6 +39,7 @@ class ReviewDetailViewController: UIViewController {
             viewRatings.layer.addSublayer(DrawBorderLayer(viewRatings, inset: 14))
             
             lblReviewComment.text = "\t\"" + (review.comment) + "\""
+            viewRatingReviewSupport.currentReview = review
             viewRatingReviewSupport.setUpVotes(review.upVotes)
             viewRatingReviewSupport.setDownVotes(review.downVotes)
             dateFormatter.dateFormat = "dd/MM/YYYY HH:mm"

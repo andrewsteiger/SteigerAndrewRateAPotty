@@ -17,6 +17,11 @@ class RatingReviewSupport: UIView {
     let downVote = UIButton()
     let lblDownVotes = UILabel()
     var downVoteCount: Int = 0
+    private var isDisabled: Bool = false
+    var voteCast: Bool?
+    var currentReview: PottyReview?
+    
+    var apiClient = ApiClient()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +32,124 @@ class RatingReviewSupport: UIView {
         super.init(coder: aDecoder)
         setupView()
     }
+    
+    // note this would be a lot prettier if a real api was here to handle increment/decrement tied with user data but i didnt want to make an ungodly large mock data structure that kept track of every vote and user data
+    @objc func buttonAction(sender: UIButton!) {
+        if isDisabled || currentReview == nil { return }
+        // handle voting
+        switch sender.tag {
+            // sender is upVote
+        case 1:
+            // user had no vote, set to true
+            if voteCast == nil {
+                // increment upVote
+                voteCast = true
+                apiClient.postVote(currentReview!.id, increment: true, upVote: true, userCastVote: voteCast)
+                upVoteCount += 1
+                setUpVotes(upVoteCount)
+                upVote.setImage(AppAssets.Icons.ThumbUpSelected, for: .normal)
+            }
+            // change from down vote to up vote
+            else if voteCast == false {
+                // decrement downVote
+                apiClient.postVote(currentReview!.id, increment: false, upVote: false, userCastVote: voteCast)
+                downVoteCount -= 1
+                setDownVotes(downVoteCount)
+                downVote.setImage(AppAssets.Icons.ThumbDown, for: .normal)
+                // increment upVote
+                voteCast = true
+                apiClient.postVote(currentReview!.id, increment: true, upVote: true, userCastVote: voteCast)
+                upVoteCount += 1
+                setUpVotes(upVoteCount)
+                upVote.setImage(AppAssets.Icons.ThumbUpSelected, for: .normal)
+            }
+            else {
+                // user undid previous upvote, decrement upVote
+                voteCast = nil
+                apiClient.postVote(currentReview!.id, increment: false, upVote: true, userCastVote: voteCast)
+                upVoteCount -= 1
+                setUpVotes(upVoteCount)
+                upVote.setImage(AppAssets.Icons.ThumbUp, for: .normal)
+                return
+            }
+            //sender is downvote
+        case 0:
+            // user had no vote, set to false
+            if voteCast == nil {
+                // increment downVote
+                voteCast = false
+                apiClient.postVote(currentReview!.id, increment: true, upVote: false, userCastVote: voteCast)
+                downVoteCount += 1
+                setDownVotes(downVoteCount)
+                downVote.setImage(AppAssets.Icons.ThumbDownSelected, for: .normal)
+            }
+            // change from up vote to down vote
+            else if voteCast == true {
+                // decrement upVote
+                apiClient.postVote(currentReview!.id, increment: false, upVote: true, userCastVote: voteCast)
+                upVoteCount -= 1
+                setUpVotes(upVoteCount)
+                upVote.setImage(AppAssets.Icons.ThumbUp, for: .normal)
+                // increment downVote
+                voteCast = false
+                apiClient.postVote(currentReview!.id, increment: true, upVote: false, userCastVote: voteCast)
+                downVoteCount += 1
+                setDownVotes(downVoteCount)
+                downVote.setImage(AppAssets.Icons.ThumbDownSelected, for: .normal)
+            }
+            else {
+                // user undid previous downvote, decrement downVote
+                voteCast = nil
+                apiClient.postVote(currentReview!.id, increment: false, upVote: false, userCastVote: voteCast)
+                downVoteCount -= 1
+                setDownVotes(downVoteCount)
+                downVote.setImage(AppAssets.Icons.ThumbDown, for: .normal)
+                return
+            }
+        default:
+            return
+        }
+    }
+    
+    func disable(_ shouldDisable: Bool) {
+        isDisabled = shouldDisable
+    }
+    
+    //set up vote count.  call externally in parent
+    func setUpVotes(_ upVotes: Int) {
+        upVoteCount = upVotes
+        lblUpVotes.text = "(" + String(upVoteCount) + ")"
+        self.layoutIfNeeded()
+    }
+    
+    //set down vote count.  call externally in parent
+    func setDownVotes(_ downVotes: Int) {
+        downVoteCount = downVotes
+        lblDownVotes.text = "(" + String(downVoteCount) + ")"
+        self.layoutIfNeeded()
+    }
+    
+    // set user previous vote.  call externally in parent
+    func setUserVote() {
+        if currentReview == nil { return }
+        if let previousCast = apiClient.getUserCastedVote(currentReview!.id) {
+            // update UI to reflect change
+            switch previousCast {
+            case true:
+                voteCast = true
+                apiClient.postVote(currentReview!.id, increment: true, upVote: true, userCastVote: voteCast)
+                upVoteCount += 1
+                setUpVotes(upVoteCount)
+                upVote.setImage(AppAssets.Icons.ThumbUpSelected, for: .normal)
+            case false:
+                voteCast = false
+                apiClient.postVote(currentReview!.id, increment: true, upVote: false, userCastVote: voteCast)
+                downVoteCount += 1
+                setDownVotes(downVoteCount)
+                downVote.setImage(AppAssets.Icons.ThumbDownSelected, for: .normal)
+            }
+        }
+    }    
     
     /// Setup the `RatingReviewSupport` view
     private func setupView() {
@@ -40,6 +163,7 @@ class RatingReviewSupport: UIView {
         upVote.contentVerticalAlignment = .fill
         upVote.contentHorizontalAlignment = .fill
         upVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        upVote.tag = 1
         self.addSubview(upVote)
         lblUpVotes.frame = CGRect(x: buttonWidthBaseline - 2 * buttonDimensions, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         lblUpVotes.text = "(" + String(upVoteCount) + ")"
@@ -52,6 +176,7 @@ class RatingReviewSupport: UIView {
         downVote.contentVerticalAlignment = .fill
         downVote.contentHorizontalAlignment = .fill
         downVote.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        downVote.tag = 0
         self.addSubview(downVote)
         lblDownVotes.frame = CGRect(x: buttonWidthBaseline, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
         lblDownVotes.text = "(" + String(downVoteCount) + ")"
@@ -62,25 +187,5 @@ class RatingReviewSupport: UIView {
         
         // set this so that background blends with parent view background i.e. tableview selection color
         self.backgroundColor = UIColor.opaqueBackground
-    }
-    
-    @objc func buttonAction(sender: UIButton!) {
-        // little bit of reflection
-        print(String(describing: sender.currentImage) + " was clicked!")
-    }
-    
-    func disable(_ shouldDisable: Bool) {
-        upVote.isEnabled = !shouldDisable
-        downVote.isEnabled = !shouldDisable
-    }
-    
-    func setUpVotes(_ upVotes: Int) {
-        upVoteCount = upVotes
-        lblUpVotes.text = "(" + String(upVoteCount) + ")"
-    }
-    
-    func setDownVotes(_ downVotes: Int) {
-        downVoteCount = downVotes
-        lblDownVotes.text = "(" + String(downVoteCount) + ")"
     }
 }

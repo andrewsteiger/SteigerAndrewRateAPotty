@@ -8,18 +8,23 @@
 import UIKit
 import GoogleMaps
 
+extension AppData {
+    static var sharedData: AppData!
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GMSServices.setMetalRendererEnabled(true)
         GMSServices.provideAPIKey("AIzaSyDgytLOll3J3YbBSCkO9MJGqnrf58z9470")
+        
+        // create singletons
+        AppData.sharedData = AppData()
+        
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.

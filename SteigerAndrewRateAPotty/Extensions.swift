@@ -145,7 +145,7 @@ extension MapsViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         //get the object related to the marker selected
         if let index = markers.firstIndex(of: marker) {
-            let currentPotty = appData.AppPotties[index]
+            let currentPotty = AppData.sharedData.AppPotties[index]
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LocationViewController") as! LocationViewController
             vc.currentPotty = currentPotty
             if let navigationController = self.navigationController {
@@ -158,7 +158,7 @@ extension MapsViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         //get the object related to the marker selected
         if let index = markers.firstIndex(of: marker) {
-            let selectedPotty = appData.AppPotties[index]
+            let selectedPotty = AppData.sharedData.AppPotties[index]
             
             let infoWindowView = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
             infoWindowView.backgroundColor = UIColor.white
@@ -169,7 +169,7 @@ extension MapsViewController: GMSMapViewDelegate {
             infoWindowView.addSubview(lblHeader)
             
             let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
-            lblContent.text = selectedPotty.snippit
+            lblContent.text = selectedPotty.snippet
             lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
             infoWindowView.addSubview(lblContent)
             

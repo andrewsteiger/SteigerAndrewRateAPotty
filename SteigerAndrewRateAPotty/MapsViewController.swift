@@ -12,7 +12,6 @@ class MapsViewController: UIViewController {
     
     @IBOutlet weak var mapViewMain: GMSMapView!
     
-    var appData: AppData = AppData()
     let locationManager = CLLocationManager()
     var camera = GMSCameraPosition()
     var cameraZoom: Float = 6
@@ -75,13 +74,13 @@ class MapsViewController: UIViewController {
     private func setupMarkers() {
         
         //create markers, add to local array markers
-        for i in 0...appData.AppPotties.count - 1 {
-            let currentPotty = appData.AppPotties[i]
+        for i in 0...AppData.sharedData.AppPotties.count - 1 {
+            let currentPotty = AppData.sharedData.AppPotties[i]
             // creates markers from app data
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: currentPotty.latitude, longitude: currentPotty.longitude)
             marker.title = currentPotty.title
-            marker.snippet = currentPotty.snippit
+            marker.snippet = currentPotty.snippet
             marker.map = mapViewMain
             marker.iconView = currentPotty.iconView
             marker.tracksViewChanges = true

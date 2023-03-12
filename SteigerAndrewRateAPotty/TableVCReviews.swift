@@ -10,7 +10,6 @@ import UIKit
 class TableVCReviews: UITableViewController {
     @IBOutlet weak var lblHeader: UILabel!
     
-    var appData: AppData = AppData()
     let maxResults: Int = 10
     var currentPotty: Potty?
     
@@ -18,7 +17,6 @@ class TableVCReviews: UITableViewController {
         super.viewDidLoad()
         if currentPotty == nil { return }
         // initialize locals
-        appData = AppData()
         lblHeader.text = "All " + String(currentPotty!.ratings.count) + " Reviews"
     }
     

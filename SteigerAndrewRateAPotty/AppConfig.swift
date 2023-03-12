@@ -17,7 +17,7 @@ class AppConfig {
     }
     
     struct InitialStates {
-        static let pottyInitialState: Potty = Potty(id: -1, ratings: [], latitude: 0.0, longitude: 0.0, title: "", snippit: "", iconView: AppAssets.ImageViews.RestAreaView35)
+        static let pottyInitialState: Potty = Potty(id: -1, ratings: [], latitude: 0.0, longitude: 0.0, title: "", snippet: "", iconView: AppAssets.ImageViews.RestAreaView35)
     }
     
 }
@@ -31,7 +31,7 @@ struct Potty {
     var latitude: Double
     var longitude: Double
     var title: String
-    var snippit: String
+    var snippet: String
     var iconView: UIImageView
     
     /// Gets the average rating on a potty, using the local `ratings` object of type `[PottyReview]`
@@ -93,6 +93,11 @@ struct PottyReview {
     var comment: String
     var upVotes: Int
     var downVotes: Int
+    //represents whether a user:
+    //nil: did not cast a vote
+    //false: voted down
+    //true: voted up
+    var userCastVote: Bool?
     
     /// Gets the average rating on a review, using the local `ratings` object of type `[PottyReview]`
     ///
@@ -109,6 +114,8 @@ struct AppAssets {
         static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.starYellow)
         static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
         static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
+        static let ThumbUpSelected = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.blueFocus)
+        static let ThumbDownSelected = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.blueFocus)
         static let RestArea = UIImage(named:"RestArea")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let PortaPotty = UIImage(named:"PortaPotty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let ZoomIn = UIImage(named:"ZoomIn")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)

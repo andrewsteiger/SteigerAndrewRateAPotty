@@ -215,11 +215,6 @@ class RatingStars: UIView {
     
     func disable(_ shouldDisable: Bool) {
         isDisabled = shouldDisable
-//        star1.isEnabled = !shouldDisable
-//        star2.isEnabled = !shouldDisable
-//        star3.isEnabled = !shouldDisable
-//        star4.isEnabled = !shouldDisable
-//        star5.isEnabled = !shouldDisable
     }
     
     /// Checks stars, reflected by a yellow star or an empty star in the UI
