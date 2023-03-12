@@ -58,6 +58,8 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         setupNewReview()
     }
     
+    
+    
     //handles when user selects btnAllReviews
     @IBAction func showAllReviews(_ sender: Any) {
         if let activePotty = currentPotty {

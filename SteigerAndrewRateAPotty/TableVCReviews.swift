@@ -30,16 +30,18 @@ class TableVCReviews: UITableViewController {
             cell.lblReviewTitle.text = "\(currentPotty!.ratings[indexPath.row].author)"
         }
         cell.lblReviewComment.text = "\"" + (currentPotty!.ratings[indexPath.row].comment) + "\""
-        cell.setRating((currentPotty!.ratings[indexPath.row].ratingAtmosphere + currentPotty!.ratings[indexPath.row].ratingCleanliness + currentPotty!.ratings[indexPath.row].ratingAccessibility) / 3)
-        cell.setUpVotes(currentPotty!.ratings[indexPath.row].upVotes)
-        cell.setDownVotes(currentPotty!.ratings[indexPath.row].downVotes)
+        cell.viewRatingStars.setRating((currentPotty!.ratings[indexPath.row].ratingAtmosphere + currentPotty!.ratings[indexPath.row].ratingCleanliness + currentPotty!.ratings[indexPath.row].ratingAccessibility) / 3)
+        cell.viewRatingStars.disable(true)
+        cell.viewRatingReviewSupport.setUpVotes(currentPotty!.ratings[indexPath.row].upVotes)
+        cell.viewRatingReviewSupport.setDownVotes(currentPotty!.ratings[indexPath.row].downVotes)
+        cell.viewRatingReviewSupport.currentReview = currentPotty!.ratings[indexPath.row]
+        cell.viewRatingReviewSupport.setUserVote()
         
-        cell.setupCell()
         // store the index in the tag to access with button clicks
         cell.btnReadFullReview.tag = Int(indexPath.row)
         
-        // set width of border based on tablveView, because swift sucks and tableView isn't actually setting
-        // it's child cell width correctly
+        // set width of border based on tablveView, because swift isn't intuitively setting
+        // it's child cell width correctly.
         let parentBoundBorder = UIView(frame: CGRect(x: cell.layoutView.frame.minX, y: cell.layoutView.frame.minY, width: tableView.frame.width, height: cell.layoutView.frame.height))
         cell.layoutView.layer.addSublayer(DrawBorderLayer(parentBoundBorder, inset: 14))
         return cell

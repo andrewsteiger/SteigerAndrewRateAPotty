@@ -42,6 +42,7 @@ class ReviewDetailViewController: UIViewController {
             viewRatingReviewSupport.currentReview = review
             viewRatingReviewSupport.setUpVotes(review.upVotes)
             viewRatingReviewSupport.setDownVotes(review.downVotes)
+            viewRatingReviewSupport.setUserVote()
             dateFormatter.dateFormat = "dd/MM/YYYY HH:mm"
             lblDateCreated.font = UIFont.italicSystemFont(ofSize: 12)
             if let dateCreated = review.dateTimeCreated {

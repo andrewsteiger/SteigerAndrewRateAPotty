@@ -119,14 +119,12 @@ class RatingReviewSupport: UIView {
     func setUpVotes(_ upVotes: Int) {
         upVoteCount = upVotes
         lblUpVotes.text = "(" + String(upVoteCount) + ")"
-        self.layoutIfNeeded()
     }
     
     //set down vote count.  call externally in parent
     func setDownVotes(_ downVotes: Int) {
         downVoteCount = downVotes
         lblDownVotes.text = "(" + String(downVoteCount) + ")"
-        self.layoutIfNeeded()
     }
     
     // set user previous vote.  call externally in parent
@@ -149,7 +147,11 @@ class RatingReviewSupport: UIView {
                 downVote.setImage(AppAssets.Icons.ThumbDownSelected, for: .normal)
             }
         }
-    }    
+        else {
+            upVote.setImage(AppAssets.Icons.ThumbUp, for: .normal)
+            downVote.setImage(AppAssets.Icons.ThumbDown, for: .normal)
+        }
+    }
     
     /// Setup the `RatingReviewSupport` view
     private func setupView() {

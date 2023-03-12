@@ -65,19 +65,7 @@ class ApiClient {
                         }
                     }
                     // set the new cast status
-                    if let test = AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote {
-                        print("before: ", String(AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote!))
-                    }
-                    else {
-                        print("before: NO VOTE")
-                    }
                     AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote = userCastVote
-                    if let test = AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote {
-                        print("after: ", String(AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote!))
-                    }
-                    else {
-                        print("after: NO VOTE")
-                    }
                 }
             }
         }

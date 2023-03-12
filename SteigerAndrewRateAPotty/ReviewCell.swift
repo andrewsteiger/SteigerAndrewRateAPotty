@@ -24,23 +24,5 @@ class ReviewCell: UITableViewCell {
         get {
             return "ReviewCell"
         }
-    }    
-    
-    func setupCell() {
-        // Initialization code
-        viewRatingStars.disable(true)
     }
-    
-    func setRating(_ rating: Double) {
-        viewRatingStars.setRating(rating)
-    }
-    
-    func setUpVotes(_ upVotes: Int) {
-        viewRatingReviewSupport.setUpVotes(upVotes)
-    }
-    
-    func setDownVotes(_ downVotes: Int) {
-        viewRatingReviewSupport.setDownVotes(downVotes)
-    }
-
 }
