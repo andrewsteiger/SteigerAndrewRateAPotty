@@ -70,7 +70,7 @@ extension UIViewController {
             }
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
@@ -79,35 +79,67 @@ extension UIViewController {
 }
 
 extension MapsViewController: CLLocationManagerDelegate {
-    //set authorization settings
+    //set usage based on authorization settings
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        guard status == .authorizedWhenInUse else {
-            return
+        switch status {
+        case .denied: // Setting option: Never
+            print("LocationManager didChangeAuthorization denied")
+        case .notDetermined: // Setting option: Ask Next Time
+            print("LocationManager didChangeAuthorization notDetermined")
+        case .authorizedWhenInUse: // Setting option: While Using the App
+            print("LocationManager didChangeAuthorization authorizedWhenInUse")
+            locationManager.requestLocation()
+        case .authorizedAlways: // Setting option: Always
+            print("LocationManager didChangeAuthorization authorizedAlways")
+            locationManager.requestLocation()
+        case .restricted: // Restricted by parental control
+            print("LocationManager didChangeAuthorization restricted")
+        default:
+            print("LocationManager didChangeAuthorization")
         }
-        locationManager.requestLocation()
-        
-        mapViewMain.isMyLocationEnabled = true
-        mapViewMain.settings.myLocationButton = true
     }
     
     //update location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        locations.forEach { (location) in
+//            print("LocationManager didUpdateLocations: \(dateFormatter.string(from: location.timestamp)); \(location.coordinate.latitude), \(location.coordinate.longitude)")
+//            print("LocationManager altitude: \(location.altitude)")
+//            print("LocationManager horizontalAccuracy: \(location.horizontalAccuracy)")
+//            print("LocationManager verticalAccuracy: \(location.verticalAccuracy)")
+//            print("LocationManager speedAccuracy: \(location.speedAccuracy)")
+//            print("LocationManager speed: \(location.speed)")
+//            print("LocationManager timestamp: \(location.timestamp)")
+//            print("LocationManager courseAccuracy: \(location.courseAccuracy)") // 13.4
+//            print("LocationManager course: \(location.course)")
+//        }
         guard let location = locations.last else {
             return
         }
         
+        self.mapViewMain.isMyLocationEnabled = true
+        self.mapViewMain.settings.myLocationButton = true
+        
         userLastLocation = location
         
-        camera = GMSCameraPosition(
-            target: location.coordinate,
-            zoom: cameraZoom,
-            bearing: 0,
-            viewingAngle: 0)
-        mapViewMain.animate(to: camera)
+        if isTrackingLocation {
+            //show location in (almsot) real time
+            camera = GMSCameraPosition(
+                target: location.coordinate,
+                zoom: 17,
+                bearing: 0,
+                viewingAngle: 0)
+            mapViewMain.animate(to: camera)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        print("LocationManager didFailWithError \(error.localizedDescription)")
+        if let error = error as? CLError, error.code == .denied {
+            // location updates are not authorized.
+            // To prevent forever looping of `didFailWithError` callback
+            locationManager.stopMonitoringSignificantLocationChanges()
+            return
+        }
     }
 }
 
@@ -115,17 +147,38 @@ extension MapsViewController: GMSMapViewDelegate {
     //user tapped the map
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("Tapped at coordinate: " + String(coordinate.latitude) + " " + String(coordinate.longitude))
+        //get the object related to the marker selected
+//        if let index = markers.firstIndex(of: marker) {
+//            let selectedPotty = AppData.sharedData.AppPotties[index]
+//
+//            let infoWindowView = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
+//            infoWindowView.backgroundColor = UIColor.white
+//            infoWindowView.layer.cornerRadius = 6
+//
+//            let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: infoWindowView.frame.size.width - 16, height: 15))
+//            lblHeader.text = selectedPotty.title
+//            infoWindowView.addSubview(lblHeader)
+//
+//            let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
+//            lblContent.text = selectedPotty.snippet
+//            lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
+//            infoWindowView.addSubview(lblContent)
+//
+//            //set the current view to the marker selected, centered on the marker, reset to readable zoom
+//            cameraZoom = 9
+//            self.mapViewMain.animate(to: GMSCameraPosition(latitude: camera.target.latitude, longitude: camera.target.longitude, zoom: cameraZoom))
+//            return infoWindowView
+//        }
     }
     
     //user tapped location button
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool{
-        guard let location = userLastLocation else {
-            return false
+        if isTrackingLocation {
+            isTrackingLocation = false
         }
-        
-        //reset to readable zoom
-        cameraZoom = 9
-        mapViewMain.animate(to: GMSCameraPosition(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: cameraZoom))
+        else {
+            isTrackingLocation = true
+        }
         return true
     }
     

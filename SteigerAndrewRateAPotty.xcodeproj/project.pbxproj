@@ -557,6 +557,9 @@
 				DEVELOPMENT_TEAM = 3R8R665ACK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SteigerAndrewRateAPotty/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always and in use permissions";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "always permissions";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "When in use permissions";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -589,6 +592,9 @@
 				DEVELOPMENT_TEAM = 3R8R665ACK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SteigerAndrewRateAPotty/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Always and in use permissions";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "always permissions";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "When in use permissions";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

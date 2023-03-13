@@ -20,19 +20,21 @@ class MapsViewController: UIViewController {
     var btnZoomIn = UIButton()
     var btnZoomOut = UIButton()
     var currentPotty: Potty?
+    var isTrackingLocation: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //attach delegates
         locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
         mapViewMain.delegate = self
         
         //configure camera and map settings
         camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: cameraZoom)
         mapViewMain.camera = camera
-        mapViewMain.settings.myLocationButton = true
         mapViewMain.settings.compassButton = true
         mapViewMain.settings.scrollGestures = true
         mapViewMain.settings.zoomGestures   = true
@@ -42,20 +44,6 @@ class MapsViewController: UIViewController {
         //setup work
         setupMarkers()
         setupControls()
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch locationManager.authorizationStatus {
-        case .notDetermined:
-            print("No access")
-            locationManager.requestWhenInUseAuthorization()
-        case .authorizedAlways, .authorizedWhenInUse:
-            print("Access")
-        case .restricted, .denied:
-            print("Denied")
-        @unknown default:
-            break
-        }
     }
     
     @objc func btnZoomAction(sender: UIButton!) {
