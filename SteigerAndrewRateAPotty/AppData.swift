@@ -26,7 +26,7 @@ class AppData {
     // data mutations
     func addReview(_ pottyId: String, newReview: PottyReview) {
         var pottyIndex: Int?
-        var ratingIndex: String = ""
+        var ratingIndex: Int = 0
         for i in 0..<PottyDataSet.count {
             if PottyDataSet[i].id == pottyId {
                 pottyIndex = i
@@ -34,14 +34,15 @@ class AppData {
             //  get next rating iteration, would be just a transaction sequence id that database would normally handle
             //  would also be guid's instead of int's
             for j in 0..<PottyDataSet[i].ratings.count {
-                if ratingIndex < PottyDataSet[i].ratings[j].id {
-                    ratingIndex = String(Int(PottyDataSet[i].ratings[j].id)! + 1)
+                if ratingIndex == Int(PottyDataSet[i].ratings[j].id)! {
+                    ratingIndex = Int(PottyDataSet[i].ratings[j].id)! + 1
+                    print("new index: ", ratingIndex)
                 }
             }
         }
         if let i = pottyIndex {
             //  attach index to next review in sequence
-            let indexedReview = PottyReview(id: ratingIndex, author: newReview.author, ratingAccessibility: newReview.ratingAccessibility, ratingCleanliness: newReview.ratingCleanliness, ratingAtmosphere: newReview.ratingAtmosphere, comment: newReview.comment, upVotes: 0, downVotes: 0)
+            let indexedReview = PottyReview(id: String(ratingIndex), author: newReview.author, ratingAccessibility: newReview.ratingAccessibility, ratingCleanliness: newReview.ratingCleanliness, ratingAtmosphere: newReview.ratingAtmosphere, comment: newReview.comment, upVotes: 0, downVotes: 0)
             PottyDataSet[i].ratings.append(indexedReview)
         }
         // reset singleton object
