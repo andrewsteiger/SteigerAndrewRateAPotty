@@ -28,6 +28,21 @@ class RatingStars: UIView {
         setupView()
     }
     
+    /// Returns a rating for the given set of rating stars
+    func getRating() -> Int {
+        if star5.tintColor == UIColor.starYellow
+        { return 5 }
+        else if star4.tintColor == UIColor.starYellow
+        { return 4 }
+        else if star3.tintColor == UIColor.starYellow
+        { return 3 }
+        else if star2.tintColor == UIColor.starYellow
+        { return 2 }
+        else if star1.tintColor == UIColor.starYellow
+        { return 1 }
+        return 0
+    }
+    
     /// Setup the `RatingStars` view
     func setupView() {
         let buttonDimensions: CGFloat = self.frame.height

@@ -17,13 +17,13 @@ class AppConfig {
     }
     
     struct InitialStates {
-        static let pottyInitialState: Potty = Potty(id: -1, ratings: [], latitude: 0.0, longitude: 0.0, title: "", snippet: "", iconView: AppAssets.ImageViews.RestAreaView35)
+        static let pottyInitialState: Potty = Potty(id: "", ratings: [], latitude: 0.0, longitude: 0.0, title: "", snippet: "", iconView: AppAssets.ImageViews.RestAreaView35)
     }
     
 }
 
 struct Potty {
-    var id: Int
+    var id: String
     var ratings: [PottyReview]
     var owner: String?
     
@@ -93,10 +93,10 @@ struct PottyReview {
     var comment: String
     var upVotes: Int
     var downVotes: Int
-    //represents whether a user:
-    //nil: did not cast a vote
-    //false: voted down
-    //true: voted up
+    // represents whether a user:
+    // nil: did not cast a vote
+    // false: voted down
+    // true: voted up
     var userCastVote: Bool?
     
     /// Gets the average rating on a review, using the local `ratings` object of type `[PottyReview]`
@@ -182,4 +182,15 @@ func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     grayRoundBorderLayer.lineWidth = 1
     grayRoundBorderLayer.needsDisplayOnBoundsChange = true
     return grayRoundBorderLayer
+}
+
+struct AlertActions {
+    //define actions available
+    static let cancelAction =
+    UIAlertAction(title: "Cancel",
+                  style: .cancel,
+                  handler: nil)
+    static let okAction =
+    UIAlertAction(title: "Ok",
+                  style: .default)
 }

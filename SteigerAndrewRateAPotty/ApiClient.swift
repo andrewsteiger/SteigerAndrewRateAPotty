@@ -13,10 +13,10 @@ import Foundation
 
 class ApiClient {
     func getAllPottys() -> [Potty] {
-        return AppData.sharedData.PottyDataSet
+        return AppData.sharedData.AppPotties
     }
     
-    func getPottyByID(_ id: Int) -> Potty {
+    func getPottyByID(_ id: String) -> Potty {
         for i in 0...AppData.sharedData.AppPotties.count - 1 {
             if AppData.sharedData.AppPotties[i].id == id {
                 return AppData.sharedData.AppPotties[i]
@@ -25,25 +25,38 @@ class ApiClient {
         return AppConfig.InitialStates.pottyInitialState
     }
     
+    func postNewReview(_ pottyId: String, author: String, ratingAccessibility: Int, ratingCleanlines: Int, ratingAtmosphere: Int, comment: String) {
+        let newPotty = PottyReview(
+            id: "",
+            author: author,
+            ratingAccessibility: Double(ratingAccessibility),
+            ratingCleanliness: Double(ratingCleanlines),
+            ratingAtmosphere: Double(ratingAtmosphere),
+            comment: comment,
+            upVotes: 0,
+            downVotes: 0)
+        AppData.sharedData.addReview(pottyId, newReview: newPotty)
+    }
+    
     // sorry about the nesting, again this would be server side logic and probably have more data tables to handle it
     func postVote(_ reviewId: String, increment: Bool, upVote: Bool, userCastVote: Bool?) {
-        for i in 0..<AppData.sharedData.PottyDataSet.count {
-            for j in 0..<AppData.sharedData.PottyDataSet[i].ratings.count {
-                if AppData.sharedData.PottyDataSet[i].ratings[j].id == reviewId {
+        for i in 0..<AppData.sharedData.AppPotties.count {
+            for j in 0..<AppData.sharedData.AppPotties[i].ratings.count {
+                if AppData.sharedData.AppPotties[i].ratings[j].id == reviewId {
                     if increment == true {
                         // user is casting a vote
                         if upVote == true {
                             // request to increment upVote
-                            if AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote == false {
+                            if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == false {
                                 // first remove previous downVote
-                                AppData.sharedData.PottyDataSet[i].ratings[j].downVotes -= 1
+                                //AppData.sharedData.AppPotties[i].ratings[j].downVotes -= 1
                             }
                         }
                         else {
                             // request to increment downVote
-                            if AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote == true {
+                            if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == true {
                                 // first remove previous upVote
-                                AppData.sharedData.PottyDataSet[i].ratings[j].upVotes -= 1
+                                //AppData.sharedData.AppPotties[i].ratings[j].upVotes -= 1
                             }
                         }
                     }
@@ -51,21 +64,22 @@ class ApiClient {
                         // user is undoing vote
                         if upVote == true {
                             // request to decrement upVote
-                            if AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote == true {
+                            if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == true {
                                 // remove previous upVote
-                                AppData.sharedData.PottyDataSet[i].ratings[j].upVotes -= 1
+                                //AppData.sharedData.AppPotties[i].ratings[j].upVotes -= 1
                             }
                         }
                         else {
                             // request to decrement downVote
-                            if AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote == false {
+                            if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == false {
                                 // remove previous downVote
-                                AppData.sharedData.PottyDataSet[i].ratings[j].downVotes -= 1
+                                //AppData.sharedData.AppPotties[i].ratings[j].downVotes -= 1
                             }
                         }
                     }
                     // set the new cast status
-                    AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote = userCastVote
+                    //AppData.sharedData.AppPotties[i].ratings[j].userCastVote = userCastVote
+                    return
                 }
             }
         }
@@ -73,10 +87,10 @@ class ApiClient {
     
     //get users cast vote
     func getUserCastedVote(_ reviewId: String) -> Bool? {
-        for i in 0..<AppData.sharedData.PottyDataSet.count {
-            for j in 0..<AppData.sharedData.PottyDataSet[i].ratings.count {
-                if AppData.sharedData.PottyDataSet[i].ratings[j].id == reviewId {
-                    return AppData.sharedData.PottyDataSet[i].ratings[j].userCastVote
+        for i in 0..<AppData.sharedData.AppPotties.count {
+            for j in 0..<AppData.sharedData.AppPotties[i].ratings.count {
+                if AppData.sharedData.AppPotties[i].ratings[j].id == reviewId {
+                    return AppData.sharedData.AppPotties[i].ratings[j].userCastVote
                 }
             }
         }

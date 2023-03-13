@@ -9,8 +9,9 @@ import UIKit
 
 class LocationViewController: UIViewController, UITextViewDelegate {
 
-    //header view
+    // header view
     @IBOutlet var contentViewMain: UIView!
+    @IBOutlet weak var scrollViewMain: UIScrollView!
     @IBOutlet var lblHeader: UILabel!
     @IBOutlet weak var viewRatings: UIView!
     @IBOutlet weak var btnAllReviews: UIButton!
@@ -20,7 +21,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var viewRatingAtmosphere: RatingStars!
     @IBOutlet weak var btnContactOwner: UIButton!
     
-    //top review view
+    // top review view
     @IBOutlet weak var contentViewReviewMain: UIView!
     @IBOutlet weak var lblReviewTitle: UILabel!
     @IBOutlet weak var lblReviewComment: UILabel!
@@ -28,7 +29,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var viewRatingReviewSupport: RatingReviewSupport!
     @IBOutlet weak var btnReadFullReview: UIButton!
     
-    //create review view
+    // create review view
     @IBOutlet weak var lblLeaveAReview: UILabel!
     @IBOutlet weak var contentViewNewReview: UIView!
     @IBOutlet weak var viewNewRatingAccessibility: RatingStars!
@@ -38,6 +39,9 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var btnSubmitReview: UIButton!
     
     var currentPotty: Potty?
+    var currentPottyId: String?
+    var apiClient = ApiClient()
+    let currentUser = "mockInTosh" // TODO replace with authenticated user
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +62,87 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         setupNewReview()
     }
     
+    // leave a review
+    @IBAction func btnSubmitClick(_ sender: Any) {
+        if currentPotty == nil { return }
+        
+        // begin form validation.  note, a blank comment is allowed
+        
+        // user can only leave one comment
+        for i in 0...currentPotty!.ratings.count - 1 {
+            if currentPotty!.ratings[i].author == currentUser {
+                let alertController =
+                UIAlertController(title: "Potty Has Been Reviewed",
+                                  message: "Only one review allowed.",
+                                  preferredStyle: .alert)
+                let okAction = AlertActions.okAction
+                alertController.addAction(okAction)
+                self.present(alertController,
+                             animated: true,
+                             completion: nil)
+                return
+            }
+        }
+        
+        let accessibility = viewNewRatingAccessibility.getRating()
+        let cleanliness = viewNewRatingCleanliness.getRating()
+        let atmosphere = viewNewRatingAtmosphere.getRating()
+        
+        // alert the user if no ratings were given
+        if accessibility == 0 ||
+            cleanliness == 0 ||
+            atmosphere == 0 {
+            let alertController =
+            UIAlertController(title: "No Ratings Given",
+                              message: "Still leave review?",
+                              preferredStyle: .alert)
+            let warningCancelAction = AlertActions.cancelAction
+            let okAction = UIAlertAction(title: "Ok", style: .default) {_ in
+                let confirmAlertController = UIAlertController(title: "Review Created",
+                                                               message: nil,
+                                                               preferredStyle: .alert)
+                    confirmAlertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self.present(confirmAlertController,
+                                 animated: true,
+                                 completion: {self.createReview(self.currentUser, accessibility: accessibility, cleanliness: cleanliness, atmosphere: atmosphere, comment: self.tvNewReviewComments.text)})
+                }
+            alertController.addAction(warningCancelAction)
+            alertController.addAction(okAction)
+            self.present(alertController,
+                         animated: true,
+                         completion: nil)
+        }
+        else {
+            let confirmAlertController = UIAlertController(title: "Review Created",
+                                                           message: nil,
+                                                           preferredStyle: .alert)
+            confirmAlertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                self.scrollViewMain.setContentOffset(.zero, animated: true)
+            }
+                ))
+                self.present(confirmAlertController,
+                             animated: true,
+                             completion: {self.createReview(self.currentUser, accessibility: accessibility, cleanliness: cleanliness, atmosphere: atmosphere, comment: self.tvNewReviewComments.text)})
+        }
+    }
     
+    private func createReview(_ author: String, accessibility: Int, cleanliness: Int, atmosphere: Int, comment: String) {
+        apiClient.postNewReview(
+            currentPotty!.id,
+            author: author,
+            ratingAccessibility: accessibility,
+            ratingCleanlines: cleanliness,
+            ratingAtmosphere: atmosphere,
+            comment: comment)
+        
+        // adjust ui after review has been left
+        lblLeaveAReview.isHidden = true
+        contentViewNewReview.isHidden = true
+        setupHeader()
+        self.view.layoutIfNeeded()
+    }
     
-    //handles when user selects btnAllReviews
+    // handles when user selects btnAllReviews
     @IBAction func showAllReviews(_ sender: Any) {
         if let activePotty = currentPotty {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "TableVCReviews") as! TableVCReviews
@@ -83,15 +165,18 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     
     private func setupHeader() {
         if let activePotty = currentPotty {
-            lblHeader.text = activePotty.title
-            viewRatingAverage.setRating(activePotty.getAverageRating(""))
+            // refresh current potty
+            currentPotty = apiClient.getPottyByID(activePotty.id)
+                
+            lblHeader.text = currentPotty!.title
+            viewRatingAverage.setRating(currentPotty!.getAverageRating(""))
             viewRatingAverage.disable(true)
-            btnAllReviews.setTitle("(" + String(activePotty.ratings.count) + ")", for: .normal)
-            viewRatingAccessibiliy.setRating(activePotty.getAverageRating(AppConfig.RatingTypes.accessibility))
+            btnAllReviews.setTitle("(" + String(currentPotty!.ratings.count) + ")", for: .normal)
+            viewRatingAccessibiliy.setRating(currentPotty!.getAverageRating(AppConfig.RatingTypes.accessibility))
             viewRatingAccessibiliy.disable(true)
-            viewRatingCleanliness.setRating(activePotty.getAverageRating(AppConfig.RatingTypes.cleanliness))
+            viewRatingCleanliness.setRating(currentPotty!.getAverageRating(AppConfig.RatingTypes.cleanliness))
             viewRatingCleanliness.disable(true)
-            viewRatingAtmosphere.setRating(activePotty.getAverageRating(AppConfig.RatingTypes.atmosphere))
+            viewRatingAtmosphere.setRating(currentPotty!.getAverageRating(AppConfig.RatingTypes.atmosphere))
             viewRatingAtmosphere.disable(true)
             viewRatings.layoutIfNeeded()
             viewRatings.layer.addSublayer(DrawBorderLayer(viewRatings, inset: 14))

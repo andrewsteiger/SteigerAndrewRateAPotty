@@ -356,7 +356,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOD-uV-dqr">
-                                                <rect key="frame" x="166.33333333333334" y="0.0" width="97.333333333333343" height="20"/>
+                                                <rect key="frame" x="164" y="0.0" width="102" height="21.666666666666668"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="LocationTitle">
                                                         <attributes>
@@ -368,16 +368,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bv-NT-Bep">
-                                                <rect key="frame" x="0.0" y="40" width="430" height="201"/>
+                                                <rect key="frame" x="0.0" y="41.666666666666657" width="430" height="201"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg. Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqM-p8-OCh">
-                                                        <rect key="frame" x="30" y="26.666666666666671" width="77" height="17"/>
+                                                        <rect key="frame" x="30" y="26.666666666666664" width="77" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHd-8x-CqX">
-                                                        <rect key="frame" x="224.66666666666666" y="25" width="40.333333333333343" height="20.333333333333329"/>
+                                                        <rect key="frame" x="224.66666666666666" y="25.000000000000007" width="40.333333333333343" height="20.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="(100)">
                                                             <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
@@ -419,13 +419,13 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg. Accessibility:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XS-tr-hh2">
-                                                        <rect key="frame" x="29.999999999999993" y="66.666666666666671" width="116.33333333333331" height="17"/>
+                                                        <rect key="frame" x="29.999999999999993" y="66.666666666666657" width="116.33333333333331" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg. Cleanliness:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3a-NG-8BF">
-                                                        <rect key="frame" x="29.999999999999993" y="96.666666666666657" width="109.33333333333331" height="17"/>
+                                                        <rect key="frame" x="29.999999999999993" y="96.666666666666686" width="109.33333333333331" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -487,7 +487,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuE-oz-J6M">
-                                                <rect key="frame" x="0.0" y="338.33333333333331" width="430" height="219.99999999999994"/>
+                                                <rect key="frame" x="0.0" y="336.66666666666669" width="430" height="220.00000000000006"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nF8-Gu-g0k">
                                                         <rect key="frame" x="30" y="25" width="73" height="17"/>
@@ -527,7 +527,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DBf-SY-eBa">
-                                                        <rect key="frame" x="29.999999999999993" y="176.00000000000006" width="94.333333333333314" height="14"/>
+                                                        <rect key="frame" x="29.999999999999993" y="175.99999999999994" width="94.333333333333314" height="14"/>
                                                         <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
@@ -566,7 +566,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOP-zj-zm6">
-                                                <rect key="frame" x="155.66666666666666" y="573.33333333333337" width="118.99999999999997" height="20"/>
+                                                <rect key="frame" x="152.66666666666666" y="571.66666666666663" width="124.99999999999997" height="21.666666666666629"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Leave A Review">
                                                         <attributes>
@@ -650,6 +650,9 @@
                                                         <rect key="frame" x="176" y="263.66666666666663" width="78" height="35"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Submit"/>
+                                                        <connections>
+                                                            <action selector="btnSubmitClick:" destination="IPD-gp-8kf" eventType="touchUpInside" id="qui-Fw-sR9"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -733,6 +736,7 @@
                         <outlet property="lblLeaveAReview" destination="uOP-zj-zm6" id="PXJ-qI-xXL"/>
                         <outlet property="lblReviewComment" destination="bdv-cA-Dbs" id="Byd-ns-ls8"/>
                         <outlet property="lblReviewTitle" destination="nF8-Gu-g0k" id="eXG-0p-qB3"/>
+                        <outlet property="scrollViewMain" destination="HOf-Yc-Pjg" id="TXA-Ek-mTP"/>
                         <outlet property="tvNewReviewComments" destination="5AF-qJ-imC" id="npG-A0-ScB"/>
                         <outlet property="viewNewRatingAccessibility" destination="emi-C2-iev" id="dgB-Pr-YmB"/>
                         <outlet property="viewNewRatingAtmosphere" destination="0Ar-u7-rBd" id="OZ9-OT-Ug9"/>

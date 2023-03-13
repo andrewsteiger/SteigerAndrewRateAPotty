@@ -23,9 +23,34 @@ class AppData {
         self._AppPotties = PottyDataSet
     }
     
+    // data mutations
+    func addReview(_ pottyId: String, newReview: PottyReview) {
+        var pottyIndex: Int?
+        var ratingIndex: String = ""
+        for i in 0..<PottyDataSet.count {
+            if PottyDataSet[i].id == pottyId {
+                pottyIndex = i
+            }
+            //  get next rating iteration, would be just a transaction sequence id that database would normally handle
+            //  would also be guid's instead of int's
+            for j in 0..<PottyDataSet[i].ratings.count {
+                if ratingIndex < PottyDataSet[i].ratings[j].id {
+                    ratingIndex = String(Int(PottyDataSet[i].ratings[j].id)! + 1)
+                }
+            }
+        }
+        if let i = pottyIndex {
+            //  attach index to next review in sequence
+            let indexedReview = PottyReview(id: ratingIndex, author: newReview.author, ratingAccessibility: newReview.ratingAccessibility, ratingCleanliness: newReview.ratingCleanliness, ratingAtmosphere: newReview.ratingAtmosphere, comment: newReview.comment, upVotes: 0, downVotes: 0)
+            PottyDataSet[i].ratings.append(indexedReview)
+        }
+        // reset singleton object
+        self._AppPotties = PottyDataSet
+    }
+    
     // mock data sets
-    var PottyDataSet: [Potty] = [
-        Potty(id: 0,
+    private var PottyDataSet: [Potty] = [
+        Potty(id: "0",
               ratings: [
                 PottyReview(id: "0",
                             author: "justanotherjanitor99",
@@ -154,7 +179,7 @@ class AppData {
               title: "Desert Paradise",
               snippet: "Australia",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 1,
+        Potty(id: "1",
               ratings: [
                 PottyReview(id: "12",
                             author: "justanotherjanitor",
@@ -172,7 +197,7 @@ class AppData {
               title: "Desert Tundra",
               snippet: "Australia",
               iconView: AppAssets.ImageViews.PortaPottyView35),
-        Potty(id: 2,
+        Potty(id: "2",
               ratings: [
                 PottyReview(
                     id: "13",
@@ -192,7 +217,7 @@ class AppData {
               snippet: "Public restroom in Golden Gate Park",
               iconView: AppAssets.ImageViews.RestAreaView35),
         Potty(
-            id: 2,
+            id: "2",
             ratings: [],
             latitude: 45.5231,
             longitude: -122.6765,
@@ -200,7 +225,7 @@ class AppData {
             snippet: "Portland",
             iconView: AppAssets.ImageViews.PortaPottyView35),
         
-        Potty(id: 3,
+        Potty(id: "3",
               ratings: [
                 PottyReview(id: "14",
                             author: "pottylover101",
@@ -239,7 +264,7 @@ class AppData {
               title: "City Oasis",
               snippet: "New York, United States",
               iconView: AppAssets.ImageViews.PortaPottyView35),
-        Potty(id: 2,
+        Potty(id: "2",
               ratings: [
                 PottyReview(id: "17",
                             author: "toilettalker",
@@ -278,7 +303,7 @@ class AppData {
               title: "Riverside Rest Stop",
               snippet: "Riverside, California, USA",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 2,
+        Potty(id: "3",
               ratings: [
                 PottyReview(id: "20",
                             author: "pottyfinder23",
@@ -317,7 +342,7 @@ class AppData {
               title: "Highway Rest Stop",
               snippet: "San Jose, California, USA",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 3,
+        Potty(id: "4",
               ratings: [
                 PottyReview(id: "23",
                             author: "toilettalks",
@@ -366,7 +391,7 @@ class AppData {
               title: "Clean & Cozy",
               snippet: "Warsaw, Poland",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 4,
+        Potty(id: "5",
               ratings: [
                 PottyReview(id: "27",
                             author: "lovetotravel",
@@ -405,7 +430,7 @@ class AppData {
               title: "Auckland Rest Stop",
               snippet: "Auckland, New Zealand",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 5,
+        Potty(id: "6",
               ratings: [
                 PottyReview(id: "30",
                             author: "pottylover",
@@ -444,7 +469,7 @@ class AppData {
               title: "Tokyo Station Toilets",
               snippet: "Tokyo, Japan",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 6,
+        Potty(id: "7",
               ratings: [
                 PottyReview(id: "33",
                             author: "josesierra",
@@ -483,7 +508,7 @@ class AppData {
               title: "Hotel San Miguel",
               snippet: "Ciudad de México, México",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 7,
+        Potty(id: "8",
               ratings: [
                 PottyReview(id: "36",
                             author: "toilet_tales",
@@ -532,7 +557,7 @@ class AppData {
               title: "London Lavatory",
               snippet: "London, United Kingdom",
               iconView: AppAssets.ImageViews.RestAreaView35),
-        Potty(id: 8,
+        Potty(id: "9",
               ratings: [
                 PottyReview(id: "40",
                             author: "sitzpinkler",
