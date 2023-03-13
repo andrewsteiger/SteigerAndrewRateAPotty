@@ -101,7 +101,10 @@ class LocationViewController: UIViewController, UITextViewDelegate {
                 let confirmAlertController = UIAlertController(title: "Review Created",
                                                                message: nil,
                                                                preferredStyle: .alert)
-                    confirmAlertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    confirmAlertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        self.scrollViewMain.layoutIfNeeded()
+                        self.scrollViewMain.setContentOffset(CGPoint(x: 0, y: -self.scrollViewMain.adjustedContentInset.top), animated: true)
+                    }))
                     self.present(confirmAlertController,
                                  animated: true,
                                  completion: {self.createReview(self.currentUser, accessibility: accessibility, cleanliness: cleanliness, atmosphere: atmosphere, comment: self.tvNewReviewComments.text)})
@@ -117,7 +120,8 @@ class LocationViewController: UIViewController, UITextViewDelegate {
                                                            message: nil,
                                                            preferredStyle: .alert)
             confirmAlertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                self.scrollViewMain.setContentOffset(.zero, animated: true)
+                self.scrollViewMain.layoutIfNeeded()
+                self.scrollViewMain.setContentOffset(CGPoint(x: 0, y: -self.scrollViewMain.adjustedContentInset.top), animated: true)
             }
                 ))
                 self.present(confirmAlertController,

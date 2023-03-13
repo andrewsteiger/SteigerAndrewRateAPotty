@@ -48,6 +48,45 @@ class AppData {
         self._AppPotties = PottyDataSet
     }
     
+    func incrementVote(_ id: String, upVote: Bool, increment: Bool) {
+        for i in 0..<PottyDataSet.count {
+            for j in 0..<PottyDataSet[i].ratings.count {
+                if id == PottyDataSet[i].ratings[j].id {
+                    if upVote {
+                        if increment {
+                            PottyDataSet[i].ratings[j].upVotes += 1
+                        }
+                        else {
+                            PottyDataSet[i].ratings[j].upVotes -= 1
+                        }
+                    }
+                    else {
+                        if increment {
+                            PottyDataSet[i].ratings[j].downVotes += 1
+                        }
+                        else {
+                            PottyDataSet[i].ratings[j].downVotes -= 1
+                        }
+                    }
+                }
+            }
+        }
+        // reset singleton object
+        self._AppPotties = PottyDataSet
+    }
+    
+    func setUserCastVote(_ id: String, userCastVote: Bool?) {
+        for i in 0..<PottyDataSet.count {
+            for j in 0..<PottyDataSet[i].ratings.count {
+                if id == PottyDataSet[i].ratings[j].id {
+                    PottyDataSet[i].ratings[j].userCastVote = userCastVote
+                }
+            }
+        }
+        // reset singleton object
+        self._AppPotties = PottyDataSet
+    }
+    
     // mock data sets
     private var PottyDataSet: [Potty] = [
         Potty(id: "0",

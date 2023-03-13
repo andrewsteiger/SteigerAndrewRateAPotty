@@ -49,14 +49,14 @@ class ApiClient {
                             // request to increment upVote
                             if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == false {
                                 // first remove previous downVote
-                                //AppData.sharedData.AppPotties[i].ratings[j].downVotes -= 1
+                                AppData.sharedData.incrementVote(AppData.sharedData.AppPotties[i].ratings[j].id, upVote: false, increment: false)
                             }
                         }
                         else {
                             // request to increment downVote
                             if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == true {
                                 // first remove previous upVote
-                                //AppData.sharedData.AppPotties[i].ratings[j].upVotes -= 1
+                                AppData.sharedData.incrementVote(AppData.sharedData.AppPotties[i].ratings[j].id, upVote: true, increment: false)
                             }
                         }
                     }
@@ -66,19 +66,19 @@ class ApiClient {
                             // request to decrement upVote
                             if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == true {
                                 // remove previous upVote
-                                //AppData.sharedData.AppPotties[i].ratings[j].upVotes -= 1
+                                AppData.sharedData.incrementVote(AppData.sharedData.AppPotties[i].ratings[j].id, upVote: true, increment: false)
                             }
                         }
                         else {
                             // request to decrement downVote
                             if AppData.sharedData.AppPotties[i].ratings[j].userCastVote == false {
                                 // remove previous downVote
-                                //AppData.sharedData.AppPotties[i].ratings[j].downVotes -= 1
+                                AppData.sharedData.incrementVote(AppData.sharedData.AppPotties[i].ratings[j].id, upVote: false, increment: true)
                             }
                         }
                     }
                     // set the new cast status
-                    //AppData.sharedData.AppPotties[i].ratings[j].userCastVote = userCastVote
+                    AppData.sharedData.setUserCastVote(reviewId, userCastVote: userCastVote)
                     return
                 }
             }
