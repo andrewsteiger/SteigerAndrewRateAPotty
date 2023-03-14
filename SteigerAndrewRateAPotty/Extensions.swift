@@ -135,25 +135,6 @@ extension MapsViewController: CLLocationManagerDelegate {
 extension MapsViewController: GMSMapViewDelegate {
     //user tapped the map
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        //show view to create new marker
-//        let newPottyView = UIControl(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
-//        newPottyView.backgroundColor = UIColor.white
-//        newPottyView.layer.cornerRadius = 6
-//
-//        let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: newPottyView.frame.size.width - 16, height: 20))
-//        lblHeader.text = "Uncharted Potty"
-//        lblHeader.textColor = .blueFocus
-//        newPottyView.addSubview(lblHeader)
-//
-//        let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: newPottyView.frame.size.width - 16, height: 15))
-//        lblContent.text = "Click to create"
-//        lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
-//        newPottyView.addSubview(lblContent)
-
-        // set internal struct to new location
-//        newLocationLatitude = coordinate.latitude
-//        newLocationLongitude = coordinate.longitude
-        
         self.showNewMarker(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
     
@@ -184,19 +165,21 @@ extension MapsViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         //get the object related to the marker selected
         if let index = markers.firstIndex(of: marker) {
-            //user tapped a known location window
-            let currentPotty = AppData.sharedData.AppPotties[index]
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LocationViewController") as! LocationViewController
-            vc.currentPotty = currentPotty
-            if let navigationController = self.navigationController {
-                navigationController.pushViewController(vc, animated: true)
+            if AppData.sharedData.AppPotties.count - 1 < index {
+                //user tapped a new location window
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewLocationViewController") as! NewLocationViewController
+                if let navigationController = self.navigationController {
+                    navigationController.pushViewController(vc, animated: true)
+                }
             }
-        }
-        else {
-            //user tapped a new location window
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewLocationViewController") as! NewLocationViewController
-            if let navigationController = self.navigationController {
-                navigationController.pushViewController(vc, animated: true)
+            else {
+                //user tapped a known location window
+                let currentPotty = AppData.sharedData.AppPotties[index]
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "LocationViewController") as! LocationViewController
+                vc.currentPotty = currentPotty
+                if let navigationController = self.navigationController {
+                    navigationController.pushViewController(vc, animated: true)
+                }
             }
         }
     }

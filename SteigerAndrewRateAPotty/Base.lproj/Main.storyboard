@@ -754,6 +754,21 @@
             </objects>
             <point key="canvasLocation" x="-1250.2325581395348" y="-673.39055793991417"/>
         </scene>
+        <!--New Location View Controller-->
+        <scene sceneID="dgg-yU-qff">
+            <objects>
+                <viewController storyboardIdentifier="NewLocationViewController" id="TV0-1J-2f6" customClass="NewLocationViewController" customModule="SteigerAndrewRateAPotty" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JNS-pP-OMd">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="OOj-cp-gYT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRJ-wF-Ecc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1250" y="-10"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">
