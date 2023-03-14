@@ -44,8 +44,8 @@ extension UIColor {
     static let cgGray = starGray.cgColor;
 }
 
+//user for custom keyboard functionality
 extension UIViewController {
-    
     //call this in viewDidLoad to automatically dismiss the keyboard when tapping.  must set proper delegate in viewDidLoad to self
     func keyboardWillHideOnTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -56,8 +56,10 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    //use to move view when keyboard shows
+}
+
+//use to move view when keyboard shows
+extension UIViewController {
     func viewWillLayoutWithKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -75,6 +77,28 @@ extension UIViewController {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
+    }
+}
+
+//use to utilize a spinner view
+extension UIViewController {
+    // add the spinner view controller
+    func createSpinnerView(_ child: SpinnerViewController) {
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+        
+        // wait two seconds to simulate some work happening
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        }
+    }
+    
+    // remove the spinner view controller
+    func removeSpinnerView(_ child: SpinnerViewController) {
+        child.willMove(toParent: nil)
+        child.view.removeFromSuperview()
+        child.removeFromParent()
     }
 }
 
@@ -168,6 +192,8 @@ extension MapsViewController: GMSMapViewDelegate {
             if AppData.sharedData.AppPotties.count - 1 < index {
                 //user tapped a new location window
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewLocationViewController") as! NewLocationViewController
+                vc.currentLatitude = self.newLocationLatitude
+                vc.currentLongitude = self.newLocationLongitude
                 if let navigationController = self.navigationController {
                     navigationController.pushViewController(vc, animated: true)
                 }

@@ -64,6 +64,8 @@ class MapsViewController: UIViewController {
     }
     
     func showNewMarker(latitude: Double, longitude: Double) {
+        newLocationLatitude = latitude
+        newLocationLongitude = longitude
         if removeNewLocationMarker() == false {
             // create new marker
             let newMarker = GMSMarker()

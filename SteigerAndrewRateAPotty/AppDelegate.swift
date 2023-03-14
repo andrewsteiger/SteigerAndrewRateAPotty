@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 extension AppData {
     static var sharedData: AppData!
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.setMetalRendererEnabled(true)
         GMSServices.provideAPIKey("AIzaSyDgytLOll3J3YbBSCkO9MJGqnrf58z9470")
+        GMSPlacesClient.provideAPIKey("AIzaSyDgytLOll3J3YbBSCkO9MJGqnrf58z9470")
         
         // create singletons
         AppData.sharedData = AppData()
