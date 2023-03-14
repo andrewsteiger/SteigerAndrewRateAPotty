@@ -14,10 +14,22 @@ class NewLocationViewController: UIViewController {
     @IBOutlet weak var scrollViewMain: UIScrollView!
     @IBOutlet var lblHeader: UILabel!
     
+    // main create location view
+    @IBOutlet weak var contentViewCreateLocation: UIView!
+    @IBOutlet weak var lblLocationAddress: UILabel!
+    @IBOutlet weak var tfLocation: UITextField!
+    @IBOutlet weak var btnCurrentLocation: UIButton!
+    
+    var currentLocation: GMSPlace?
+    var selectedFromDestination: GMSPlace?
+    var selectedToDestination: GMSPlace?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
+    @IBAction func getCurrentLocation(_ sender: Any) {
+        
+    }
 }

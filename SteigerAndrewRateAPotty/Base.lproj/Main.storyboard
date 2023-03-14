@@ -780,11 +780,59 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBi-7n-IES">
+                                                <rect key="frame" x="0.0" y="41.666666666666686" width="430" height="870.33333333333326"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azk-ze-fDh">
+                                                        <rect key="frame" x="30" y="25.000000000000007" width="112" height="17"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="Location Address">
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="menu" size="14"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A89-o7-f5c">
+                                                        <rect key="frame" x="30" y="52" width="275" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Omb-d7-wWu"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhw-84-BUk">
+                                                        <rect key="frame" x="325" y="51.666666666666657" width="75" height="35"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <connections>
+                                                            <action selector="getCurrentLocation:" destination="TV0-1J-2f6" eventType="touchUpInside" id="jh8-bI-3rl"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="A89-o7-f5c" firstAttribute="top" secondItem="Azk-ze-fDh" secondAttribute="bottom" constant="10" id="Dui-Kz-cPJ"/>
+                                                    <constraint firstItem="vhw-84-BUk" firstAttribute="leading" secondItem="A89-o7-f5c" secondAttribute="trailing" constant="20" id="VnE-Z9-d43"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Azk-ze-fDh" secondAttribute="trailing" constant="30" id="ZJq-sq-WGv"/>
+                                                    <constraint firstItem="Azk-ze-fDh" firstAttribute="leading" secondItem="MBi-7n-IES" secondAttribute="leading" constant="30" id="eEs-fe-5zy"/>
+                                                    <constraint firstItem="Azk-ze-fDh" firstAttribute="top" secondItem="MBi-7n-IES" secondAttribute="top" constant="25" id="o1b-fb-FSf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vhw-84-BUk" secondAttribute="trailing" constant="30" id="pyF-vi-qMv"/>
+                                                    <constraint firstItem="vhw-84-BUk" firstAttribute="centerY" secondItem="A89-o7-f5c" secondAttribute="centerY" id="t9g-Oc-5gt"/>
+                                                    <constraint firstItem="A89-o7-f5c" firstAttribute="leading" secondItem="Azk-ze-fDh" secondAttribute="leading" id="yvo-Yq-dgL"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="kTf-kC-ip3" firstAttribute="top" secondItem="VeY-T2-9t8" secondAttribute="top" id="P1P-Dk-ZqU"/>
                                             <constraint firstItem="kTf-kC-ip3" firstAttribute="centerX" secondItem="VeY-T2-9t8" secondAttribute="centerX" id="QL2-4O-6AC"/>
+                                            <constraint firstItem="MBi-7n-IES" firstAttribute="top" secondItem="kTf-kC-ip3" secondAttribute="bottom" constant="20" id="VL7-bu-vOY"/>
+                                            <constraint firstAttribute="bottom" secondItem="MBi-7n-IES" secondAttribute="bottom" constant="20" id="XDd-QQ-g91"/>
+                                            <constraint firstAttribute="trailing" secondItem="MBi-7n-IES" secondAttribute="trailing" id="ass-6n-JrP"/>
+                                            <constraint firstItem="MBi-7n-IES" firstAttribute="leading" secondItem="VeY-T2-9t8" secondAttribute="leading" id="zkT-cu-OUG"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -811,9 +859,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnCurrentLocation" destination="vhw-84-BUk" id="bFE-94-8pI"/>
+                        <outlet property="contentViewCreateLocation" destination="MBi-7n-IES" id="hDZ-l2-oVa"/>
                         <outlet property="contentViewMain" destination="JNS-pP-OMd" id="To6-pG-fjk"/>
                         <outlet property="lblHeader" destination="kTf-kC-ip3" id="eOv-0Q-V4O"/>
+                        <outlet property="lblLocationAddress" destination="Azk-ze-fDh" id="kHk-bO-LbX"/>
                         <outlet property="scrollViewMain" destination="tEX-1O-HSE" id="v0a-qa-nfH"/>
+                        <outlet property="tfLocation" destination="A89-o7-f5c" id="Hun-TE-D6I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRJ-wF-Ecc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
