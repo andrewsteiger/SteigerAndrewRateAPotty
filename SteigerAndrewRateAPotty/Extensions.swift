@@ -101,17 +101,6 @@ extension MapsViewController: CLLocationManagerDelegate {
     
     //update location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        locations.forEach { (location) in
-//            print("LocationManager didUpdateLocations: \(dateFormatter.string(from: location.timestamp)); \(location.coordinate.latitude), \(location.coordinate.longitude)")
-//            print("LocationManager altitude: \(location.altitude)")
-//            print("LocationManager horizontalAccuracy: \(location.horizontalAccuracy)")
-//            print("LocationManager verticalAccuracy: \(location.verticalAccuracy)")
-//            print("LocationManager speedAccuracy: \(location.speedAccuracy)")
-//            print("LocationManager speed: \(location.speed)")
-//            print("LocationManager timestamp: \(location.timestamp)")
-//            print("LocationManager courseAccuracy: \(location.courseAccuracy)") // 13.4
-//            print("LocationManager course: \(location.course)")
-//        }
         guard let location = locations.last else {
             return
         }
@@ -122,7 +111,7 @@ extension MapsViewController: CLLocationManagerDelegate {
         userLastLocation = location
         
         if isTrackingLocation {
-            //show location in (almsot) real time
+            //show location in (almost) real time
             camera = GMSCameraPosition(
                 target: location.coordinate,
                 zoom: 17,
@@ -146,29 +135,26 @@ extension MapsViewController: CLLocationManagerDelegate {
 extension MapsViewController: GMSMapViewDelegate {
     //user tapped the map
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("Tapped at coordinate: " + String(coordinate.latitude) + " " + String(coordinate.longitude))
-        //get the object related to the marker selected
-//        if let index = markers.firstIndex(of: marker) {
-//            let selectedPotty = AppData.sharedData.AppPotties[index]
+        //show view to create new marker
+//        let newPottyView = UIControl(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
+//        newPottyView.backgroundColor = UIColor.white
+//        newPottyView.layer.cornerRadius = 6
 //
-//            let infoWindowView = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
-//            infoWindowView.backgroundColor = UIColor.white
-//            infoWindowView.layer.cornerRadius = 6
+//        let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: newPottyView.frame.size.width - 16, height: 20))
+//        lblHeader.text = "Uncharted Potty"
+//        lblHeader.textColor = .blueFocus
+//        newPottyView.addSubview(lblHeader)
 //
-//            let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: infoWindowView.frame.size.width - 16, height: 15))
-//            lblHeader.text = selectedPotty.title
-//            infoWindowView.addSubview(lblHeader)
-//
-//            let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
-//            lblContent.text = selectedPotty.snippet
-//            lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
-//            infoWindowView.addSubview(lblContent)
-//
-//            //set the current view to the marker selected, centered on the marker, reset to readable zoom
-//            cameraZoom = 9
-//            self.mapViewMain.animate(to: GMSCameraPosition(latitude: camera.target.latitude, longitude: camera.target.longitude, zoom: cameraZoom))
-//            return infoWindowView
-//        }
+//        let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: newPottyView.frame.size.width - 16, height: 15))
+//        lblContent.text = "Click to create"
+//        lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
+//        newPottyView.addSubview(lblContent)
+
+        // set internal struct to new location
+//        newLocationLatitude = coordinate.latitude
+//        newLocationLongitude = coordinate.longitude
+        
+        self.showNewMarker(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
     
     //user tapped location button
@@ -198,9 +184,17 @@ extension MapsViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         //get the object related to the marker selected
         if let index = markers.firstIndex(of: marker) {
+            //user tapped a known location window
             let currentPotty = AppData.sharedData.AppPotties[index]
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LocationViewController") as! LocationViewController
             vc.currentPotty = currentPotty
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(vc, animated: true)
+            }
+        }
+        else {
+            //user tapped a new location window
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewLocationViewController") as! NewLocationViewController
             if let navigationController = self.navigationController {
                 navigationController.pushViewController(vc, animated: true)
             }
@@ -211,25 +205,56 @@ extension MapsViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         //get the object related to the marker selected
         if let index = markers.firstIndex(of: marker) {
-            let selectedPotty = AppData.sharedData.AppPotties[index]
-            
-            let infoWindowView = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
-            infoWindowView.backgroundColor = UIColor.white
-            infoWindowView.layer.cornerRadius = 6
-            
-            let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: infoWindowView.frame.size.width - 16, height: 15))
-            lblHeader.text = selectedPotty.title
-            infoWindowView.addSubview(lblHeader)
-            
-            let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
-            lblContent.text = selectedPotty.snippet
-            lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
-            infoWindowView.addSubview(lblContent)
-            
-            //set the current view to the marker selected, centered on the marker, reset to readable zoom
-            cameraZoom = 9
-            self.mapViewMain.animate(to: GMSCameraPosition(latitude: camera.target.latitude, longitude: camera.target.longitude, zoom: cameraZoom))
-            return infoWindowView
+            if AppData.sharedData.AppPotties.count - 1 < index {
+                //user clicked on a new location
+                let infoWindowView = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
+                infoWindowView.backgroundColor = UIColor.white
+                infoWindowView.layer.cornerRadius = 6
+                
+                let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: infoWindowView.frame.size.width - 16, height: 20))
+                lblHeader.text = "Uncharted Potty"
+                lblHeader.textColor = .blueFocus
+                infoWindowView.addSubview(lblHeader)
+                
+                let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
+                lblContent.text = "Click to create"
+                lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
+                infoWindowView.addSubview(lblContent)
+                
+                //set this so first click away doesnt create a new location
+                newLocationControl = UIControl()
+                
+                //set the current view to the marker selected, centered on the marker, reset to readable zoom
+                cameraZoom = 9
+                self.mapViewMain.animate(to: GMSCameraPosition(latitude: marker.position.latitude, longitude: marker.position.longitude, zoom: cameraZoom))
+                return infoWindowView
+            }
+            else {
+                //user clicked on an existing location
+                let selectedPotty = AppData.sharedData.AppPotties[index]
+                
+                let infoWindowView = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
+                infoWindowView.backgroundColor = UIColor.white
+                infoWindowView.layer.cornerRadius = 6
+                
+                let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: infoWindowView.frame.size.width - 16, height: 20))
+                lblHeader.text = selectedPotty.title
+                lblHeader.textColor = .blueFocus
+                infoWindowView.addSubview(lblHeader)
+                
+                let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
+                lblContent.text = selectedPotty.snippet
+                lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
+                infoWindowView.addSubview(lblContent)
+                
+                //set this so first click away doesnt create a new location
+                newLocationControl = UIControl()
+                
+                //set the current view to the marker selected, centered on the marker, reset to readable zoom
+                cameraZoom = 9
+                self.mapViewMain.animate(to: GMSCameraPosition(latitude: camera.target.latitude, longitude: camera.target.longitude, zoom: cameraZoom))
+                return infoWindowView
+            }
         }
         return nil
     }

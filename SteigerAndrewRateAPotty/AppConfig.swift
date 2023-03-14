@@ -120,6 +120,7 @@ struct AppAssets {
         static let PortaPotty = UIImage(named:"PortaPotty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let ZoomIn = UIImage(named:"ZoomIn")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
         static let ZoomOut = UIImage(named:"ZoomOut")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let NewMarker = UIImage(named:"NewMarker")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
     }
     
     //UIImageViews
@@ -153,6 +154,14 @@ struct AppAssets {
             get {
                 let ivFrame = CGRect(x: 0, y: 0, width: 40, height: 40)
                 let ivReturn = UIImageView(image: Icons.ZoomOut)
+                ivReturn.frame = ivFrame
+                return ivReturn
+            }
+        }
+        static var NewMarker35: UIImageView {
+            get {
+                let ivFrame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                let ivReturn = UIImageView(image: Icons.NewMarker)
                 ivReturn.frame = ivFrame
                 return ivReturn
             }

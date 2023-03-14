@@ -22,14 +22,18 @@ class MapsViewController: UIViewController {
     var currentPotty: Potty?
     var isTrackingLocation: Bool = false
     
+    var newLocationControl: UIControl?
+    var newLocationLatitude: Double?
+    var newLocationLongitude: Double?
+    var newLocationMarker: GMSMarker?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //attach delegates
+        //attach delegates and delegate processes
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
         mapViewMain.delegate = self
         
         //configure camera and map settings
@@ -59,8 +63,36 @@ class MapsViewController: UIViewController {
         }
     }
     
+    func showNewMarker(latitude: Double, longitude: Double) {
+        if newLocationMarker != nil {
+            // undo previous selection
+            if let lastMarker = markers.last {
+                if lastMarker == newLocationMarker {
+                    lastMarker.map = nil
+                    newLocationMarker = nil
+                    //setupMarkers()
+                }
+            }
+        }
+        else {
+            // create new marker
+            let newMarker = GMSMarker()
+            newMarker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            newMarker.map = mapViewMain
+            newMarker.iconView = AppAssets.ImageViews.NewMarker35
+            newMarker.tracksViewChanges = true
+            newLocationMarker = newMarker
+            markers.append(newLocationMarker!)
+            mapViewMain.selectedMarker = newLocationMarker
+        }
+    }
+    
+    @objc func createNewLocation(sender: UIControl) {
+            cameraZoom = cameraZoom - 1
+            mapViewMain.animate(toZoom: cameraZoom)
+    }
+    
     private func setupMarkers() {
-        
         //create markers, add to local array markers
         for i in 0...AppData.sharedData.AppPotties.count - 1 {
             let currentPotty = AppData.sharedData.AppPotties[i]
