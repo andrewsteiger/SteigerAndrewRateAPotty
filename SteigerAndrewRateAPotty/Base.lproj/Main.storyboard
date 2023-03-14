@@ -761,9 +761,60 @@
                     <view key="view" contentMode="scaleToFill" id="JNS-pP-OMd">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEX-1O-HSE">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeY-T2-9t8" userLabel="Scroll View Content">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTf-kC-ip3">
+                                                <rect key="frame" x="131.33333333333337" y="0.0" width="167.66666666666663" height="21.666666666666668"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Create New Location">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="kTf-kC-ip3" firstAttribute="top" secondItem="VeY-T2-9t8" secondAttribute="top" id="P1P-Dk-ZqU"/>
+                                            <constraint firstItem="kTf-kC-ip3" firstAttribute="centerX" secondItem="VeY-T2-9t8" secondAttribute="centerX" id="QL2-4O-6AC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="VeY-T2-9t8" firstAttribute="height" secondItem="tEX-1O-HSE" secondAttribute="height" priority="900" id="5lT-RK-Rju"/>
+                                    <constraint firstItem="mdy-j1-xll" firstAttribute="bottom" secondItem="VeY-T2-9t8" secondAttribute="bottom" id="PLj-uF-5Ld"/>
+                                    <constraint firstItem="mdy-j1-xll" firstAttribute="trailing" secondItem="VeY-T2-9t8" secondAttribute="trailing" id="cbV-hA-VHM"/>
+                                    <constraint firstItem="VeY-T2-9t8" firstAttribute="leading" secondItem="mdy-j1-xll" secondAttribute="leading" id="keN-X6-uLX"/>
+                                    <constraint firstItem="VeY-T2-9t8" firstAttribute="top" secondItem="mdy-j1-xll" secondAttribute="top" id="tKK-cm-Vol"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="mdy-j1-xll"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="cuc-7g-a9A"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="OOj-cp-gYT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tEX-1O-HSE" secondAttribute="bottom" id="08e-Tr-23r"/>
+                            <constraint firstAttribute="width" secondItem="VeY-T2-9t8" secondAttribute="width" id="1nh-Z1-xqm"/>
+                            <constraint firstItem="tEX-1O-HSE" firstAttribute="leading" secondItem="JNS-pP-OMd" secondAttribute="leading" id="9zt-bN-Ie3"/>
+                            <constraint firstItem="tEX-1O-HSE" firstAttribute="top" secondItem="JNS-pP-OMd" secondAttribute="top" id="E91-4D-v2e"/>
+                            <constraint firstItem="tEX-1O-HSE" firstAttribute="trailing" secondItem="JNS-pP-OMd" secondAttribute="trailing" id="GTY-Ac-SUh"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contentViewMain" destination="JNS-pP-OMd" id="To6-pG-fjk"/>
+                        <outlet property="lblHeader" destination="kTf-kC-ip3" id="eOv-0Q-V4O"/>
+                        <outlet property="scrollViewMain" destination="tEX-1O-HSE" id="v0a-qa-nfH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRJ-wF-Ecc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

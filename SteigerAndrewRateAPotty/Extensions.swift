@@ -204,15 +204,15 @@ extension MapsViewController: GMSMapViewDelegate {
                 lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
                 infoWindowView.addSubview(lblContent)
                 
-                //set this so first click away doesnt create a new location
-                newLocationControl = UIControl()
-                
                 //set the current view to the marker selected, centered on the marker, reset to readable zoom
                 cameraZoom = 9
                 self.mapViewMain.animate(to: GMSCameraPosition(latitude: marker.position.latitude, longitude: marker.position.longitude, zoom: cameraZoom))
                 return infoWindowView
             }
             else {
+                //remove any new location marker created
+                let _ = removeNewLocationMarker()
+                
                 //user clicked on an existing location
                 let selectedPotty = AppData.sharedData.AppPotties[index]
                 
@@ -230,9 +230,6 @@ extension MapsViewController: GMSMapViewDelegate {
                 lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
                 infoWindowView.addSubview(lblContent)
                 
-                //set this so first click away doesnt create a new location
-                newLocationControl = UIControl()
-                
                 //set the current view to the marker selected, centered on the marker, reset to readable zoom
                 cameraZoom = 9
                 self.mapViewMain.animate(to: GMSCameraPosition(latitude: camera.target.latitude, longitude: camera.target.longitude, zoom: cameraZoom))
@@ -240,5 +237,19 @@ extension MapsViewController: GMSMapViewDelegate {
             }
         }
         return nil
+    }
+    
+    func removeNewLocationMarker()  -> Bool {
+        if newLocationMarker != nil {
+            // undo previous selection
+            if let lastMarker = markers.last {
+                if lastMarker == newLocationMarker {
+                    lastMarker.map = nil
+                    newLocationMarker = nil
+                    return true
+                }
+            }
+        }
+        return false
     }
 }

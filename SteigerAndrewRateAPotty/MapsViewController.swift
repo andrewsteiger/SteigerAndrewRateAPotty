@@ -64,17 +64,7 @@ class MapsViewController: UIViewController {
     }
     
     func showNewMarker(latitude: Double, longitude: Double) {
-        if newLocationMarker != nil {
-            // undo previous selection
-            if let lastMarker = markers.last {
-                if lastMarker == newLocationMarker {
-                    lastMarker.map = nil
-                    newLocationMarker = nil
-                    //setupMarkers()
-                }
-            }
-        }
-        else {
+        if removeNewLocationMarker() == false {
             // create new marker
             let newMarker = GMSMarker()
             newMarker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
