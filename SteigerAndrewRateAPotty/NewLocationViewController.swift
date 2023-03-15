@@ -21,13 +21,25 @@ class NewLocationViewController: UIViewController {
     @IBOutlet weak var tfLocation: UITextField!
     @IBOutlet weak var btnCurrentLocation: UIButton!
     
+    //checkboxes
+    @IBOutlet weak var cbPetRestArea: CheckBox!
+    @IBOutlet weak var cbWheelchairAccessible: CheckBox!
+    @IBOutlet weak var cbVending: CheckBox!
+    @IBOutlet weak var cbBabyChangingTables: CheckBox!
+    @IBOutlet weak var cbGenderNeutral: CheckBox!
+    @IBOutlet weak var cbRestaurants: CheckBox!
+    @IBOutlet weak var cbGas: CheckBox!
+    
+    @IBOutlet weak var btnSubmit: UIButton!
+    
     var currentLocation: GMSPlace?
-    var selectedFromDestination: GMSPlace?
-    var selectedToDestination: GMSPlace?
     var placesClient = GMSPlacesClient()
-    let geocoder: CLGeocoder = CLGeocoder()
+    let geocoder = CLGeocoder()
+    let apiClient = ApiClient()
+    
     var currentLatitude: Double?
     var currentLongitude: Double?
+    var currentSnippet: String?
     var spinnerViewChild = SpinnerViewController()
     
     override func viewDidLoad() {
@@ -50,6 +62,40 @@ class NewLocationViewController: UIViewController {
         })
         
     }
+    
+    // MARK: - submitLocation()
+    /// Calls API to create a new location
+    ///
+    /// - Parameters:
+    ///   - sender: The location button
+    @IBAction func submitLocation(_ sender: Any) {
+        //validate
+        if currentLatitude == nil || currentLongitude == nil { return }
+        if tfLocation.text == "" || tfLocation.text == nil {
+            let confirmAlertController = UIAlertController(title: "Please Specify Location Name",
+                                                           message: nil,
+                                                           preferredStyle: .alert)
+            confirmAlertController.addAction(AlertActions.okAction)
+            self.present(confirmAlertController,
+                         animated: true,
+                         completion: nil)
+            return
+        }
+        
+        apiClient.postNewPotty(latitude: currentLatitude!, longitude: currentLongitude!, title: tfLocation.text!, snippet: currentSnippet ?? "")
+        
+        let confirmAlertController = UIAlertController(title: "Potty Created",
+                                                       message: nil,
+                                                       preferredStyle: .alert)
+        confirmAlertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        self.present(confirmAlertController,
+                     animated: true,
+                     completion: {self.navigationController?.popToRootViewController(animated: true)})
+        
+    }
+    
     
     // MARK: - processLocation()
     /// The callback method from getCurrentLocation().  Terminates the SpinnerViewController.  Processes the location received
@@ -109,5 +155,9 @@ class NewLocationViewController: UIViewController {
         btnCurrentLocation.layer.borderColor = UIColor.cgGray
         btnCurrentLocation.layer.borderWidth = 1
         btnCurrentLocation.layer.cornerRadius = 8
+        
+        contentViewCreateLocation.layoutIfNeeded()
+        //TODO: border seems to not want to cooperate with height, maybe take this out of a scroll view
+        contentViewCreateLocation.layer.addSublayer(DrawBorderLayer(contentViewCreateLocation, inset: 14))
     }
 }

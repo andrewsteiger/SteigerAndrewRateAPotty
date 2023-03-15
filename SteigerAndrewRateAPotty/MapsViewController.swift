@@ -46,8 +46,11 @@ class MapsViewController: UIViewController {
         mapViewMain.settings.rotateGestures = false
         
         //setup work
-        setupMarkers()
         setupControls()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupMarkers()
     }
     
     // MARK: - btnZoomAction()
@@ -95,6 +98,13 @@ class MapsViewController: UIViewController {
     
     // MARK: - setupMarkers()
     private func setupMarkers() {
+        //clean u
+        for marker in markers {
+            marker.map = nil
+        }
+        
+        markers.removeAll()
+        
         //create markers, add to local array markers
         for i in 0...AppData.sharedData.AppPotties.count - 1 {
             let currentPotty = AppData.sharedData.AppPotties[i]

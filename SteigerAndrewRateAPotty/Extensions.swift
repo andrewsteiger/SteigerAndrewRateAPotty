@@ -262,7 +262,7 @@ extension MapsViewController: GMSMapViewDelegate {
                 infoWindowView.addSubview(lblHeader)
                 
                 let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
-                lblContent.text = selectedPotty.snippet
+                lblContent.text = selectedPotty.snippet //TODO: this should probably show the ratingalert
                 lblContent.font = UIFont.systemFont(ofSize: 14, weight: .light)
                 infoWindowView.addSubview(lblContent)
                 

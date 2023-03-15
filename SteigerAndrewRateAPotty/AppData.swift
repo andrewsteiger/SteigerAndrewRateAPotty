@@ -24,6 +24,20 @@ class AppData {
     }
     
     // MARK: - Data Mutations
+    func addPotty(_ newPotty: Potty) {
+        var pottyIndex: Int = 0
+        for i in 0..<PottyDataSet.count {
+            if PottyDataSet[i].id == String(pottyIndex) {
+                pottyIndex += 1
+            }
+        }
+        var indexedPotty = newPotty
+        indexedPotty.id = String(pottyIndex)
+        PottyDataSet.append(indexedPotty)
+        // reset singleton object
+        self._AppPotties = PottyDataSet
+    }
+    
     func addReview(_ pottyId: String, newReview: PottyReview) {
         var pottyIndex: Int?
         var ratingIndex: Int = 0
@@ -36,7 +50,6 @@ class AppData {
             for j in 0..<PottyDataSet[i].ratings.count {
                 if ratingIndex == Int(PottyDataSet[i].ratings[j].id)! {
                     ratingIndex = Int(PottyDataSet[i].ratings[j].id)! + 1
-                    print("new index: ", ratingIndex)
                 }
             }
         }

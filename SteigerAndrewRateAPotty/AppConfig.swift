@@ -23,6 +23,34 @@ class AppConfig {
     
 }
 
+// MARK: - UIButton CheckBox
+class CheckBox: UIButton {
+    var isChecked: Bool = false {
+        didSet {
+            //this can be set to some color to make it visible in IB
+            self.backgroundColor = UIColor.clear
+            if isChecked == true {
+                self.setImage(AppAssets.Icons.CheckBoxChecked, for: .normal)
+            } else {
+                self.setImage(AppAssets.Icons.CheckBoxUnchecked, for: .normal)
+            }
+            self.contentVerticalAlignment = .fill
+            self.contentHorizontalAlignment = .fill
+        }
+    }
+        
+    override func awakeFromNib() {
+        self.addTarget(self, action:#selector(buttonClicked(sender:)), for: .touchUpInside)
+        self.isChecked = false
+    }
+        
+    @objc func buttonClicked(sender: UIButton) {
+        if sender == self {
+            isChecked = !isChecked
+        }
+    }
+}
+
 // MARK: - struct Potty
 struct Potty {
     var id: String
@@ -44,7 +72,7 @@ struct Potty {
     func getAverageRating(_ ratingType: String) -> Double {
         var totalValue: Double = 0.0
         var totalCount: Int = 0
-        for i in 0...ratings.count - 1 {
+        for i in 0..<ratings.count {
             switch (ratingType) {
             case AppConfig.RatingTypes.accessibility:
                 totalValue += Double(ratings[i].ratingAccessibility)
@@ -66,7 +94,7 @@ struct Potty {
     func getTopRated() -> PottyReview? {
         var highestRatedReviewId: String = ""
         var highestRatedLikes: Int = 0
-        for i in 0...ratings.count - 1 {
+        for i in 0..<ratings.count {
             if highestRatedLikes <= ratings[i].upVotes {
                 highestRatedReviewId = ratings[i].id
                 highestRatedLikes = ratings[i].upVotes
@@ -76,7 +104,7 @@ struct Potty {
     }
     
     func getReview(_ id: String) -> PottyReview? {
-        for i in 0...ratings.count - 1 {
+        for i in 0..<ratings.count {
             if ratings[i].id == id {
                 return ratings[i]
             }
@@ -126,6 +154,8 @@ struct AppAssets {
         static let ZoomIn = UIImage(named:"ZoomIn")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
         static let ZoomOut = UIImage(named:"ZoomOut")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
         static let NewMarker = UIImage(named:"NewMarker")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let CheckBoxChecked = UIImage(named:"Checkbox")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let CheckBoxUnchecked = UIImage(named:"Checkbox")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.lightGray)
     }
     
     // MARK: - AppAssets.ImageViews
@@ -166,7 +196,7 @@ struct AppAssets {
         }
         static var NewMarker35: UIImageView {
             get {
-                let ivFrame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                let ivFrame = CGRect(x: 0, y: 0, width: 35, height: 35)
                 let ivReturn = UIImageView(image: Icons.NewMarker)
                 ivReturn.frame = ivFrame
                 return ivReturn

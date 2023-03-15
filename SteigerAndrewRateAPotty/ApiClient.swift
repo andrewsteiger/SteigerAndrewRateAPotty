@@ -33,12 +33,12 @@ class ApiClient {
     }
     
     // MARK: - postNewReview()
-    /// Calls POST to API to create new `Potty`
+    /// Calls POST to API to create new `PottyReview`
     ///
     /// - Parameters:
-    ///   - somePottyStuff: Various `Potty` details
+    ///   - somePottyStuff: Various `PottyReview` details
     func postNewReview(_ pottyId: String, author: String, ratingAccessibility: Int, ratingCleanlines: Int, ratingAtmosphere: Int, comment: String) {
-        let newPotty = PottyReview(
+        let newPottyReview = PottyReview(
             id: "",
             author: author,
             ratingAccessibility: Double(ratingAccessibility),
@@ -47,7 +47,24 @@ class ApiClient {
             comment: comment,
             upVotes: 0,
             downVotes: 0)
-        AppData.sharedData.addReview(pottyId, newReview: newPotty)
+        AppData.sharedData.addReview(pottyId, newReview: newPottyReview)
+    }
+    
+    // MARK: - postNewPotty()
+    /// Calls POST to API to create new `Potty`
+    ///
+    /// - Parameters:
+    ///   - somePottyStuff: Various `Potty` details
+    func postNewPotty(latitude: Double, longitude: Double, title: String, snippet: String) {
+        let newPotty = Potty(
+            id: "",
+            ratings: [],
+            latitude: latitude,
+            longitude: longitude,
+            title: title,
+            snippet: snippet,
+            iconView: AppAssets.ImageViews.RestAreaView35)
+        AppData.sharedData.addPotty(newPotty)
     }
     
     // MARK: - postVote()

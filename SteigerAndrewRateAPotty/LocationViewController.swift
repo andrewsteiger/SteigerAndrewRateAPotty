@@ -19,7 +19,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var viewRatingAccessibiliy: RatingStars!
     @IBOutlet weak var viewRatingCleanliness: RatingStars!
     @IBOutlet weak var viewRatingAtmosphere: RatingStars!
-    @IBOutlet weak var btnContactOwner: UIButton!
+    @IBOutlet weak var btnShowLocationDetails: UIButton!
     
     //top review view
     @IBOutlet weak var contentViewReviewMain: UIView!
@@ -170,6 +170,22 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    
+    // MARK: - showLocationDetails()
+    /// Sends user to TableVCReviews to see all reviews
+    ///
+    /// - Parameters:
+    ///   - sender: The star button that was selected\
+    @IBAction func showLocationDetails(_ sender: Any) {
+        if let activePotty = currentPotty {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
+            vc.currentPotty = activePotty
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
     // MARK: - showTopFullReview()
     /// Sends user to ReviewDetailViewController to see all review details
     ///
@@ -203,13 +219,6 @@ class LocationViewController: UIViewController, UITextViewDelegate {
             viewRatingAtmosphere.disable(true)
             viewRatings.layoutIfNeeded()
             viewRatings.layer.addSublayer(DrawBorderLayer(viewRatings, inset: 14))
-            
-            
-            var contactOwnerString: String = "Are you the owner?"
-            if activePotty.owner != nil {
-                contactOwnerString = "Contact the Owner"
-            }
-            btnContactOwner.setTitle(contactOwnerString, for: .normal)
         }
     }
     
@@ -225,6 +234,16 @@ class LocationViewController: UIViewController, UITextViewDelegate {
             viewRatingReviewSupport.setUpVotes(topRatedReview.upVotes)
             viewRatingReviewSupport.setDownVotes(topRatedReview.downVotes)
             viewRatingReviewSupport.setUserVote()
+            contentViewReviewMain.layoutIfNeeded()
+            contentViewReviewMain.layer.addSublayer(DrawBorderLayer(contentViewReviewMain, inset: 14))
+        }
+        else {
+            //no top review
+            lblReviewTitle.text = "No Reviews"
+            lblReviewComment.text = "Leave a review below!"
+            viewRatingStars.disable(true)
+            btnReadFullReview.setTitle("", for: .normal)
+            viewRatingReviewSupport.isHidden = true
             contentViewReviewMain.layoutIfNeeded()
             contentViewReviewMain.layer.addSublayer(DrawBorderLayer(contentViewReviewMain, inset: 14))
         }
