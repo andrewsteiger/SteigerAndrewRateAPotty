@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - AppConfig
 /// Used to configure app specific constants, states
 class AppConfig {
     struct RatingTypes {
@@ -22,6 +23,7 @@ class AppConfig {
     
 }
 
+// MARK: - struct Potty
 struct Potty {
     var id: String
     var ratings: [PottyReview]
@@ -54,7 +56,7 @@ struct Potty {
                 totalValue += Double(ratings[i].ratingAtmosphere)
                 totalCount += 1
             default:
-                // get average overall rating
+                //get average overall rating
                 totalValue += Double(ratings[i].ratingAccessibility + ratings[i].ratingCleanliness + ratings[i].ratingAtmosphere) / 3.0
             }
         }
@@ -83,6 +85,7 @@ struct Potty {
     }
 }
 
+// MARK: - struct PottyReview
 struct PottyReview {
     var id: String
     var author: String
@@ -108,7 +111,9 @@ struct PottyReview {
 }
 
 struct AppAssets {
-    //UIImages
+    
+    // MARK: - AppAssets.Icons
+    ///UIImages
     struct Icons {
         static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.starYellow)
@@ -123,7 +128,8 @@ struct AppAssets {
         static let NewMarker = UIImage(named:"NewMarker")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
     }
     
-    //UIImageViews
+    // MARK: - AppAssets.ImageViews
+    ///UIImageViews
     struct ImageViews {
         static var RestAreaView35: UIImageView {
             get {
@@ -169,6 +175,7 @@ struct AppAssets {
     }
 }
 
+// MARK: - DrawBorderLayer
 /// Create a rounded border for a given view.
 ///
 /// Example usage:
@@ -193,6 +200,7 @@ func DrawBorderLayer(_ originView: UIView, inset: CGFloat) -> CAShapeLayer {
     return grayRoundBorderLayer
 }
 
+// MARK: - struct AlertActions
 struct AlertActions {
     //define actions available
     static let cancelAction =

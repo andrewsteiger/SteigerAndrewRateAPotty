@@ -50,6 +50,11 @@ class MapsViewController: UIViewController {
         setupControls()
     }
     
+    // MARK: - btnZoomAction()
+    /// Either zoom in or out depending on type of button click
+    ///
+    /// - Parameters:
+    ///   - sender: The star button that was selected
     @objc func btnZoomAction(sender: UIButton!) {
         switch sender {
         case btnZoomIn:
@@ -63,6 +68,15 @@ class MapsViewController: UIViewController {
         }
     }
     
+    // MARK: - buttonAction()
+    /// Define the actions when stars inside of `RatingStars` are clicked.
+    ///
+    /// Checking one star will automatically check the others below it to retain a sequential selection.
+    ///
+    /// Unchecking one star will automatically uncheck the others above it to retain a sequential selection.
+    ///
+    /// - Parameters:
+    ///   - sender: The star button that was selected
     func showNewMarker(latitude: Double, longitude: Double) {
         newLocationLatitude = latitude
         newLocationLongitude = longitude
@@ -79,11 +93,7 @@ class MapsViewController: UIViewController {
         }
     }
     
-    @objc func createNewLocation(sender: UIControl) {
-            cameraZoom = cameraZoom - 1
-            mapViewMain.animate(toZoom: cameraZoom)
-    }
-    
+    // MARK: - setupMarkers()
     private func setupMarkers() {
         //create markers, add to local array markers
         for i in 0...AppData.sharedData.AppPotties.count - 1 {
@@ -102,6 +112,7 @@ class MapsViewController: UIViewController {
         self.view.addSubview(mapViewMain)
     }
     
+    // MARK: - setupControls()
     private func setupControls() {
         let buttonDimensions: CGFloat = 40
         let buttonWidthBaseline: CGFloat = 20

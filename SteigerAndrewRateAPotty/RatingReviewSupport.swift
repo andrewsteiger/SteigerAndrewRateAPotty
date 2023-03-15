@@ -33,7 +33,8 @@ class RatingReviewSupport: UIView {
         setupView()
     }
     
-    // note this would be a lot prettier if a real api was here to handle increment/decrement tied with user data but i didnt want to make an ungodly large mock data structure that kept track of every vote and user data
+    // MARK: - buttonAction()
+    /// note this would be a lot prettier if a real api was here to handle increment/decrement tied with user data but i didnt want to make an ungodly large mock data structure that kept track of every vote and user data
     @objc func buttonAction(sender: UIButton!) {
         if isDisabled || currentReview == nil { return }
         // handle voting
@@ -111,23 +112,25 @@ class RatingReviewSupport: UIView {
         }
     }
     
+    // MARK: - disable()
     func disable(_ shouldDisable: Bool) {
         isDisabled = shouldDisable
     }
     
-    //set up vote count.  call externally in parent
+    // MARK: - Modify Votes
+    ///set up vote count.  call externally in parent
     func setUpVotes(_ upVotes: Int) {
         upVoteCount = upVotes
         lblUpVotes.text = "(" + String(upVoteCount) + ")"
     }
     
-    //set down vote count.  call externally in parent
+    ///set down vote count.  call externally in parent
     func setDownVotes(_ downVotes: Int) {
         downVoteCount = downVotes
         lblDownVotes.text = "(" + String(downVoteCount) + ")"
     }
     
-    // set user previous vote.  call externally in parent
+    ///set user previous vote.  call externally in parent
     func setUserVote() {
         if currentReview == nil { return }
         if let previousCast = apiClient.getUserCastedVote(currentReview!.id) {
@@ -153,6 +156,7 @@ class RatingReviewSupport: UIView {
         }
     }
     
+    // MARK: - setupView()
     /// Setup the `RatingReviewSupport` view
     private func setupView() {
         let buttonDimensions: CGFloat = self.frame.height

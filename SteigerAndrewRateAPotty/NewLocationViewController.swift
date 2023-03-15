@@ -10,12 +10,12 @@ import GooglePlaces
 
 class NewLocationViewController: UIViewController {
     
-    // header view
+    //header view
     @IBOutlet var contentViewMain: UIView!
     @IBOutlet weak var scrollViewMain: UIScrollView!
     @IBOutlet var lblHeader: UILabel!
     
-    // main create location view
+    //main create location view
     @IBOutlet weak var contentViewCreateLocation: UIView!
     @IBOutlet weak var lblLocationAddress: UILabel!
     @IBOutlet weak var tfLocation: UITextField!
@@ -36,6 +36,11 @@ class NewLocationViewController: UIViewController {
         setupView()
     }
     
+    // MARK: - getCurrentLocation()
+    /// Invokes a SpinnerViewController while querying for location details
+    ///
+    /// - Parameters:
+    ///   - sender: The location button
     @IBAction func getCurrentLocation(_ sender: Any) {
         createSpinnerView(spinnerViewChild)
         if currentLatitude == nil || currentLongitude == nil { return }
@@ -46,6 +51,13 @@ class NewLocationViewController: UIViewController {
         
     }
     
+    // MARK: - processLocation()
+    /// The callback method from getCurrentLocation().  Terminates the SpinnerViewController.  Processes the location received
+    /// from the query and updates tfLocation with the results.
+    ///
+    /// - Parameters:
+    ///   - placemarks: Possible CLPlacemark returned from the query
+    ///   - error: Possible error from the query
     func processLocation(_ placemarks: [CLPlacemark]?, error: Error?) {
         //remove spinner view after query
         self.removeSpinnerView(self.spinnerViewChild)
@@ -86,6 +98,7 @@ class NewLocationViewController: UIViewController {
         }
     }
     
+    // MARK: - setupView()
     func setupView() {
         btnCurrentLocation.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         btnCurrentLocation.setImage(AppAssets.Icons.NewMarker, for: .normal)

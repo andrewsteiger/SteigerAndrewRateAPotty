@@ -9,7 +9,7 @@ import UIKit
 
 class LocationViewController: UIViewController, UITextViewDelegate {
 
-    // header view
+    //header view
     @IBOutlet var contentViewMain: UIView!
     @IBOutlet weak var scrollViewMain: UIScrollView!
     @IBOutlet var lblHeader: UILabel!
@@ -21,7 +21,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var viewRatingAtmosphere: RatingStars!
     @IBOutlet weak var btnContactOwner: UIButton!
     
-    // top review view
+    //top review view
     @IBOutlet weak var contentViewReviewMain: UIView!
     @IBOutlet weak var lblReviewTitle: UILabel!
     @IBOutlet weak var lblReviewComment: UILabel!
@@ -29,7 +29,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var viewRatingReviewSupport: RatingReviewSupport!
     @IBOutlet weak var btnReadFullReview: UIButton!
     
-    // create review view
+    //create review view
     @IBOutlet weak var lblLeaveAReview: UILabel!
     @IBOutlet weak var contentViewNewReview: UIView!
     @IBOutlet weak var viewNewRatingAccessibility: RatingStars!
@@ -41,7 +41,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
     var currentPotty: Potty?
     var currentPottyId: String?
     var apiClient = ApiClient()
-    let currentUser = "mockInTosh" // TODO replace with authenticated user
+    let currentUser = "mockInTosh" //TODO:  replace with authenticated user
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,13 +62,17 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         setupNewReview()
     }
     
-    // leave a review
+    // MARK: - btnSubmitClick()
+    /// Create a review
+    ///
+    /// - Parameters:
+    ///   - sender: The star button that was selected
     @IBAction func btnSubmitClick(_ sender: Any) {
         if currentPotty == nil { return }
         
-        // begin form validation.  note, a blank comment is allowed
+        //begin form validation.  note, a blank comment is allowed
         
-        // user can only leave one comment
+        //user can only leave one comment
         for i in 0...currentPotty!.ratings.count - 1 {
             if currentPotty!.ratings[i].author == currentUser {
                 let alertController =
@@ -88,7 +92,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         let cleanliness = viewNewRatingCleanliness.getRating()
         let atmosphere = viewNewRatingAtmosphere.getRating()
         
-        // alert the user if no ratings were given
+        //alert the user if no ratings were given
         if accessibility == 0 ||
             cleanliness == 0 ||
             atmosphere == 0 {
@@ -130,6 +134,11 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    // MARK: - createReview()
+    /// Calls the API via post method to create a review
+    ///
+    /// - Parameters:
+    ///   - 'some user data': Various review data used to post review
     private func createReview(_ author: String, accessibility: Int, cleanliness: Int, atmosphere: Int, comment: String) {
         apiClient.postNewReview(
             currentPotty!.id,
@@ -146,7 +155,11 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         self.view.layoutIfNeeded()
     }
     
-    // handles when user selects btnAllReviews
+    // MARK: - showAllReviews()
+    /// Sends user to TableVCReviews to see all reviews
+    ///
+    /// - Parameters:
+    ///   - sender: The star button that was selected\
     @IBAction func showAllReviews(_ sender: Any) {
         if let activePotty = currentPotty {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "TableVCReviews") as! TableVCReviews
@@ -157,6 +170,11 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    // MARK: - showTopFullReview()
+    /// Sends user to ReviewDetailViewController to see all review details
+    ///
+    /// - Parameters:
+    ///   - sender: The star button that was selected
     @IBAction func showTopFullReview(_ sender: Any) {
         if let topRatedReview = currentPotty?.getTopRated() {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReviewDetailViewController") as! ReviewDetailViewController
@@ -167,9 +185,10 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    // MARK: - setupHeader()
     private func setupHeader() {
         if let activePotty = currentPotty {
-            // refresh current potty
+            //refresh current potty
             currentPotty = apiClient.getPottyByID(activePotty.id)
                 
             lblHeader.text = currentPotty!.title
@@ -193,7 +212,8 @@ class LocationViewController: UIViewController, UITextViewDelegate {
             btnContactOwner.setTitle(contactOwnerString, for: .normal)
         }
     }
-
+    
+    // MARK: - setupTopReview()
     private func setupTopReview() {
         if let topRatedReview = currentPotty?.getTopRated() {
             lblReviewTitle.text = "Top Rated Review: " + "\(topRatedReview.author)"
@@ -210,6 +230,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    // MARK: - setupNewReview()
     private func setupNewReview() {
         contentViewNewReview.layoutIfNeeded()
         contentViewNewReview.layer.addSublayer(DrawBorderLayer(contentViewNewReview, inset: 14))

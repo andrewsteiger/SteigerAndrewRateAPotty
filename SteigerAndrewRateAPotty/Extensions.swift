@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import GoogleMaps
 
+// MARK: - Date
+
 /// An extension the native `Date` object
 extension Date {
     /// Create a date from specified parameters because swift can't do this by itself...
@@ -30,6 +32,8 @@ extension Date {
     }
 }
 
+// MARK: - UIColor
+
 /// An extension to the native `UIColor` object to add colors 
 extension UIColor {
     // dont forget to divide standard rgb by 255 smh
@@ -44,7 +48,9 @@ extension UIColor {
     static let cgGray = starGray.cgColor;
 }
 
-//user for custom keyboard functionality
+// MARK: - UIViewController
+
+///use for custom keyboard functionality
 extension UIViewController {
     //call this in viewDidLoad to automatically dismiss the keyboard when tapping.  must set proper delegate in viewDidLoad to self
     func keyboardWillHideOnTap() {
@@ -58,7 +64,7 @@ extension UIViewController {
     }
 }
 
-//use to move view when keyboard shows
+///use to move view when keyboard shows
 extension UIViewController {
     func viewWillLayoutWithKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -80,7 +86,7 @@ extension UIViewController {
     }
 }
 
-//use to utilize a spinner view
+///use to utilize a spinner view
 extension UIViewController {
     // add the spinner view controller
     func createSpinnerView(_ child: SpinnerViewController) {
@@ -102,8 +108,10 @@ extension UIViewController {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+
 extension MapsViewController: CLLocationManagerDelegate {
-    //set usage based on authorization settings
+    ///set usage based on authorization settings
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .denied: // Setting option: Never
@@ -123,7 +131,7 @@ extension MapsViewController: CLLocationManagerDelegate {
         }
     }
     
-    //update location
+    ///update location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {
             return
@@ -156,13 +164,15 @@ extension MapsViewController: CLLocationManagerDelegate {
     }
 }
 
+// MARK: - GMSMapViewDelegate
+
 extension MapsViewController: GMSMapViewDelegate {
-    //user tapped the map
+    ///user tapped the map
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         self.showNewMarker(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
     
-    //user tapped location button
+    ///user tapped location button
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool{
         if isTrackingLocation {
             isTrackingLocation = false
@@ -173,7 +183,7 @@ extension MapsViewController: GMSMapViewDelegate {
         return true
     }
     
-    //map became idle
+    ///map became idle
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         UIView.animate(withDuration: 5.0, animations: { () -> Void in
             mapView.tintColor = .blue
@@ -185,7 +195,7 @@ extension MapsViewController: GMSMapViewDelegate {
         })
     }
     
-    //user tapped info window
+    ///user tapped info window
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         //get the object related to the marker selected
         if let index = markers.firstIndex(of: marker) {
@@ -210,7 +220,7 @@ extension MapsViewController: GMSMapViewDelegate {
         }
     }
     
-    //shows a view when the user clicks a marker, on the marker
+    ///shows a view when the user clicks a marker, on the marker
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         //get the object related to the marker selected
         if let index = markers.firstIndex(of: marker) {
@@ -265,9 +275,11 @@ extension MapsViewController: GMSMapViewDelegate {
         return nil
     }
     
+    // MARK: - removeNewLocationMarker()
+    /// Removes a user selected potential new pin
     func removeNewLocationMarker()  -> Bool {
         if newLocationMarker != nil {
-            // undo previous selection
+            //undo previous selection
             if let lastMarker = markers.last {
                 if lastMarker == newLocationMarker {
                     lastMarker.map = nil

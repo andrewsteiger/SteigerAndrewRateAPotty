@@ -43,54 +43,7 @@ class RatingStars: UIView {
         return 0
     }
     
-    /// Setup the `RatingStars` view
-    func setupView() {
-        let buttonDimensions: CGFloat = self.frame.height
-        let buttonWidthBaseline: CGFloat = self.frame.width - buttonDimensions
-        let buttonWidthActual: CGFloat = 0.875 * buttonDimensions
-        let buttonHeightBaseline: CGFloat = 0
-        
-        // create the ratings stars
-        star1.frame = CGRect(x: buttonWidthBaseline - 4 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
-        star1.setImage(AppAssets.Icons.StarEmpty, for: .normal)
-        star1.contentVerticalAlignment = .fill
-        star1.contentHorizontalAlignment = .fill
-        star1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        star1.tintColor = UIColor.starGray
-        self.addSubview(star1)
-        star2.frame = CGRect(x: buttonWidthBaseline - 3 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
-        star2.setImage(AppAssets.Icons.StarEmpty, for: .normal)
-        star2.contentVerticalAlignment = .fill
-        star2.contentHorizontalAlignment = .fill
-        star2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        star2.tintColor = UIColor.starGray
-        self.addSubview(star2)
-        star3.frame = CGRect(x: buttonWidthBaseline - 2 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
-        star3.setImage(AppAssets.Icons.StarEmpty, for: .normal)
-        star3.contentVerticalAlignment = .fill
-        star3.contentHorizontalAlignment = .fill
-        star3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        star3.tintColor = UIColor.starGray
-        self.addSubview(star3)
-        star4.frame = CGRect(x: buttonWidthBaseline - buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
-        star4.setImage(AppAssets.Icons.StarEmpty, for: .normal)
-        star4.contentVerticalAlignment = .fill
-        star4.contentHorizontalAlignment = .fill
-        star4.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        star4.tintColor = UIColor.starGray
-        self.addSubview(star4)
-        star5.frame = CGRect(x: buttonWidthBaseline, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
-        star5.setImage(AppAssets.Icons.StarEmpty, for: .normal)
-        star5.contentVerticalAlignment = .fill
-        star5.contentHorizontalAlignment = .fill
-        star5.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        star5.tintColor = UIColor.starGray
-        self.addSubview(star5)
-        
-        // set this so that background blends with parent view background i.e. tableview selection color
-        self.backgroundColor = UIColor.opaqueBackground
-    }
-    
+    // MARK: - buttonAction()
     /// Define the actions when stars inside of `RatingStars` are clicked.
     ///
     /// Checking one star will automatically check the others below it to retain a sequential selection.
@@ -176,6 +129,7 @@ class RatingStars: UIView {
         }
     }
     
+    // MARK: - setRating()
     /// Used to display the visual rating as defined by the parent.
     ///
     /// - Parameters:
@@ -228,10 +182,12 @@ class RatingStars: UIView {
         }
     }
     
+    // MARK: - disable()
     func disable(_ shouldDisable: Bool) {
         isDisabled = shouldDisable
     }
     
+    // MARK: - checkStar()
     /// Checks stars, reflected by a yellow star or an empty star in the UI
     ///
     /// - Parameters:
@@ -246,5 +202,54 @@ class RatingStars: UIView {
             sender.setImage(AppAssets.Icons.StarEmpty, for: .normal)
             sender.tintColor = UIColor.starGray
         }
+    }
+    
+    // MARK: - setupView()
+    /// Setup the `RatingStars` view
+    func setupView() {
+        let buttonDimensions: CGFloat = self.frame.height
+        let buttonWidthBaseline: CGFloat = self.frame.width - buttonDimensions
+        let buttonWidthActual: CGFloat = 0.875 * buttonDimensions
+        let buttonHeightBaseline: CGFloat = 0
+        
+        // create the ratings stars
+        star1.frame = CGRect(x: buttonWidthBaseline - 4 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
+        star1.setImage(AppAssets.Icons.StarEmpty, for: .normal)
+        star1.contentVerticalAlignment = .fill
+        star1.contentHorizontalAlignment = .fill
+        star1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        star1.tintColor = UIColor.starGray
+        self.addSubview(star1)
+        star2.frame = CGRect(x: buttonWidthBaseline - 3 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
+        star2.setImage(AppAssets.Icons.StarEmpty, for: .normal)
+        star2.contentVerticalAlignment = .fill
+        star2.contentHorizontalAlignment = .fill
+        star2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        star2.tintColor = UIColor.starGray
+        self.addSubview(star2)
+        star3.frame = CGRect(x: buttonWidthBaseline - 2 * buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
+        star3.setImage(AppAssets.Icons.StarEmpty, for: .normal)
+        star3.contentVerticalAlignment = .fill
+        star3.contentHorizontalAlignment = .fill
+        star3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        star3.tintColor = UIColor.starGray
+        self.addSubview(star3)
+        star4.frame = CGRect(x: buttonWidthBaseline - buttonWidthActual, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
+        star4.setImage(AppAssets.Icons.StarEmpty, for: .normal)
+        star4.contentVerticalAlignment = .fill
+        star4.contentHorizontalAlignment = .fill
+        star4.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        star4.tintColor = UIColor.starGray
+        self.addSubview(star4)
+        star5.frame = CGRect(x: buttonWidthBaseline, y: buttonHeightBaseline, width: buttonDimensions, height: buttonDimensions)
+        star5.setImage(AppAssets.Icons.StarEmpty, for: .normal)
+        star5.contentVerticalAlignment = .fill
+        star5.contentHorizontalAlignment = .fill
+        star5.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        star5.tintColor = UIColor.starGray
+        self.addSubview(star5)
+        
+        // set this so that background blends with parent view background i.e. tableview selection color
+        self.backgroundColor = UIColor.opaqueBackground
     }
 }

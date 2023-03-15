@@ -23,7 +23,7 @@ class AppData {
         self._AppPotties = PottyDataSet
     }
     
-    // data mutations
+    // MARK: - Data Mutations
     func addReview(_ pottyId: String, newReview: PottyReview) {
         var pottyIndex: Int?
         var ratingIndex: Int = 0
@@ -88,7 +88,8 @@ class AppData {
         self._AppPotties = PottyDataSet
     }
     
-    // mock data sets
+    // MARK: - private PottyDataSet
+    /// mock data sets, some from ChatGPT
     private var PottyDataSet: [Potty] = [
         Potty(id: "0",
               ratings: [
