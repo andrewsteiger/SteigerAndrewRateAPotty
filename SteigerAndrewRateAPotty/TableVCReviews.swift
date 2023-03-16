@@ -18,7 +18,10 @@ class TableVCReviews: UITableViewController {
         if currentPotty == nil { return }
         //initialize locals
         lblHeader.text = "All " + String(currentPotty!.ratings.count) + " Reviews"
+        self.tableView.reloadData()
     }
+    
+    override func tableView
     
     // MARK: - tableView-cellForRowAt
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

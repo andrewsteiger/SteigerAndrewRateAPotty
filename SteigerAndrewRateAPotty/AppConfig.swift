@@ -18,13 +18,15 @@ class AppConfig {
     }
     
     struct InitialStates {
-        static let pottyInitialState: Potty = Potty(id: "", ratings: [], latitude: 0.0, longitude: 0.0, title: "", snippet: "", iconView: AppAssets.ImageViews.RestAreaView35)
+        static let pottyInitialState: Potty = Potty(id: "", details: [0, 0, 0, 0, 0, 0, 0], ratings: [], latitude: 0.0, longitude: 0.0, title: "", snippet: "", iconView: AppAssets.ImageViews.RestAreaView35)
     }
     
 }
 
 // MARK: - UIButton CheckBox
 class CheckBox: UIButton {
+    private var isCBDisabled: Bool = false
+    
     var isChecked: Bool = false {
         didSet {
             //this can be set to some color to make it visible in IB
@@ -43,8 +45,18 @@ class CheckBox: UIButton {
         self.addTarget(self, action:#selector(buttonClicked(sender:)), for: .touchUpInside)
         self.isChecked = false
     }
+    
+    func isDisabled(_ disable: Bool) {
+        if disable {
+            isCBDisabled = true
+        }
+        else {
+            isCBDisabled = false
+        }
+    }
         
     @objc func buttonClicked(sender: UIButton) {
+        if isCBDisabled { return }
         if sender == self {
             isChecked = !isChecked
         }
@@ -54,6 +66,7 @@ class CheckBox: UIButton {
 // MARK: - struct Potty
 struct Potty {
     var id: String
+    var details: [Int]
     var ratings: [PottyReview]
     var owner: String?
     
@@ -145,16 +158,16 @@ struct AppAssets {
     struct Icons {
         static let StarEmpty = UIImage(named:"StarEmpty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let StarFull = UIImage(named:"StarFull")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.starYellow)
-        static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
-        static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
-        static let ThumbUpSelected = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.blueFocus)
-        static let ThumbDownSelected = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.blueFocus)
+        static let ThumbUp = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemGray)
+        static let ThumbDown = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemGray)
+        static let ThumbUpSelected = UIImage(named:"ThumbUp")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
+        static let ThumbDownSelected = UIImage(named:"ThumbDown")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(.systemBlue)
         static let RestArea = UIImage(named:"RestArea")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         static let PortaPotty = UIImage(named:"PortaPotty")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        static let ZoomIn = UIImage(named:"ZoomIn")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
-        static let ZoomOut = UIImage(named:"ZoomOut")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
-        static let NewMarker = UIImage(named:"NewMarker")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
-        static let CheckBoxChecked = UIImage(named:"Checkbox")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.blueFocus)
+        static let ZoomIn = UIImage(named:"ZoomIn")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.systemBlue)
+        static let ZoomOut = UIImage(named:"ZoomOut")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.systemBlue)
+        static let NewMarker = UIImage(named:"NewMarker")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.systemBlue)
+        static let CheckBoxChecked = UIImage(named:"Checkbox")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.systemBlue)
         static let CheckBoxUnchecked = UIImage(named:"Checkbox")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withTintColor(UIColor.lightGray)
     }
     

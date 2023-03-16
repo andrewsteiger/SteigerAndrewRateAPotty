@@ -232,7 +232,7 @@ extension MapsViewController: GMSMapViewDelegate {
                 
                 let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: infoWindowView.frame.size.width - 16, height: 20))
                 lblHeader.text = "Uncharted Potty"
-                lblHeader.textColor = .blueFocus
+                lblHeader.textColor = .systemBlue
                 infoWindowView.addSubview(lblHeader)
                 
                 let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))
@@ -258,7 +258,7 @@ extension MapsViewController: GMSMapViewDelegate {
                 
                 let lblHeader = UILabel(frame: CGRect.init(x: 8, y: 8, width: infoWindowView.frame.size.width - 16, height: 20))
                 lblHeader.text = selectedPotty.title
-                lblHeader.textColor = .blueFocus
+                lblHeader.textColor = .systemBlue
                 infoWindowView.addSubview(lblHeader)
                 
                 let lblContent = UILabel(frame: CGRect.init(x: lblHeader.frame.origin.x, y: lblHeader.frame.origin.y + lblHeader.frame.size.height + 3, width: infoWindowView.frame.size.width - 16, height: 15))

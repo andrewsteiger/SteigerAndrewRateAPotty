@@ -137,7 +137,7 @@ class MapsViewController: UIViewController {
         btnZoomIn.contentVerticalAlignment = .fill
         btnZoomIn.contentHorizontalAlignment = .fill
         btnZoomIn.addTarget(self, action: #selector(btnZoomAction), for: .touchUpInside)
-        btnZoomIn.tintColor = UIColor.blueFocus
+        btnZoomIn.tintColor = UIColor.systemBlue
         self.mapViewMain.addSubview(btnZoomIn)
         
         btnZoomOut.frame = CGRect(x: buttonWidthBaseline, y:buttonHeightBaseline + 1.5 * buttonDimensions, width: buttonDimensions, height: buttonDimensions)
@@ -148,7 +148,7 @@ class MapsViewController: UIViewController {
         btnZoomOut.contentVerticalAlignment = .fill
         btnZoomOut.contentHorizontalAlignment = .fill
         btnZoomOut.addTarget(self, action: #selector(btnZoomAction), for: .touchUpInside)
-        btnZoomOut.tintColor = UIColor.blueFocus
+        btnZoomOut.tintColor = UIColor.systemBlue
         self.mapViewMain.addSubview(btnZoomOut)
     }
 }

@@ -55,9 +55,10 @@ class ApiClient {
     ///
     /// - Parameters:
     ///   - somePottyStuff: Various `Potty` details
-    func postNewPotty(latitude: Double, longitude: Double, title: String, snippet: String) {
+    func postNewPotty(latitude: Double, longitude: Double, title: String, snippet: String, details: [Int]) {
         let newPotty = Potty(
             id: "",
+            details: details,
             ratings: [],
             latitude: latitude,
             longitude: longitude,

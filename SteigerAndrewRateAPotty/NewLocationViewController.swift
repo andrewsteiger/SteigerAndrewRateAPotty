@@ -40,6 +40,7 @@ class NewLocationViewController: UIViewController {
     var currentLatitude: Double?
     var currentLongitude: Double?
     var currentSnippet: String?
+    var newDetails: [Int] = []
     var spinnerViewChild = SpinnerViewController()
     
     override func viewDidLoad() {
@@ -82,7 +83,18 @@ class NewLocationViewController: UIViewController {
             return
         }
         
-        apiClient.postNewPotty(latitude: currentLatitude!, longitude: currentLongitude!, title: tfLocation.text!, snippet: currentSnippet ?? "")
+        //create poorly designed code of amenities
+        newDetails.removeAll()
+        if cbPetRestArea.isChecked { newDetails.append(1) } else { newDetails.append(0) }
+        if cbWheelchairAccessible.isChecked { newDetails.append(1) } else { newDetails.append(0) }
+        if cbVending.isChecked { newDetails.append(1) } else { newDetails.append(0) }
+        if cbBabyChangingTables.isChecked { newDetails.append(1) } else { newDetails.append(0) }
+        if cbGenderNeutral.isChecked { newDetails.append(1) } else { newDetails.append(0) }
+        if cbRestaurants.isChecked { newDetails.append(1) } else { newDetails.append(0) }
+        if cbGas.isChecked { newDetails.append(1) } else { newDetails.append(0) }
+        
+        
+        apiClient.postNewPotty(latitude: currentLatitude!, longitude: currentLongitude!, title: tfLocation.text!, snippet: currentSnippet ?? "", details: newDetails)
         
         let confirmAlertController = UIAlertController(title: "Potty Created",
                                                        message: nil,
@@ -150,7 +162,7 @@ class NewLocationViewController: UIViewController {
         btnCurrentLocation.setImage(AppAssets.Icons.NewMarker, for: .normal)
         btnCurrentLocation.contentVerticalAlignment = .fill
         btnCurrentLocation.contentHorizontalAlignment = .fill
-        btnCurrentLocation.tintColor = UIColor.blueFocus
+        btnCurrentLocation.tintColor = UIColor.systemBlue
         btnCurrentLocation.setTitle("", for: .normal)
         btnCurrentLocation.layer.borderColor = UIColor.cgGray
         btnCurrentLocation.layer.borderWidth = 1
