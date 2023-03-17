@@ -4,6 +4,7 @@
 //
 //  Created by asteiger on 2/23/23.
 //
+//  Acts as a shared configuration for the application
 
 import Foundation
 import UIKit
