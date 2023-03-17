@@ -28,6 +28,7 @@
 		09756B8829C16BA30067FC9D /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09756B8729C16BA30067FC9D /* LocationDetailsViewController.swift */; };
 		09BB8F4B29C00B1500D87B8D /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BB8F4A29C00B1500D87B8D /* NewLocationViewController.swift */; };
 		09BB8F4D29C0C86400D87B8D /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BB8F4C29C0C86400D87B8D /* SpinnerViewController.swift */; };
+		09D0FB6A29C4C562003A8A0C /* Sample_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0FB6929C4C562003A8A0C /* Sample_AppDelegate.swift */; };
 		09F21C6E29B3C92C0001DE78 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F21C6D29B3C92C0001DE78 /* LocationViewController.swift */; };
 		B6CDB7F5BAA308D3ABD9C1BC /* libPods-SteigerAndrewRateAPotty.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CED7FE914B4AE983605022F5 /* libPods-SteigerAndrewRateAPotty.a */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		09756B8729C16BA30067FC9D /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		09BB8F4A29C00B1500D87B8D /* NewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
 		09BB8F4C29C0C86400D87B8D /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		09D0FB6929C4C562003A8A0C /* Sample_AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_AppDelegate.swift; sourceTree = "<group>"; };
 		09F21C6C29B117190001DE78 /* SteigerAndrewRateAPotty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SteigerAndrewRateAPotty.entitlements; sourceTree = "<group>"; };
 		09F21C6D29B3C92C0001DE78 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		881B94C02B14DDCA685EA8FF /* Pods-SteigerAndrewRateAPotty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteigerAndrewRateAPotty.release.xcconfig"; path = "Target Support Files/Pods-SteigerAndrewRateAPotty/Pods-SteigerAndrewRateAPotty.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				09BB8F4A29C00B1500D87B8D /* NewLocationViewController.swift */,
 				09BB8F4C29C0C86400D87B8D /* SpinnerViewController.swift */,
 				09756B8729C16BA30067FC9D /* LocationDetailsViewController.swift */,
+				09D0FB6929C4C562003A8A0C /* Sample_AppDelegate.swift */,
 			);
 			path = SteigerAndrewRateAPotty;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				096E6B2029AAAA8B003DB933 /* ReviewDetailViewController.swift in Sources */,
+				09D0FB6A29C4C562003A8A0C /* Sample_AppDelegate.swift in Sources */,
 				0932A4D829A7E50C00EEDFF8 /* TableVCReviews.swift in Sources */,
 				09BB8F4B29C00B1500D87B8D /* NewLocationViewController.swift in Sources */,
 				0932A50829A826CD00EEDFF8 /* Extensions.swift in Sources */,

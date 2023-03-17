@@ -1,10 +1,17 @@
+#RateAPotty
+ - This application was written in Swift UIKit to allow users to rate restrooms.  This application was written for educational purposes.
+
 #Known Issues
 
 ##Compile/Simulator issues
 ###Updating selectors failed with: Error Domain=NSCocoaErrorDomain Code=4099 "The connection to service named com.apple.commcenter.coretelephony.xpc was invalidated: failed at lookup with error 3 - No such process."
  - this is a known/current issue in the GoogleMaps framework as of 2023-03-02 for specific iOS versions.  The Metal API is used in the AppDelegate before GMS is initiated but does not solve every case.
+ 
+##Bugs
+-The DrawBorderLayer function which uses an input UIView to create the frame works strangely in two locations.  When the TableVCReviews generates it's cells, and when NewLocationViewController attempts to border contentViewCreate Location.  Cosmetic bug.
+-The upVote button tappable area is restricted to the bottom right of the button.
 
-#Frameworks
+#Installing Dependencies
 
 ##Chruby - Side-loaded Ruby
 
@@ -50,3 +57,6 @@
     git clone --depth 1 https://github.com/CocoaPods/Specs.git master
 -the project should only be opened with XCode using the .xcworkspace
 
+##AppDelegate.swift
+
+-The AppDelegate was removed and a Sample_AppDelegate.swift exists as a starting point.  The google API Keys are removed and must be obtained to restore functionality.
