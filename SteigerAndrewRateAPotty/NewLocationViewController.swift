@@ -46,6 +46,10 @@ class NewLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set up view to observe keyboard show/hide
+        self.keyboardWillHideOnTap()
+        self.viewWillLayoutWithKeyboard()
+        
         setupView()
     }
     

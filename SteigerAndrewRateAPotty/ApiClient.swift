@@ -24,7 +24,7 @@ class ApiClient {
     /// - Parameters:
     ///   - id: The guid of the `Potty` to return
     func getPottyByID(_ id: String) -> Potty {
-        for i in 0...AppData.sharedData.AppPotties.count - 1 {
+        for i in 0..<AppData.sharedData.AppPotties.count {
             if AppData.sharedData.AppPotties[i].id == id {
                 return AppData.sharedData.AppPotties[i]
             }

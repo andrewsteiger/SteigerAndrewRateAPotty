@@ -106,7 +106,7 @@ class MapsViewController: UIViewController {
         markers.removeAll()
         
         //create markers, add to local array markers
-        for i in 0...AppData.sharedData.AppPotties.count - 1 {
+        for i in 0..<AppData.sharedData.AppPotties.count {
             let currentPotty = AppData.sharedData.AppPotties[i]
             // creates markers from app data
             let marker = GMSMarker()

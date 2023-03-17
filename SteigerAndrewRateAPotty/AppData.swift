@@ -53,9 +53,20 @@ class AppData {
                 }
             }
         }
+        
+        //get the posting date time
+        let date = Date()
+        let calendar = Calendar.current
+        let todaysDate = Date.from(
+            year: calendar.component(.year, from: date),
+            month: calendar.component(.month, from: date),
+            day: calendar.component(.day, from: date),
+            hour: calendar.component(.hour, from: date),
+            minute: calendar.component(.minute, from: date))
+        
         if let i = pottyIndex {
             //  attach index to next review in sequence
-            let indexedReview = PottyReview(id: String(ratingIndex), author: newReview.author, ratingAccessibility: newReview.ratingAccessibility, ratingCleanliness: newReview.ratingCleanliness, ratingAtmosphere: newReview.ratingAtmosphere, comment: newReview.comment, upVotes: 0, downVotes: 0)
+            let indexedReview = PottyReview(id: String(ratingIndex), author: newReview.author, dateTimeCreated: todaysDate,ratingAccessibility: newReview.ratingAccessibility, ratingCleanliness: newReview.ratingCleanliness, ratingAtmosphere: newReview.ratingAtmosphere, comment: newReview.comment, upVotes: 0, downVotes: 0)
             PottyDataSet[i].ratings.append(indexedReview)
         }
         // reset singleton object

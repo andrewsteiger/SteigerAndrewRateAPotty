@@ -73,7 +73,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         //begin form validation.  note, a blank comment is allowed
         
         //user can only leave one comment
-        for i in 0...currentPotty!.ratings.count - 1 {
+        for i in 0..<currentPotty!.ratings.count {
             if currentPotty!.ratings[i].author == currentUser {
                 let alertController =
                 UIAlertController(title: "Potty Has Been Reviewed",
@@ -152,6 +152,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
         lblLeaveAReview.isHidden = true
         contentViewNewReview.isHidden = true
         setupHeader()
+        setupTopReview()
         self.view.layoutIfNeeded()
     }
     
@@ -234,6 +235,7 @@ class LocationViewController: UIViewController, UITextViewDelegate {
             viewRatingReviewSupport.setUpVotes(topRatedReview.upVotes)
             viewRatingReviewSupport.setDownVotes(topRatedReview.downVotes)
             viewRatingReviewSupport.setUserVote()
+            viewRatingReviewSupport.isHidden = false
             contentViewReviewMain.layoutIfNeeded()
             contentViewReviewMain.layer.addSublayer(DrawBorderLayer(contentViewReviewMain, inset: 14))
         }
